@@ -1,17 +1,13 @@
 import java.awt.*;
-import java.awt.event.*;
-import java.awt.image.BufferedImage;
 import java.awt.Color; 
-import java.io.IOException;
 import javax.swing.*;
-import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class guiFrame extends JFrame  {
+public class guiFrame extends JFrame implements ActionListener {
 	
 	Graphics g;
 	JPanel topPanel, topPanelA, topPanelB, centerPanel;                      
@@ -19,15 +15,16 @@ public class guiFrame extends JFrame  {
 	public JButton newGame, loadGame, exitGame, settings, levelChange; 
 	private Font font; 
 	private Color color; 
-	public ResourceBundle bundle;
+	ImageIcon img, img2;
+	//public ResourceBundle bundle;
+	private String selected;
 /*	public LevelSettings levelSettings;
 	public ColorSettings colorSettings;					//tego jeszcze nie mamy 
 	public Game newgame; */
-	private ImageIcon menu;
-	Image img;
 	boolean started = false;
-	private int screenWidth  = Toolkit.getDefaultToolkit().getScreenSize().width;
-    private int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
+	protected int screenWidth  = Toolkit.getDefaultToolkit().getScreenSize().width;
+    protected int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
+    public settingsFrame settingsFrame;
 	
     
     
@@ -40,31 +37,8 @@ public class guiFrame extends JFrame  {
 		this.setFocusable(true);
 	    this.requestFocusInWindow();
 		
-		
-		/*topPanel = new JPanel();
-		topPanel.setPreferredSize(new Dimension(700,50));
-		topPanel.setBackground( new Color(126,177,211));
-		topPanelA = new JPanel();
-		topPanelA.setPreferredSize(new Dimension(350,50));
-		topPanelA.setBackground( new Color(126,177,211));
-		topPanelA.setLayout(new FlowLayout(FlowLayout.LEFT));
-        JLabel lbl2 = new JLabel("Hello");
-        topPanelA.add(lbl2);                                                //topPanel którego chyba nie robimy jednak
-        topPanelB = new JPanel();
-        topPanelB.setPreferredSize(new Dimension(350,50));
-        topPanelB.setBackground( new Color(126,177,211));
-        topPanelB.setLayout(new FlowLayout(FlowLayout.RIGHT));
-        JLabel lbl3 = new JLabel("Hello");
-        topPanelB.add(lbl3);
-        topPanel.add(topPanelA);
-        topPanel.add(topPanelB);
-		img = new Image(guiFrame.class.getResource("volumebutton.png"));
-		this.add(topPanel, BorderLayout.PAGE_START);
-		*/
-		
-		
 		try {
-		    URL url = guiFrame.class.getResource("cgf.wav");
+		    URL url = getClass().getResource("others/cgf.wav");
 		    AudioInputStream audio = AudioSystem.getAudioInputStream(url);
 		    Clip music = AudioSystem.getClip();
 		    music.open(audio);
@@ -73,7 +47,7 @@ public class guiFrame extends JFrame  {
 		catch (Exception e) {
 		}
 		
-		ImageIcon img = new ImageIcon(guiFrame.class.getResource("menu3.png"));
+		img = new ImageIcon(getClass().getResource("others/menu3.png"));
         background = new JLabel("",img,JLabel.CENTER);
         //background.setBounds(0,0,1360, 960);
         //background.setBounds(0,0,(int) (screenWidth*0.7),(int) (screenHeight*0.85));
@@ -88,7 +62,7 @@ public class guiFrame extends JFrame  {
         c.gridx = 0;
         c.gridy = 0;
         JLabel lbl1 = new JLabel("");
-        lbl1.setPreferredSize(new Dimension(10,120));
+        lbl1.setPreferredSize(new Dimension(10,140));
         background.add(lbl1, c);
         
         c.gridy = 1;
@@ -98,7 +72,7 @@ public class guiFrame extends JFrame  {
         newGame.setFont(font);
         newGame.setBackground(color);
         newGame.setForeground(Color.BLACK);
-        newGame.setActionCommand("NewGame");
+        newGame.setActionCommand("newgame");
  //     newGame.addActionListener(this);
         background.add(newGame, c);
 
@@ -107,7 +81,7 @@ public class guiFrame extends JFrame  {
         loadGame.setFont(font);
         loadGame.setBackground(color); 
         loadGame.setForeground(Color.BLACK);
-        loadGame.setActionCommand("loadGame");
+        loadGame.setActionCommand("loadgame");
      // loadGame.addActionListener(this);
         background.add(loadGame, c);
 
@@ -126,7 +100,7 @@ public class guiFrame extends JFrame  {
         settings.setBackground(color); 
         settings.setForeground(Color.BLACK);
         settings.setActionCommand("settings");
-     // settings.addActionListener(this);
+        settings.addActionListener(this);
         background.add(settings, c);
         
         c.gridy = 5;
@@ -134,8 +108,8 @@ public class guiFrame extends JFrame  {
         exitGame.setFont(font);
         exitGame.setBackground(color); 
         exitGame.setForeground(Color.BLACK);
-        exitGame.setActionCommand("exitGame");
-     // exitGame.addActionListener(this);
+        exitGame.setActionCommand("exitgame");
+        exitGame.addActionListener(this);
         background.add(exitGame, c);
 
         
@@ -150,6 +124,30 @@ public class guiFrame extends JFrame  {
 	
 	}
 	
-	
+	@Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getActionCommand() == "newgame") {
+            selected = "newgame";
+        } 
+        else if (e.getActionCommand() == "loadgame") {
+            selected = "loadgame";
+        } 
+        else if (e.getActionCommand() == "difficulty") {
+            selected = "difficulty";
+        }
+        else if (e.getActionCommand() == "settings") {
+        	selected = "settings";
+        	//settingsFrame = new settingsFrame(this);
+        	//settingsFrame.setVisible(true);
+            //img2 = new ImageIcon(getClass().getResource("others/settings.png"));
+    		//background = new JLabel("",img2,JLabel.CENTER);
+    		
+    		
+        }
+        else if (e.getActionCommand() == "exitgame") {
+            selected = "exitgame";
+            System.exit(0);
+        }
+    }
 
 }
