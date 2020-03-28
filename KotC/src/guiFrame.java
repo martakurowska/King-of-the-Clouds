@@ -57,29 +57,7 @@ public class guiFrame extends JFrame  {
 		}
 		
 		centerPanel = new JPanel();
-/*		centerPanel.setBackground(null);
-		centerPanel.setOpaque(false);
-		centerPanel.setLayout(new GridLayout(0,1,0,80)); //rows, columns, size of horizontal gaps, size of vertical gaps
-		newGame = new JButton("New Game");
-		load = new JButton("Load"); 
-		level = new JButton("Level"); 
-		exit = new JButton("Exit"); 
-		newGame.setFont(new Font("Impact", Font.PLAIN, 14));
-        newGame.setBackground(new Color(225,108,164));
-        newGame.setForeground(Color.white); 
-        load.setFont(new Font("Impact", Font.PLAIN, 14));
-        load.setBackground(new Color(225,108,164));
-        load.setForeground(Color.white);
-        level.setFont(new Font("Impact", Font.PLAIN, 14));
-        level.setBackground(new Color(225,108,164));
-        level.setForeground(Color.white);
-        exit.setFont(new Font("Impact", Font.PLAIN, 14));
-        exit.setBackground(new Color(225,108,164));
-        exit.setForeground(Color.white);
-        centerPanel.add(newGame);
-        centerPanel.add(load);
-        centerPanel.add(level);
-        centerPanel.add(exit); */
+
 		ImageIcon img = new ImageIcon(guiFrame.class.getResource("menu2.png"));
         background = new JLabel("",img,JLabel.CENTER);
         background.setBounds(0,0,(int) (screenWidth*0.7),(int) (screenHeight*0.85));
