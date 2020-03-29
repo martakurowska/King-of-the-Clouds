@@ -21,7 +21,7 @@ public class guiFrame extends JFrame {
 	JPanel menuPanel, settingsPanel, settingsPanelTop, languagePanel;
 	menuScreenHandler msHandler = new menuScreenHandler();
 	languagePanel lngPanel;
-	//difficultyFrame difficultyFrame;
+	difficultyFrame difficultyFrame;
 	public JPanel menuFrame() {
 		
 		menuPanel = new JPanel() {
@@ -188,7 +188,7 @@ public class guiFrame extends JFrame {
         settingsPanel = new JPanel();
     	settingsPanel = this.settingsFrame();
     	
-    	//difficultyFrame = new difficultyFrame(this);
+    	difficultyFrame = new difficultyFrame(this);
 	};
 	
 	
@@ -201,7 +201,7 @@ public class guiFrame extends JFrame {
 	        	
 	        } 
 	        else if (e.getActionCommand() == "difficulty") {
-	        	//difficultyFrame.setVisible(true);
+	        	difficultyFrame.setVisible(true);
 	        }
 	        else if (e.getActionCommand() == "settings") {
 	        	

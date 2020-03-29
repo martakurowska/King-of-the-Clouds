@@ -14,6 +14,7 @@ public class languagePanel implements ActionListener{
 	private Color color= new Color(225,108,164); 
     
 	public languagePanel() {
+		
 		panel = new JPanel();
 		panel.setOpaque(false);
 		panel.setLayout(new GridBagLayout());
