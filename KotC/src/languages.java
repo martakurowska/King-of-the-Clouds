@@ -1,4 +1,4 @@
-import java.awt.*;
+/*import java.awt.*;
 import java.awt.Color; 
 import javax.swing.*;
 import javax.sound.sampled.*;
@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 public class languages extends JFrame implements ActionListener  {
 
 	public guiFrame guiFrame; 
+	public languagePanel languagePanel; 
 	public ResourceBundle bundle;
 	public Locale enLocale = new Locale("en", "EN");
 	public Locale plLocale = new Locale("pl", "PL"); 				//Locale jest u¿ywane do identyfikacji obiektów 
@@ -25,9 +26,6 @@ public class languages extends JFrame implements ActionListener  {
 	private JButton polish, english, french, russian, swedish; 
 	
 	public languages () {
-/*		this.setSize((int) (screenWidth*0.7),(int) (screenHeight*0.85) );
-		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		this.setTitle("King of the Clouds Game"); */ 
 		
 		font = new Font("Impact", Font.PLAIN, 15); 
 		color = new Color(225,108,164);
@@ -85,23 +83,23 @@ public class languages extends JFrame implements ActionListener  {
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
 		case "polish":{
-			changingLanguageOnButton(plLocale);   	//zmiana na przyciskach wyboru jêzyka
+			                     	
 			changingLanguageOnGuiFrame(plLocale);  //zmiana w klasie guiFrame
 	 		}
 		case "english":{
-			changingLanguageOnButton(enLocale);   	
+			  	
 			changingLanguageOnGuiFrame(enLocale); 
 			}
 		case "french":{
-			changingLanguageOnButton(frLocale);   	
+			   	
 			changingLanguageOnGuiFrame(frLocale); 
 			}
 		case "russian":{
-			changingLanguageOnButton(ruLocale);   	
+				
 			changingLanguageOnGuiFrame(ruLocale); 
 		    }
 		case "swedish":{
-			changingLanguageOnButton(svLocale);   	
+			  	
 			changingLanguageOnGuiFrame(svLocale); 
      		}
 		
@@ -109,14 +107,6 @@ public class languages extends JFrame implements ActionListener  {
 		
 	} 
 	
-	public void changingLanguageOnButton(Locale newLocale) {
-		ResourceBundle newbundle = ResourceBundle.getBundle("guiFrame/myProp", newLocale); 
-		polish.setText(newbundle.getString("pol"));
-		english.setText(newbundle.getString("eng"));
-		french.setText(newbundle.getString("fren"));
-		russian.setText(newbundle.getString("ru")); 
-		swedish.setText(newbundle.getString("sv")); 
-	}
 	
 	public void changingLanguageOnGuiFrame(Locale newLocale) {
 		ResourceBundle newbundle = ResourceBundle.getBundle("guiFrame/myProp", newLocale);
@@ -124,9 +114,9 @@ public class languages extends JFrame implements ActionListener  {
 		guiFrame.loadGameBtn.setText(newbundle.getString("loadGame"));
 		guiFrame.levelChangeBtn.setText(newbundle.getString("levelChange"));
 		guiFrame.settingsBtn.setText(newbundle.getString("settings"));
-		guiFrame.exitGameBtn.setText(newbundle.getString("exitGame"));
-		
+		guiFrame.exitGameBtn.setText(newbundle.getString("exitGame"));	
+		guiFrame.
 	}
 	
 	
-}
+} */

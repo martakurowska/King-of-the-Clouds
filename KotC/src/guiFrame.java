@@ -8,9 +8,6 @@ import java.awt.event.*;
 public class guiFrame extends JFrame {
 	                    
 	public ResourceBundle bundle;
-/*	public LevelSettings levelSettings;
-	public ColorSettings colorSettings;					//tego jeszcze nie mamy 
-	public Game newgame; */
 	ImageIcon img, img2;
 	Container con; 
 	private Font font; 
@@ -22,7 +19,8 @@ public class guiFrame extends JFrame {
 	menuScreenHandler msHandler = new menuScreenHandler();
 	languagePanel lngPanel;
 	difficultyFrame difficultyFrame;
-	public JPanel menuFrame() {
+	//public languages languages; 
+	public JPanel menuFrame() throws HeadlessException {
 		
 		menuPanel = new JPanel() {
 			@Override
@@ -50,7 +48,7 @@ public class guiFrame extends JFrame {
         c.gridy = 1;
     	font = new Font("Impact", Font.PLAIN, 34);   								//ustawienia czcionki na przycisku 
 		color = new Color(225,108,164);												//ustawienie koloru przycisku
-        newGameBtn = new JButton("new game");
+        newGameBtn = new JButton(bundle.getString("newgame"));
         newGameBtn.setFont(font);
         newGameBtn.setBackground(color);
         newGameBtn.setForeground(Color.BLACK);
@@ -60,7 +58,7 @@ public class guiFrame extends JFrame {
         menuPanel.add(newGameBtn, c);
 
         c.gridy = 2;
-        loadGameBtn = new JButton("load game");
+        loadGameBtn = new JButton(bundle.getString("loadgame"));
         loadGameBtn.setFont(font);
         loadGameBtn.setBackground(color); 
         loadGameBtn.setForeground(Color.BLACK);
@@ -70,7 +68,7 @@ public class guiFrame extends JFrame {
         menuPanel.add(loadGameBtn, c);
 
         c.gridy = 3;
-        levelChangeBtn = new JButton("difficulty");
+        levelChangeBtn = new JButton(bundle.getString("levelChangeBtn"));
         levelChangeBtn.setFont(font);
         levelChangeBtn.setBackground(color);
         levelChangeBtn.setForeground(Color.BLACK);
@@ -80,7 +78,7 @@ public class guiFrame extends JFrame {
         menuPanel.add(levelChangeBtn, c);
 
         c.gridy = 4;
-        settingsBtn = new JButton("settings");
+        settingsBtn = new JButton(bundle.getString("settingsBtn"));
         settingsBtn.setFont(font);
         settingsBtn.setBackground(color); 
         settingsBtn.setForeground(Color.BLACK);
@@ -90,7 +88,7 @@ public class guiFrame extends JFrame {
         menuPanel.add(settingsBtn, c);
         
         c.gridy = 5;
-        exitGameBtn = new JButton("exit");
+        exitGameBtn = new JButton(bundle.getString("exitGameBtn"));
         exitGameBtn.setFont(font);
         exitGameBtn.setBackground(color); 
         exitGameBtn.setForeground(Color.BLACK);
@@ -121,7 +119,7 @@ public class guiFrame extends JFrame {
 		settingsPanelTop = new JPanel();
 		settingsPanelTop.setOpaque(false);
 		
-		characterButton = new JButton("character");
+		characterButton = new JButton(bundle.getString("character")); 
 		characterButton.setFont(font);
 		characterButton.setBackground(color);
 		characterButton.setForeground(Color.BLACK);
@@ -130,7 +128,7 @@ public class guiFrame extends JFrame {
 		characterButton.addActionListener(msHandler);
 		settingsPanelTop.add(characterButton);
 
-        languageButton = new JButton("language");
+        languageButton = new JButton(bundle.getString("language"));
         languageButton.setFont(font);
         languageButton.setBackground(color); 
         languageButton.setForeground(Color.BLACK);
@@ -139,7 +137,7 @@ public class guiFrame extends JFrame {
         languageButton.addActionListener(msHandler);
         settingsPanelTop.add(languageButton);
 
-        soundButton = new JButton("sound");
+        soundButton = new JButton(bundle.getString("sound"));
         soundButton.setFont(font);
         soundButton.setBackground(color);
         soundButton.setForeground(Color.BLACK);
@@ -148,7 +146,7 @@ public class guiFrame extends JFrame {
         soundButton.addActionListener(msHandler);
         settingsPanelTop.add(soundButton);
 
-        backToMenuButton = new JButton("back to menu");
+        backToMenuButton = new JButton(bundle.getString("backtomenu"));
         backToMenuButton.setFont(font);
         backToMenuButton.setBackground(color); 
         backToMenuButton.setForeground(Color.BLACK);
@@ -169,7 +167,7 @@ public class guiFrame extends JFrame {
 		this.setFocusable(true);
 	    this.requestFocusInWindow();
 		con = this.getContentPane();
-		
+		bundle = ResourceBundle.getBundle("KotC/src/myProp"); 
 		try {
 		    URL url = getClass().getResource("others/Rumadai.wav");
 		    AudioInputStream audio = AudioSystem.getAudioInputStream(url);
@@ -202,6 +200,8 @@ public class guiFrame extends JFrame {
 	        } 
 	        else if (e.getActionCommand() == "difficulty") {
 	        	difficultyFrame.setVisible(true);
+	        	//languages languages = new languages(this, difficultyFrame);
+	        	//languages.setVisible(true);
 	        }
 	        else if (e.getActionCommand() == "settings") {
 	        	

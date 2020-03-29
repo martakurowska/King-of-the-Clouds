@@ -30,7 +30,7 @@ public class difficultyFrame extends JFrame implements ActionListener {
 		this.setForeground(Color.BLACK);
 		bundle = ResourceBundle.getBundle("others/myProp"); 
 		
-		easy = new JButton(bundle.getString("easy")); 
+ 		easy = new JButton(/*bundle.getString("easy")*/"Easy"); 
 		easy.setActionCommand("Easy"); 
 		easy.addActionListener(this);
 		easy.setFont(font); 
@@ -39,7 +39,7 @@ public class difficultyFrame extends JFrame implements ActionListener {
 		panel.add(easy);
 	
 		
-		normal = new JButton(bundle.getString("normal")); 
+		normal = new JButton(/*bundle.getString("normal")*/"Normal"); 
 		normal.setActionCommand("Normal"); 
 		normal.addActionListener(this);
 		normal.setFont(font); 
@@ -48,7 +48,7 @@ public class difficultyFrame extends JFrame implements ActionListener {
 		panel.add(normal);
 	
 		
-		hard = new JButton(bundle.getString("hard")); 
+		hard = new JButton(/*bundle.getString("hard")*/"Hard"); 
 		hard.setActionCommand("Hard"); 
 		hard.addActionListener(this);
 		hard.setFont(font); 
