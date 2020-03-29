@@ -107,7 +107,7 @@ public class guiFrame extends JFrame {
 		con = this.getContentPane();
 		
 		try {
-		    URL url = getClass().getResource("others/KOTC.wav");
+		    URL url = getClass().getResource("others/Rumadai.wav");
 		    AudioInputStream audio = AudioSystem.getAudioInputStream(url);
 		    Clip music = AudioSystem.getClip();
 		    music.open(audio);

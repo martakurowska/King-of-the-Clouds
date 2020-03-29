@@ -14,4 +14,31 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/others/myProp_en_EN.properties</name>
+			<type>1</type>
+			<location>C:/Users/Tosia/Desktop/PROJEKT XD/tłumaczenia/myProp_en_EN.properties</location>
+		</link>
+		<link>
+			<name>src/others/myProp_fr_FR.properties</name>
+			<type>1</type>
+			<location>C:/Users/Tosia/Desktop/PROJEKT XD/tłumaczenia/myProp_fr_FR.properties</location>
+		</link>
+		<link>
+			<name>src/others/myProp_pl_PL.properties</name>
+			<type>1</type>
+			<location>C:/Users/Tosia/Desktop/PROJEKT XD/tłumaczenia/myProp_pl_PL.properties</location>
+		</link>
+		<link>
+			<name>src/others/myProp_ru_RU.properties</name>
+			<type>1</type>
+			<location>C:/Users/Tosia/Desktop/PROJEKT XD/tłumaczenia/myProp_ru_RU.properties</location>
+		</link>
+		<link>
+			<name>src/others/myProp_sv_SE.properties</name>
+			<type>1</type>
+			<location>C:/Users/Tosia/Desktop/PROJEKT XD/tłumaczenia/myProp_sv_SE.properties</location>
+		</link>
+	</linkedResources>
 </projectDescription>
