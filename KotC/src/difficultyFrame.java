@@ -13,6 +13,15 @@ public class difficultyFrame extends JFrame implements ActionListener {
 	private Color color; 
 	private guiFrame guiFrame; 
 	
+	public void setButton(JButton btn) {
+		btn.addActionListener(this);
+		btn.setFont(font); 
+		btn.setBackground(color); 
+		btn.setForeground(Color.BLACK);
+		btn.setFocusPainted(false);
+		panel.add(btn);
+	}
+	
 	public difficultyFrame(guiFrame guiFrame) {
 		
 		Locale.setDefault(new Locale("en","GB", "WIN"));
@@ -20,41 +29,30 @@ public class difficultyFrame extends JFrame implements ActionListener {
 		setSize(300,200);
 		setTitle("Choose your level");
 		setResizable(false);
+		font = new Font("Impact", Font.PLAIN, 34);   								 
+		color = new Color(225,108,164);	
 		
 		panel = new JPanel();
 		panel.setLayout(new GridLayout(3,1)); 
-		font = new Font("Impact", Font.PLAIN, 34);   								 
-		color = new Color(225,108,164);	
+		
 		this.setFont(font);
 		this.setBackground(color);
 		this.setForeground(Color.BLACK);
-		bundle = ResourceBundle.getBundle("others/myProp"); 
+		bundle = ResourceBundle.getBundle("myProp"); 
 		
- 		easy = new JButton(/*bundle.getString("easy")*/"Easy"); 
+ 		easy = new JButton(bundle.getString("easy")); 
 		easy.setActionCommand("Easy"); 
-		easy.addActionListener(this);
-		easy.setFont(font); 
-		easy.setBackground(color); 
-		easy.setForeground(Color.BLACK);
-		panel.add(easy);
+		setButton(easy);
 	
 		
-		normal = new JButton(/*bundle.getString("normal")*/"Normal"); 
+		normal = new JButton(bundle.getString("normal")); 
 		normal.setActionCommand("Normal"); 
-		normal.addActionListener(this);
-		normal.setFont(font); 
-		normal.setBackground(color); 
-		normal.setForeground(Color.BLACK);
-		panel.add(normal);
+		setButton(normal);
 	
 		
-		hard = new JButton(/*bundle.getString("hard")*/"Hard"); 
+		hard = new JButton(bundle.getString("hard")); 
 		hard.setActionCommand("Hard"); 
-		hard.addActionListener(this);
-		hard.setFont(font); 
-		hard.setBackground(color); 
-		hard.setForeground(Color.BLACK);
-		panel.add(hard);
+		setButton(hard);
 	
 		this.add(panel);
 		
@@ -71,5 +69,4 @@ public class difficultyFrame extends JFrame implements ActionListener {
 		}
 			
 	}
-	
 }

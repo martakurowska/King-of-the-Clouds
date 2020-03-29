@@ -19,8 +19,16 @@ public class guiFrame extends JFrame {
 	menuScreenHandler msHandler = new menuScreenHandler();
 	languagePanel lngPanel;
 	difficultyFrame difficultyFrame;
-	//public languages languages; 
-	public JPanel menuFrame() throws HeadlessException {
+	
+	public void setButton(JButton btn) {
+		btn.setFont(font);
+        btn.setBackground(color); 
+        btn.setForeground(Color.BLACK);
+        btn.setFocusPainted(false);
+	}
+	
+
+	public JPanel menuFrame() {
 		
 		menuPanel = new JPanel() {
 			@Override
@@ -30,7 +38,6 @@ public class guiFrame extends JFrame {
 		        G.drawImage(img.getImage(), 0, 0, this.getWidth(), this.getHeight(), null);
 		    }
 		};
-		menuPanel.setBounds(0,0,1360, 960);
         
 		menuPanel.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
@@ -49,56 +56,41 @@ public class guiFrame extends JFrame {
     	font = new Font("Impact", Font.PLAIN, 34);   								//ustawienia czcionki na przycisku 
 		color = new Color(225,108,164);												//ustawienie koloru przycisku
         newGameBtn = new JButton(bundle.getString("newgame"));
-        newGameBtn.setFont(font);
-        newGameBtn.setBackground(color);
-        newGameBtn.setForeground(Color.BLACK);
-        newGameBtn.setFocusPainted(false);
+        setButton(newGameBtn);
         newGameBtn.setActionCommand("newgame");
         newGameBtn.addActionListener(msHandler);
         menuPanel.add(newGameBtn, c);
 
         c.gridy = 2;
         loadGameBtn = new JButton(bundle.getString("loadgame"));
-        loadGameBtn.setFont(font);
-        loadGameBtn.setBackground(color); 
-        loadGameBtn.setForeground(Color.BLACK);
-        loadGameBtn.setFocusPainted(false);
+        setButton(loadGameBtn);
         loadGameBtn.setActionCommand("loadgame");
         loadGameBtn.addActionListener(msHandler);
         menuPanel.add(loadGameBtn, c);
 
         c.gridy = 3;
-        levelChangeBtn = new JButton(bundle.getString("levelChangeBtn"));
-        levelChangeBtn.setFont(font);
-        levelChangeBtn.setBackground(color);
-        levelChangeBtn.setForeground(Color.BLACK);
-        levelChangeBtn.setFocusPainted(false);
+        levelChangeBtn = new JButton(bundle.getString("levelChange"));
+        setButton(levelChangeBtn);
         levelChangeBtn.setActionCommand("difficulty");
         levelChangeBtn.addActionListener(msHandler);
         menuPanel.add(levelChangeBtn, c);
 
         c.gridy = 4;
-        settingsBtn = new JButton(bundle.getString("settingsBtn"));
-        settingsBtn.setFont(font);
-        settingsBtn.setBackground(color); 
-        settingsBtn.setForeground(Color.BLACK);
-        settingsBtn.setFocusPainted(false);
+        settingsBtn = new JButton(bundle.getString("settings"));
+        setButton(settingsBtn);
         settingsBtn.setActionCommand("settings");
         settingsBtn.addActionListener(msHandler);
         menuPanel.add(settingsBtn, c);
         
         c.gridy = 5;
-        exitGameBtn = new JButton(bundle.getString("exitGameBtn"));
-        exitGameBtn.setFont(font);
-        exitGameBtn.setBackground(color); 
-        exitGameBtn.setForeground(Color.BLACK);
-        exitGameBtn.setFocusPainted(false);
+        exitGameBtn = new JButton(bundle.getString("exit"));
+        setButton(exitGameBtn);
         exitGameBtn.setActionCommand("exitgame");
         exitGameBtn.addActionListener(msHandler);
         menuPanel.add(exitGameBtn, c);
 		
         return menuPanel;
-	};
+	}
 	
 	
 	public JPanel settingsFrame() {
@@ -120,44 +112,32 @@ public class guiFrame extends JFrame {
 		settingsPanelTop.setOpaque(false);
 		
 		characterButton = new JButton(bundle.getString("character")); 
-		characterButton.setFont(font);
-		characterButton.setBackground(color);
-		characterButton.setForeground(Color.BLACK);
-		characterButton.setFocusPainted(false);
+		setButton(characterButton);
 		characterButton.setActionCommand("character");
 		characterButton.addActionListener(msHandler);
 		settingsPanelTop.add(characterButton);
 
         languageButton = new JButton(bundle.getString("language"));
-        languageButton.setFont(font);
-        languageButton.setBackground(color); 
-        languageButton.setForeground(Color.BLACK);
-        languageButton.setFocusPainted(false);
+        setButton(languageButton);
         languageButton.setActionCommand("language");
         languageButton.addActionListener(msHandler);
         settingsPanelTop.add(languageButton);
 
         soundButton = new JButton(bundle.getString("sound"));
-        soundButton.setFont(font);
-        soundButton.setBackground(color);
-        soundButton.setForeground(Color.BLACK);
-        soundButton.setFocusPainted(false);
+        setButton(soundButton);
         soundButton.setActionCommand("sound");
         soundButton.addActionListener(msHandler);
         settingsPanelTop.add(soundButton);
 
         backToMenuButton = new JButton(bundle.getString("backtomenu"));
-        backToMenuButton.setFont(font);
-        backToMenuButton.setBackground(color); 
-        backToMenuButton.setForeground(Color.BLACK);
-        backToMenuButton.setFocusPainted(false);
+        setButton(backToMenuButton);
         backToMenuButton.setActionCommand("backToMenu");
         backToMenuButton.addActionListener(msHandler);
         settingsPanelTop.add(backToMenuButton);
         settingsPanel.add(settingsPanelTop, BorderLayout.PAGE_START);
         
         return settingsPanel;
-	};
+	}
 	
 	
 	public guiFrame() {
@@ -167,9 +147,9 @@ public class guiFrame extends JFrame {
 		this.setFocusable(true);
 	    this.requestFocusInWindow();
 		con = this.getContentPane();
-		bundle = ResourceBundle.getBundle("KotC/src/myProp"); 
+		bundle = ResourceBundle.getBundle("myProp"); 
 		try {
-		    URL url = getClass().getResource("others/Rumadai.wav");
+		    URL url = getClass().getResource("others/DDT.wav");
 		    AudioInputStream audio = AudioSystem.getAudioInputStream(url);
 		    Clip music = AudioSystem.getClip();
 		    music.open(audio);
@@ -178,16 +158,20 @@ public class guiFrame extends JFrame {
 		catch (Exception e) {
 		}
 		
+		
 		menuPanel = new JPanel();
 		menuPanel = this.menuFrame(); 
         con.add(menuPanel);
+        menuPanel.revalidate();
         menuPanel.setVisible(true);
+        
         
         settingsPanel = new JPanel();
     	settingsPanel = this.settingsFrame();
     	
     	difficultyFrame = new difficultyFrame(this);
-	};
+    	lngPanel = new languagePanel(this, difficultyFrame);
+	}
 	
 	
 	public class menuScreenHandler implements ActionListener {
@@ -200,16 +184,14 @@ public class guiFrame extends JFrame {
 	        } 
 	        else if (e.getActionCommand() == "difficulty") {
 	        	difficultyFrame.setVisible(true);
-	        	//languages languages = new languages(this, difficultyFrame);
-	        	//languages.setVisible(true);
+
 	        }
 	        else if (e.getActionCommand() == "settings") {
-	        	
 	        	con.add(settingsPanel);
 	    		settingsPanel.setVisible(false);
 	        	menuPanel.setVisible(false);
 	        	settingsPanel.setVisible(true);
-	        	
+	        	menuPanel.revalidate();
 	        }
 	        else if (e.getActionCommand() == "exitgame") {
 	            System.exit(0);
@@ -218,23 +200,21 @@ public class guiFrame extends JFrame {
 	        	menuPanel.setVisible(true);
 	        	settingsPanel.setVisible(false);
 	        	languagePanel.setVisible(false);
+	        	
 	        }
 	        else if (e.getActionCommand() == "language") {
-	        	lngPanel = new languagePanel();
 	        	languagePanel = lngPanel.setUpLanguages();
 	        	settingsPanel.add(languagePanel, BorderLayout.CENTER);
 	        	languagePanel.setVisible(false);
 	        	languagePanel.setVisible(true);
 	        } 
 	        else if (e.getActionCommand() == "sound") {
-	        	
-	        	
+
 	        }
 	        else if (e.getActionCommand() == "character") {
 				
 	        } 
-			
 		}
-	};
+	}
 	
 }
