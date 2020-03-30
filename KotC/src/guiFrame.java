@@ -15,11 +15,12 @@ public class guiFrame extends JFrame {
 	public JButton newGameBtn, loadGameBtn, exitGameBtn, settingsBtn, levelChangeBtn, soundButton, languageButton, characterButton, backToMenuButton;
 	protected int screenWidth  = Toolkit.getDefaultToolkit().getScreenSize().width;
     protected int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
-	JPanel menuPanel, settingsPanel, settingsPanelTop, languagePanel,  characterPanel;
+	JPanel menuPanel, settingsPanel, settingsPanelTop, languagePanel,  characterPanel, soundPanel;
 	menuScreenHandler msHandler = new menuScreenHandler();
 	languagePanel lngPanel;
 	difficultyFrame difficultyFrame;
 	characterPanel charPanel; 
+	soundPanel sound; 
 	
 	public void setButton(JButton btn) {
 		btn.setFont(font);
@@ -172,8 +173,9 @@ public class guiFrame extends JFrame {
     	
     	difficultyFrame = new difficultyFrame(this);
     	lngPanel = new languagePanel(this, difficultyFrame);
-    	
     	charPanel = new characterPanel();
+    	sound = new soundPanel(); 
+    	
 	}
 	
 	
@@ -210,16 +212,25 @@ public class guiFrame extends JFrame {
 	        	settingsPanel.add(languagePanel, BorderLayout.CENTER);
 	        	languagePanel.setVisible(false);
 	        	languagePanel.setVisible(true);
+	        	characterPanel.setVisible(false);
+	        	soundPanel.setVisible(false);
 	        } 
 	        else if (e.getActionCommand() == "sound") {
+	        	soundPanel = sound.setUpSounds();
+	        	settingsPanel.add(soundPanel, BorderLayout.CENTER);
+	        	soundPanel.setVisible(false);
+	        	soundPanel.setVisible(true);
+	        	languagePanel.setVisible(false);
+	        	characterPanel.setVisible(false);
 
 	        }
 	        else if (e.getActionCommand() == "character") {
 	        	characterPanel = charPanel.setUpCharacter();
 				settingsPanel.add(characterPanel, BorderLayout.CENTER);
-			//	languagePanel.setVisible(false);
+				characterPanel.setVisible(false);
 				characterPanel.setVisible(true);
-			
+				languagePanel.setVisible(false);
+				soundPanel.setVisible(false);
 	        } 
 		}
 	}

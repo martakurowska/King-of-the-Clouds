@@ -26,7 +26,7 @@ public class characterPanel extends JPanel implements ActionListener  {
     
     public characterPanel() {
     	panel = new JPanel(); 
-    	panel.setOpaque(true);
+    	panel.setOpaque(false);
     	panel.setLayout(new GridBagLayout());   
     	GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
