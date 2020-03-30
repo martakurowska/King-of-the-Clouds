@@ -15,10 +15,11 @@ public class guiFrame extends JFrame {
 	public JButton newGameBtn, loadGameBtn, exitGameBtn, settingsBtn, levelChangeBtn, soundButton, languageButton, characterButton, backToMenuButton;
 	protected int screenWidth  = Toolkit.getDefaultToolkit().getScreenSize().width;
     protected int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
-	JPanel menuPanel, settingsPanel, settingsPanelTop, languagePanel;
+	JPanel menuPanel, settingsPanel, settingsPanelTop, languagePanel,  characterPanel;
 	menuScreenHandler msHandler = new menuScreenHandler();
 	languagePanel lngPanel;
 	difficultyFrame difficultyFrame;
+	characterPanel charPanel; 
 	
 	public void setButton(JButton btn) {
 		btn.setFont(font);
@@ -171,6 +172,8 @@ public class guiFrame extends JFrame {
     	
     	difficultyFrame = new difficultyFrame(this);
     	lngPanel = new languagePanel(this, difficultyFrame);
+    	
+    	charPanel = new characterPanel();
 	}
 	
 	
@@ -212,7 +215,11 @@ public class guiFrame extends JFrame {
 
 	        }
 	        else if (e.getActionCommand() == "character") {
-				
+	        	characterPanel = charPanel.setUpCharacter();
+				settingsPanel.add(characterPanel, BorderLayout.CENTER);
+			//	languagePanel.setVisible(false);
+				characterPanel.setVisible(true);
+			
 	        } 
 		}
 	}

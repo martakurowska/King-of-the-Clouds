@@ -14,4 +14,36 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/others/balonMaly1.png</name>
+			<type>1</type>
+			<location>C:/Users/Tosia/Desktop/GRAFIKA DO GRY XD/balonMaly1.png</location>
+		</link>
+		<link>
+			<name>src/others/balonMaly2.png</name>
+			<type>1</type>
+			<location>C:/Users/Tosia/Desktop/GRAFIKA DO GRY XD/balonMaly2.png</location>
+		</link>
+		<link>
+			<name>src/others/balonMaly3.png</name>
+			<type>1</type>
+			<location>C:/Users/Tosia/Desktop/GRAFIKA DO GRY XD/balonMaly3.png</location>
+		</link>
+		<link>
+			<name>src/others/balonMaly4.png</name>
+			<type>1</type>
+			<location>C:/Users/Tosia/Desktop/GRAFIKA DO GRY XD/balonMaly4.png</location>
+		</link>
+		<link>
+			<name>src/others/balonMaly5.png</name>
+			<type>1</type>
+			<location>C:/Users/Tosia/Desktop/GRAFIKA DO GRY XD/balonMaly5.png</location>
+		</link>
+		<link>
+			<name>src/others/balonMaly6.png</name>
+			<type>1</type>
+			<location>C:/Users/Tosia/Desktop/GRAFIKA DO GRY XD/balonMaly6.png</location>
+		</link>
+	</linkedResources>
 </projectDescription>
