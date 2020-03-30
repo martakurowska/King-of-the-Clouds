@@ -24,8 +24,7 @@ public class languagePanel implements ActionListener{
 	public guiFrame guiFrame;
 
 	public void setButton(JButton btn) {
-		
-		btn.setBorderPainted(false);
+		//btn.setBorderPainted(false);
 		btn.setFocusPainted(false);
 		btn.setContentAreaFilled(false);
 		btn.addActionListener(this);
@@ -43,14 +42,14 @@ public class languagePanel implements ActionListener{
 		
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.ipadx = -30;
-        c.ipady = -90;
+        c.ipadx = -35;
+        c.ipady = -98;
         c.insets = new Insets(40, 70, 40, 70);
 
         c.gridx = 0;
         c.gridy = 0;
         
-        img = new ImageIcon(getClass().getResource("others/uk.png"));
+        img = new ImageIcon(getClass().getResource("others/flags/uk.png"));
         english = new JButton(img);
         setButton(english);
         english.setActionCommand("english");
@@ -58,7 +57,7 @@ public class languagePanel implements ActionListener{
        
         c.gridx = 1;
         c.gridy = 0;
-        img = new ImageIcon(getClass().getResource("others/poland.png"));
+        img = new ImageIcon(getClass().getResource("others/flags/poland.png"));
         polish = new JButton(img);
         setButton(polish);
         polish.setActionCommand("polish");
@@ -66,7 +65,7 @@ public class languagePanel implements ActionListener{
         
         c.gridx = 0;
         c.gridy = 1;
-        img = new ImageIcon(getClass().getResource("others/france.png"));
+        img = new ImageIcon(getClass().getResource("others/flags/france.png"));
         french = new JButton(img);
         setButton(french);
         french.setActionCommand("french");
@@ -74,7 +73,7 @@ public class languagePanel implements ActionListener{
         
         c.gridx = 1;
         c.gridy = 1;
-        img = new ImageIcon(getClass().getResource("others/russia.png"));
+        img = new ImageIcon(getClass().getResource("others/flags/russia.png"));
         russian = new JButton(img);
         setButton(russian);
         russian.setActionCommand("russian");
@@ -82,7 +81,7 @@ public class languagePanel implements ActionListener{
 
         c.gridx = 0;
         c.gridy = 2;
-        img = new ImageIcon(getClass().getResource("others/sweden.png"));
+        img = new ImageIcon(getClass().getResource("others/flags/sweden.png"));
         swedish = new JButton(img);
         setButton(swedish);
         swedish.setActionCommand("swedish");

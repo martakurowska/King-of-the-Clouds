@@ -43,8 +43,8 @@ public class soundPanel extends JFrame implements ActionListener {
     	c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
         c.ipadx = 100;
-        c.ipady = 80;
-        c.insets = new Insets(0, 0, 0, 0);
+        c.ipady = 60;
+        c.insets = new Insets(0, 80, 0, 0);
 
         c.gridx = 0; 
         c.gridy = 0; 
@@ -79,6 +79,7 @@ public class soundPanel extends JFrame implements ActionListener {
         
         c.gridx = 1;
         c.gridy = 0;
+        c.insets = new Insets(0, 10, 0, -30);
         song6 = new JRadioButton("Counting Stars");
         setButton(song6);
         song6.setActionCommand("CS");

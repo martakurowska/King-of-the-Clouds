@@ -30,7 +30,7 @@ public class characterPanel extends JPanel implements ActionListener  {
 
         c.gridx = 0;
         c.gridy = 0;
-        img = new ImageIcon(getClass().getResource("others/balonMaly1.png"));
+        img = new ImageIcon(getClass().getResource("others/balloons/balonMaly1.png"));
         char1 = new JButton(img);
         setButton(char1);
         char1.setActionCommand("yellow");
@@ -38,7 +38,7 @@ public class characterPanel extends JPanel implements ActionListener  {
         
         c.gridx = 1;
         c.gridy = 0;
-        img = new ImageIcon(getClass().getResource("others/balonMaly2.png"));
+        img = new ImageIcon(getClass().getResource("others/balloons/balonMaly2.png"));
         char2 = new JButton(img);
         setButton(char2);
         char1.setActionCommand("happy");
@@ -46,7 +46,7 @@ public class characterPanel extends JPanel implements ActionListener  {
     	
         c.gridx = 2;
         c.gridy = 0;
-        img = new ImageIcon(getClass().getResource("others/balonMaly3.png"));
+        img = new ImageIcon(getClass().getResource("others/balloons/balonMaly3.png"));
         char3 = new JButton(img);
         setButton(char3);
         char3.setActionCommand("orange");
@@ -55,7 +55,7 @@ public class characterPanel extends JPanel implements ActionListener  {
         c.gridx = 0;
         c.gridy = 1;
         c.insets = new Insets(0, 80, 0, 80);
-        img = new ImageIcon(getClass().getResource("others/balonMaly4.png"));
+        img = new ImageIcon(getClass().getResource("others/balloons/balonMaly4.png"));
         char4 = new JButton(img);
         setButton(char4);
         char4.setActionCommand("blue");
@@ -63,7 +63,7 @@ public class characterPanel extends JPanel implements ActionListener  {
         
         c.gridx = 1;
         c.gridy = 1;
-        img = new ImageIcon(getClass().getResource("others/balonMaly5.png"));
+        img = new ImageIcon(getClass().getResource("others/balloons/balonMaly5.png"));
         char5 = new JButton(img);
         setButton(char5);
         char5.setActionCommand("moro");
@@ -71,7 +71,7 @@ public class characterPanel extends JPanel implements ActionListener  {
         
         c.gridx = 2;
         c.gridy = 1;
-        img = new ImageIcon(getClass().getResource("others/balonMaly6.png"));
+        img = new ImageIcon(getClass().getResource("others/balloons/balonMaly6.png"));
         char6 = new JButton(img);
         setButton(char6);
         char6.setActionCommand("crazy");
