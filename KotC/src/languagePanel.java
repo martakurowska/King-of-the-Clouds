@@ -1,7 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Locale;
-import java.util.ResourceBundle;
+import java.util.*;
 import javax.swing.*;
 
 
@@ -32,7 +31,6 @@ public class languagePanel implements ActionListener{
 		btn.addActionListener(this);
 	}
 	
-	
 	public languagePanel(guiFrame gui, difficultyFrame difficulty) {
 		
 		panel = new JPanel();
@@ -45,9 +43,9 @@ public class languagePanel implements ActionListener{
 		
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.ipadx = 90;
-        c.ipady = -10;
-        //c.insets = new Insets(0, 0, 0, 0);
+        c.ipadx = -30;
+        c.ipady = -90;
+        c.insets = new Insets(40, 70, 40, 70);
 
         c.gridx = 0;
         c.gridy = 0;

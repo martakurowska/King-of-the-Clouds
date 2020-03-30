@@ -1,23 +1,17 @@
 import java.awt.*;
 import java.awt.event.*;
-import java.net.URL;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import java.io.*;
-import javax.sound.sampled.Clip;
-import sun.audio.*;
+import java.io.IOException;
+import javax.sound.sampled.*;
 import javax.swing.*; 
-import javax.swing.event.*; 
-import javax.swing.ButtonGroup; 
 
 public class soundPanel extends JFrame implements ActionListener {
 
 	JPanel panel; 
-	JSlider volumeSlider; 
 	Font font;
-	JRadioButton song1, song2, song3, song4; 
+	JRadioButton song1, song2, song3, song4, song5, song6, song7, song8, song9, song10;
 	ButtonGroup songButtonGroup; 
 	guiFrame guiFrame;
+	GridBagConstraints c;
 	static final int SLIDER_MIN = 0;
     static final int SLIDER_MAX = 100;
     static final int SLIDER_INIT = 0;
@@ -33,6 +27,8 @@ public class soundPanel extends JFrame implements ActionListener {
 		btn.setFocusPainted(false);
 		btn.setContentAreaFilled(false);
 		btn.addActionListener(this);
+		songButtonGroup.add(btn);
+		panel.add(btn, c);
     }
     
     
@@ -42,58 +38,76 @@ public class soundPanel extends JFrame implements ActionListener {
     	panel = new JPanel(); 
     	panel.setOpaque(false);
     	panel.setLayout(new GridBagLayout());
-    	GridBagConstraints c = new GridBagConstraints();
+    	songButtonGroup = new ButtonGroup();
+    	
+    	c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.ipadx = 200;
-        c.ipady = 30;
-        //c.insets = new Insets(0, 0, 0, 0);
+        c.ipadx = 100;
+        c.ipady = 80;
+        c.insets = new Insets(0, 0, 0, 0);
 
         c.gridx = 0; 
         c.gridy = 0; 
-        volumeSlider = new JSlider(JSlider.HORIZONTAL, SLIDER_MIN, SLIDER_MAX, SLIDER_INIT);
-    	volumeSlider.setPreferredSize(new Dimension(600,80));
-    	volumeSlider.setMajorTickSpacing(20); 
-    	volumeSlider.setMinorTickSpacing(5); 
-    	volumeSlider.setPaintTicks(true);
-    	volumeSlider.setPaintLabels(true); 
-    	volumeSlider.addChangeListener(new SliderChangeListener());
-    	volumeSlider.setBackground(new Color(251, 212, 225));   
-        panel.add(volumeSlider, c);
-    	
-        c.gridx = 0;
-        c.gridy = 1;
         song1 = new JRadioButton ("Cat goes fishing"); 
         setButton(song1);
         song1.setActionCommand("cgf");
-        panel.add(song1, c);
+    	
+        c.gridx = 0;
+        c.gridy = 1;
+        song2 = new JRadioButton("King of the Clouds"); 
+        setButton(song2);
+        song2.setSelected(true);
+        song2.setActionCommand("kotc");
     	
         c.gridx = 0;
         c.gridy = 2;
-        song2 = new JRadioButton ("King of the Clouds"); 
-        setButton(song2);
-        song2.setActionCommand("kotc");
-        panel.add(song2, c);
+        song3 = new JRadioButton("Dragonstea din tei");
+        setButton(song3);
+        song3.setActionCommand("ddt");
         
         c.gridx = 0;
         c.gridy = 3;
-        song3 = new JRadioButton ("Dragonstea din tei");
-        setButton(song3);
-        song3.setActionCommand("ddt");
-        panel.add(song3, c);
-        
+        song4 = new JRadioButton("Rumadai"); 
+        setButton(song4);
+        song4.setActionCommand("r");
         
         c.gridx = 0;
         c.gridy = 4;
-        song4 = new JRadioButton ("Rumadai"); 
-        setButton(song4);
-        song4.setActionCommand("r");
-        panel.add(song4, c);
+        song5 = new JRadioButton("A Sky Full of Stars");
+        setButton(song5);
+        song5.setActionCommand("ASFoS");
         
-        ButtonGroup songButtonGroup = new ButtonGroup();
-    	songButtonGroup.add(song1);
-    	songButtonGroup.add(song2);
-    	songButtonGroup.add(song3);             
-    	songButtonGroup.add(song4); 
+        c.gridx = 1;
+        c.gridy = 0;
+        song6 = new JRadioButton("Counting Stars");
+        setButton(song6);
+        song6.setActionCommand("CS");
+        
+        c.gridx = 1;
+        c.gridy = 1;
+        song7 = new JRadioButton("Gór¹ ty");
+        setButton(song7);
+        song7.setActionCommand("GT");
+        
+        c.gridx = 1;
+        c.gridy = 2;
+        song8 = new JRadioButton("Bohema");
+        setButton(song8);
+        song8.setActionCommand("Boh");
+        
+        c.gridx = 1;
+        c.gridy = 3;
+        song9 = new JRadioButton("Pumped up Kicks");
+        setButton(song9);
+        song9.setActionCommand("PuK");
+        
+        c.gridx = 1;
+        c.gridy = 4;
+        song10 = new JRadioButton("Up In The Air");
+        setButton(song10);
+        song10.setActionCommand("UITA");
+
+
 
     	this.add(panel, BorderLayout.CENTER); 
     }
@@ -102,17 +116,21 @@ public class soundPanel extends JFrame implements ActionListener {
     	return panel; 
     }
     
+    public void setUpButtonsAction() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+    	guiFrame.audio = AudioSystem.getAudioInputStream(guiFrame.url);
+	    guiFrame.music = AudioSystem.getClip();
+	    guiFrame.music.open(guiFrame.audio);
+	    guiFrame.music.loop(-1);
+	    guiFrame.revalidate();
+    }
+    
     @Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand() == "cgf") {
 			try {
 				guiFrame.music.stop();
-			    guiFrame.url = getClass().getResource("others/cgf.wav");
-			    guiFrame.audio = AudioSystem.getAudioInputStream(guiFrame.url);
-			    guiFrame.music = AudioSystem.getClip();
-			    guiFrame.music.open(guiFrame.audio);
-			    guiFrame.music.loop(-1);
-			    guiFrame.revalidate();
+			    guiFrame.url = getClass().getResource("others/music/cgf.wav");
+			    this.setUpButtonsAction();
 			} 
 			catch(Exception f) {}
 						
@@ -120,55 +138,74 @@ public class soundPanel extends JFrame implements ActionListener {
         else if (e.getActionCommand() == "kotc") {	
         	try {
         		guiFrame.music.stop();
-			    guiFrame.url = getClass().getResource("others/KOTC.wav");
-			    guiFrame.audio = AudioSystem.getAudioInputStream(guiFrame.url);
-			    guiFrame.music = AudioSystem.getClip();
-			    guiFrame.music.open(guiFrame.audio);
-			    guiFrame.music.loop(-1);
-			    guiFrame.revalidate();
-        		
-			   
+			    guiFrame.url = getClass().getResource("others/music/KOTC.wav");
+			    this.setUpButtonsAction();
 			}
         	catch(Exception f) {}
         }
         else if (e.getActionCommand() == "ddt") {  
         	try {
         		guiFrame.music.stop();
-			    guiFrame.url = getClass().getResource("others/DDT.wav");
-			    guiFrame.audio = AudioSystem.getAudioInputStream(guiFrame.url);
-			    guiFrame.music = AudioSystem.getClip();
-			    guiFrame.music.open(guiFrame.audio);
-			    guiFrame.music.loop(-1);
-			    guiFrame.revalidate();
-        		
-			   
+			    guiFrame.url = getClass().getResource("others/music/DDT.wav");
+			    this.setUpButtonsAction();
 			}
         	catch(Exception f) {}
         }
         else if (e.getActionCommand() == "r") {  
         	try {
         		guiFrame.music.stop();
-			    guiFrame.url = getClass().getResource("others/Rumadai.wav");
-			    guiFrame.audio = AudioSystem.getAudioInputStream(guiFrame.url);
-			    guiFrame.music = AudioSystem.getClip();
-			    guiFrame.music.open(guiFrame.audio);
-			    guiFrame.music.loop(-1);
-			    guiFrame.revalidate();
-        		
-			 
+			    guiFrame.url = getClass().getResource("others/music/Rumadai.wav");
+			    this.setUpButtonsAction();
 			} 
         	catch(Exception f) {}
         }
-        
+        else if (e.getActionCommand() == "ASFoS") {  
+        	try {
+        		guiFrame.music.stop();
+			    guiFrame.url = getClass().getResource("others/music/ASFoS.wav");
+			    this.setUpButtonsAction();
+			} 
+        	catch(Exception f) {}
+        }
+        else if (e.getActionCommand() == "CS") {  
+        	try {
+        		guiFrame.music.stop();
+			    guiFrame.url = getClass().getResource("others/music/CS.wav");
+			    this.setUpButtonsAction();
+			} 
+        	catch(Exception f) {}
+        }
+        else if (e.getActionCommand() == "GT") {  
+        	try {
+        		guiFrame.music.stop();
+			    guiFrame.url = getClass().getResource("others/music/GTGJ.wav");
+			    this.setUpButtonsAction();
+			} 
+        	catch(Exception f) {}
+        }
+        else if (e.getActionCommand() == "Boh") {  
+        	try {
+        		guiFrame.music.stop();
+			    guiFrame.url = getClass().getResource("others/music/lece.wav");
+			    this.setUpButtonsAction();
+			} 
+        	catch(Exception f) {}
+        }
+        else if (e.getActionCommand() == "PuK") {  
+        	try {
+        		guiFrame.music.stop();
+			    guiFrame.url = getClass().getResource("others/music/PuK.wav");
+			    this.setUpButtonsAction();
+			} 
+        	catch(Exception f) {}
+        }
+        else if (e.getActionCommand() == "UITA") {  
+        	try {
+        		guiFrame.music.stop();
+			    guiFrame.url = getClass().getResource("others/music/UiTA.wav");
+			    this.setUpButtonsAction();
+			} 
+        	catch(Exception f) {}
+        }
 	}
-    
-    public class SliderChangeListener implements ChangeListener  //klasa implementacyjna do suwaka
-    {
-        @Override
-        public void stateChanged(ChangeEvent ce){
-            int value = volumeSlider.getValue();
-         }
-
-    }
-	
 }

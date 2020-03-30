@@ -154,7 +154,7 @@ public class guiFrame extends JFrame {
 		con = this.getContentPane();
 		bundle = ResourceBundle.getBundle("myProp"); 
 		try {
-		    url = getClass().getResource("others/DDT.wav");
+		    url = getClass().getResource("others/music/KOTC.wav");
 		    audio = AudioSystem.getAudioInputStream(url);
 		    music = AudioSystem.getClip();
 		    music.open(audio);
@@ -219,10 +219,13 @@ public class guiFrame extends JFrame {
 	        else if (e.getActionCommand() == "backToMenu") {
 	        	settingsPanel.setVisible(false);
 	        	languagePanel.setVisible(false);
+	        	soundPanel.setVisible(false);
+	        	characterPanel.setVisible(false);
 	        	menuPanel.setVisible(true);
 	        }
 	        else if (e.getActionCommand() == "language") {
 	        	characterPanel.setVisible(false);
+	        	soundPanel.setVisible(false);
 	        	languagePanel.setVisible(false);
 	        	settingsPanel.add(languagePanel, BorderLayout.CENTER);
 	        	languagePanel.setVisible(true);
@@ -235,7 +238,7 @@ public class guiFrame extends JFrame {
 	        	soundPanel.setVisible(true);
 	        }
 	        else if (e.getActionCommand() == "character") {
-	        	
+	        	soundPanel.setVisible(false);
 	    		characterPanel.setVisible(false);
 				languagePanel.setVisible(false);
 				characterPanel.setVisible(true);

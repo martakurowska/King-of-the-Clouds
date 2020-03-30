@@ -11,7 +11,6 @@ public class characterPanel extends JPanel implements ActionListener  {
     protected int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
     
     public void setButton(JButton btn) {
-		
 		btn.setBorderPainted(false);
 		btn.setFocusPainted(false);
 		btn.setContentAreaFilled(false);
