@@ -21,7 +21,8 @@ public class characterPanel extends JPanel implements ActionListener  {
     
     public JPanel setUpCharacter() {
 		return panel;
-	}
+	}  
+    
     
     public characterPanel() {
     	panel = new JPanel(); 
