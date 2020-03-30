@@ -12,15 +12,18 @@ public class guiFrame extends JFrame {
 	Container con; 
 	private Font font; 
 	private Color color; 
+	URL url;
+	AudioInputStream audio;
+	Clip music;
 	public JButton newGameBtn, loadGameBtn, exitGameBtn, settingsBtn, levelChangeBtn, soundButton, languageButton, characterButton, backToMenuButton;
 	protected int screenWidth  = Toolkit.getDefaultToolkit().getScreenSize().width;
     protected int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
 	JPanel menuPanel, settingsPanel, settingsPanelTop, languagePanel,  characterPanel, soundPanel;
 	menuScreenHandler msHandler = new menuScreenHandler();
-	languagePanel lngPanel;
 	difficultyFrame difficultyFrame;
+	languagePanel lngPanel;
 	characterPanel charPanel; 
-	soundPanel sound; 
+	soundPanel sound;
 	
 	public void setButton(JButton btn) {
 		btn.setFont(font);
@@ -151,9 +154,9 @@ public class guiFrame extends JFrame {
 		con = this.getContentPane();
 		bundle = ResourceBundle.getBundle("myProp"); 
 		try {
-		    URL url = getClass().getResource("others/DDT.wav");
-		    AudioInputStream audio = AudioSystem.getAudioInputStream(url);
-		    Clip music = AudioSystem.getClip();
+		    url = getClass().getResource("others/DDT.wav");
+		    audio = AudioSystem.getAudioInputStream(url);
+		    music = AudioSystem.getClip();
 		    music.open(audio);
 		    music.loop(-1);
 		} 
@@ -167,14 +170,23 @@ public class guiFrame extends JFrame {
         menuPanel.revalidate();
         menuPanel.setVisible(true);
         
+        difficultyFrame = new difficultyFrame(this);
+        difficultyFrame.setVisible(false);
         
         settingsPanel = new JPanel();
     	settingsPanel = this.settingsFrame();
     	
-    	difficultyFrame = new difficultyFrame(this);
-    	lngPanel = new languagePanel(this, difficultyFrame);
+    	
     	charPanel = new characterPanel();
-    	sound = new soundPanel(); 
+    	characterPanel = charPanel.setUpCharacter();
+		
+		
+    	lngPanel = new languagePanel(this, difficultyFrame);
+    	languagePanel = lngPanel.setUpLanguages();
+    	
+    	sound = new soundPanel(this); 
+    	soundPanel = sound.setUpSounds();
+    	
     	
 	}
 	
@@ -192,45 +204,42 @@ public class guiFrame extends JFrame {
 
 	        }
 	        else if (e.getActionCommand() == "settings") {
-	        	con.add(settingsPanel);
-	    		settingsPanel.setVisible(false);
+	        	settingsPanel.setVisible(false);
 	        	menuPanel.setVisible(false);
+	        	con.add(settingsPanel);
 	        	settingsPanel.setVisible(true);
-	        	menuPanel.revalidate();
+	        	characterPanel.setVisible(false);
+	        	settingsPanel.add(characterPanel, BorderLayout.CENTER);
+	    		characterPanel.setVisible(true);
+	        	
 	        }
 	        else if (e.getActionCommand() == "exitgame") {
 	            System.exit(0);
 	        }
 	        else if (e.getActionCommand() == "backToMenu") {
-	        	menuPanel.setVisible(true);
 	        	settingsPanel.setVisible(false);
 	        	languagePanel.setVisible(false);
-	        	
+	        	menuPanel.setVisible(true);
 	        }
 	        else if (e.getActionCommand() == "language") {
-	        	languagePanel = lngPanel.setUpLanguages();
-	        	settingsPanel.add(languagePanel, BorderLayout.CENTER);
-	        	languagePanel.setVisible(false);
-	        	languagePanel.setVisible(true);
 	        	characterPanel.setVisible(false);
-	        	soundPanel.setVisible(false);
+	        	languagePanel.setVisible(false);
+	        	settingsPanel.add(languagePanel, BorderLayout.CENTER);
+	        	languagePanel.setVisible(true);
 	        } 
 	        else if (e.getActionCommand() == "sound") {
-	        	soundPanel = sound.setUpSounds();
+	        	languagePanel.setVisible(false);
+	        	characterPanel.setVisible(false);
 	        	settingsPanel.add(soundPanel, BorderLayout.CENTER);
 	        	soundPanel.setVisible(false);
 	        	soundPanel.setVisible(true);
-	        	languagePanel.setVisible(false);
-	        	characterPanel.setVisible(false);
-
 	        }
 	        else if (e.getActionCommand() == "character") {
-	        	characterPanel = charPanel.setUpCharacter();
-				settingsPanel.add(characterPanel, BorderLayout.CENTER);
-				characterPanel.setVisible(false);
-				characterPanel.setVisible(true);
+	        	
+	    		characterPanel.setVisible(false);
 				languagePanel.setVisible(false);
-				soundPanel.setVisible(false);
+				characterPanel.setVisible(true);
+			
 	        } 
 		}
 	}

@@ -24,7 +24,6 @@ public class difficultyFrame extends JFrame implements ActionListener {
 	
 	public difficultyFrame(guiFrame guiFrame) {
 		
-		Locale.setDefault(new Locale("en","GB", "WIN"));
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setSize(300,200);
 		setTitle("Choose your level");
