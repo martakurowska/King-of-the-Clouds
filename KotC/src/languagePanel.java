@@ -3,7 +3,6 @@ import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
 
-
 public class languagePanel implements ActionListener{
 	
 	public Locale enLocale = new Locale("en", "GB");
@@ -11,7 +10,7 @@ public class languagePanel implements ActionListener{
 	public Locale frLocale = new Locale("fr", "FR"); 			//a nie jest samo w sobie kontenerem dla obiektów
 	public Locale ruLocale = new Locale("ru", "RU"); 
 	public Locale svLocale = new Locale("sv", "SE"); 
-	
+	 
 	private JButton polish, english, french, russian, swedish; 
 	JPanel panel;
 	Icon img;
@@ -22,15 +21,15 @@ public class languagePanel implements ActionListener{
     public difficultyFrame difficultyFrame;
 	public ResourceBundle bundle;
 	public guiFrame guiFrame;
+	public escapeDialogPanel dialogFrame;
 
 	public void setButton(JButton btn) {
-		//btn.setBorderPainted(false);
 		btn.setFocusPainted(false);
 		btn.setContentAreaFilled(false);
 		btn.addActionListener(this);
 	}
 	
-	public languagePanel(guiFrame gui, difficultyFrame difficulty) {
+	public languagePanel(guiFrame gui, difficultyFrame difficulty, escapeDialogPanel dialog) {
 		
 		panel = new JPanel();
 		panel.setOpaque(false);
@@ -39,6 +38,7 @@ public class languagePanel implements ActionListener{
 		
 		guiFrame = gui;
 		difficultyFrame = difficulty;
+		dialogFrame = dialog;
 		
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
@@ -92,29 +92,34 @@ public class languagePanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand() == "english") {
-			languagePanel language = new languagePanel(guiFrame, difficultyFrame);
+			languagePanel language = new languagePanel(guiFrame, difficultyFrame, dialogFrame);
 			changingLanguageOnGuiFrame(enLocale); 
 			changingLanguageOnDifficultyFrame(enLocale);
+			changeEscapeDialogPanel(enLocale);
         } 
         else if (e.getActionCommand() == "polish") {	
-        	languagePanel language = new languagePanel(guiFrame, difficultyFrame);
+        	languagePanel language = new languagePanel(guiFrame, difficultyFrame, dialogFrame);
 			changingLanguageOnGuiFrame(plLocale); 
 			changingLanguageOnDifficultyFrame(plLocale);
+			changeEscapeDialogPanel(plLocale);
         }
         else if (e.getActionCommand() == "french") {  
-        	languagePanel language = new languagePanel(guiFrame, difficultyFrame);
+        	languagePanel language = new languagePanel(guiFrame, difficultyFrame, dialogFrame);
 			changingLanguageOnGuiFrame(frLocale); 
 			changingLanguageOnDifficultyFrame(frLocale);
+			changeEscapeDialogPanel(frLocale);
         }
         else if (e.getActionCommand() == "russian") {  
-        	languagePanel language = new languagePanel(guiFrame, difficultyFrame);
+        	languagePanel language = new languagePanel(guiFrame, difficultyFrame, dialogFrame);
 			changingLanguageOnGuiFrame(ruLocale); 
 			changingLanguageOnDifficultyFrame(ruLocale);
+			changeEscapeDialogPanel(ruLocale);
         }
         else if (e.getActionCommand() == "swedish") {
-        	languagePanel language = new languagePanel(guiFrame, difficultyFrame);
+        	languagePanel language = new languagePanel(guiFrame, difficultyFrame, dialogFrame);
 			changingLanguageOnGuiFrame(svLocale);
 			changingLanguageOnDifficultyFrame(svLocale);
+			changeEscapeDialogPanel(svLocale);
         } 
 	}
 	
@@ -140,5 +145,12 @@ public class languagePanel implements ActionListener{
  		difficultyFrame.easy.setText(newbundle.getString("easy"));
  		difficultyFrame.normal.setText(newbundle.getString("normal"));
  		difficultyFrame.hard.setText(newbundle.getString("hard"));
+ 	}
+ 	
+ 	public void changeEscapeDialogPanel(Locale newLocale) {
+ 		ResourceBundle newbundle = ResourceBundle.getBundle("myProp", newLocale);
+ 		dialogFrame.lbl.setText(newbundle.getString("label"));
+ 		dialogFrame.no.setText(newbundle.getString("no"));
+ 		dialogFrame.yes.setText(newbundle.getString("yes"));
  	}
 }

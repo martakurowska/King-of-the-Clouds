@@ -5,9 +5,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.awt.event.*;
 
-public class guiFrame extends JFrame {
+public class guiFrame extends JFrame implements KeyListener {
 	                    
 	public ResourceBundle bundle;
+	int x, y;
 	ImageIcon img, img2;
 	Container con; 
 	private Font font; 
@@ -18,12 +19,16 @@ public class guiFrame extends JFrame {
 	public JButton newGameBtn, loadGameBtn, exitGameBtn, settingsBtn, levelChangeBtn, soundButton, languageButton, characterButton, backToMenuButton;
 	protected int screenWidth  = Toolkit.getDefaultToolkit().getScreenSize().width;
     protected int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
-	JPanel menuPanel, settingsPanel, settingsPanelTop, languagePanel,  characterPanel, soundPanel;
+	JPanel menuPanel, settingsPanel, settingsPanelTop, languagePanel,  characterPanel, soundPanel, gamePanel;
 	menuScreenHandler msHandler = new menuScreenHandler();
 	difficultyFrame difficultyFrame;
 	languagePanel lngPanel;
 	characterPanel charPanel; 
 	soundPanel sound;
+	gamePanel game;
+	escapeDialogPanel dialog;
+	boolean isGameActive = false;
+	ImageIcon balloon;
 	
 	public void setButton(JButton btn) {
 		btn.setFont(font);
@@ -32,7 +37,6 @@ public class guiFrame extends JFrame {
         btn.setFocusPainted(false);
 	}
 	
-
 	public JPanel menuFrame() {
 		
 		menuPanel = new JPanel() {
@@ -58,8 +62,8 @@ public class guiFrame extends JFrame {
         menuPanel.add(lbl1, c);
         
         c.gridy = 1;
-    	font = new Font("Impact", Font.PLAIN, 34);   								//ustawienia czcionki na przycisku 
-		color = new Color(225,108,164);												//ustawienie koloru przycisku
+    	font = new Font("Impact", Font.PLAIN, 34);   								
+		color = new Color(225,108,164);											
         newGameBtn = new JButton(bundle.getString("newgame"));
         setButton(newGameBtn);
         newGameBtn.setActionCommand("newgame");
@@ -110,7 +114,7 @@ public class guiFrame extends JFrame {
 		settingsPanel.setPreferredSize(new Dimension((int) (screenWidth*0.7),(int) (screenHeight*0.85)));
 		settingsPanel.setLayout(new BorderLayout());
 		
-		font = new Font("Impact", Font.PLAIN, 34);   								//ustawienia czcionki na przycisku 
+		font = new Font("Impact", Font.PLAIN, 34);   								
 		color = new Color(225,108,164);	
 		
 		settingsPanelTop = new JPanel();
@@ -151,6 +155,10 @@ public class guiFrame extends JFrame {
 		this.setTitle("King of the Clouds Game");
 		this.setFocusable(true);
 	    this.requestFocusInWindow();
+	    this.addKeyListener(this);
+	    x = (this.screenWidth/2)-(this.getWidth()/2);
+	    y = (this.screenHeight/2)-(this.getHeight()/2);
+	    this.setLocation(x, y);
 		con = this.getContentPane();
 		bundle = ResourceBundle.getBundle("myProp"); 
 		try {
@@ -163,12 +171,18 @@ public class guiFrame extends JFrame {
 		catch (Exception e) {
 		}
 		
+		balloon = new ImageIcon(getClass().getResource("others/balloons/balonMaly1.png"));
 		
 		menuPanel = new JPanel();
 		menuPanel = this.menuFrame(); 
         con.add(menuPanel);
         menuPanel.revalidate();
         menuPanel.setVisible(true);
+        
+        game = new gamePanel(this);
+        gamePanel = game.setUpGamePanel();
+        
+        dialog = new escapeDialogPanel(this);
         
         difficultyFrame = new difficultyFrame(this);
         difficultyFrame.setVisible(false);
@@ -177,11 +191,11 @@ public class guiFrame extends JFrame {
     	settingsPanel = this.settingsFrame();
     	
     	
-    	charPanel = new characterPanel();
+    	charPanel = new characterPanel(this);
     	characterPanel = charPanel.setUpCharacter();
 		
 		
-    	lngPanel = new languagePanel(this, difficultyFrame);
+    	lngPanel = new languagePanel(this, difficultyFrame, dialog);
     	languagePanel = lngPanel.setUpLanguages();
     	
     	sound = new soundPanel(this); 
@@ -194,7 +208,13 @@ public class guiFrame extends JFrame {
 	public class menuScreenHandler implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			if (e.getActionCommand() == "newgame") {
-			
+				settingsPanel.setVisible(false);
+	        	menuPanel.setVisible(false);
+	        	con.add(gamePanel);
+	        	gamePanel.setVisible(false);
+	        	gamePanel.setVisible(true);
+	        	isGameActive = true;
+	        	
 	        } 
 	        else if (e.getActionCommand() == "loadgame") {
 	        	
@@ -246,5 +266,17 @@ public class guiFrame extends JFrame {
 	        } 
 		}
 	}
-	
+	 
+	@Override
+	public void keyPressed(KeyEvent e) {
+		if(e.getKeyChar()==KeyEvent.VK_ESCAPE) {
+			if (this.isGameActive==true) {
+				dialog.setVisible(true);
+			}
+		}
+	}
+	@Override
+	public void keyReleased(KeyEvent arg0) {}
+	@Override
+	public void keyTyped(KeyEvent arg0) {}
 }
