@@ -18,7 +18,7 @@ public class escapeDialogPanel extends JFrame implements ActionListener{
 		bundle = ResourceBundle.getBundle("myProp"); 
 		guiFrame = gui;
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		this.setSize(280,120);
+		this.setSize(300,120);
 		this.setTitle("Choose");
 		this.setResizable(false);
 		x = (guiFrame.screenWidth/2)-(this.getWidth()/2);
