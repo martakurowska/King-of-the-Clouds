@@ -1,11 +1,33 @@
-import java.awt.*;
-import javax.swing.*;
-import javax.sound.sampled.*;
-import java.net.URL;
-import java.util.ResourceBundle;
-import java.awt.event.*;
+package pl.edu.pw.fizyka.pojava.Kasprzak_Kurowska;
 
-public class guiFrame extends JFrame implements KeyListener {
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.net.URL;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class GuiFrame extends JFrame implements KeyListener {
 	                    
 	public ResourceBundle bundle;
 	int x, y;
@@ -21,12 +43,12 @@ public class guiFrame extends JFrame implements KeyListener {
     protected int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
 	JPanel menuPanel, settingsPanel, settingsPanelTop, languagePanel,  characterPanel, soundPanel, gamePanel;
 	menuScreenHandler msHandler = new menuScreenHandler();
-	difficultyFrame difficultyFrame;
-	languagePanel lngPanel;
-	characterPanel charPanel; 
-	soundPanel sound;
-	gamePanel game;
-	escapeDialogPanel dialog;
+	DifficultyFrame difficultyFrame;
+	LanguagePanel lngPanel;
+	CharacterPanel charPanel; 
+	SoundPanel sound;
+	GamePanel game;
+	EscapeDialogPanel dialog;
 	boolean isGameActive = false;
 	ImageIcon balloon;
 	
@@ -149,7 +171,7 @@ public class guiFrame extends JFrame implements KeyListener {
 	}
 	
 	
-	public guiFrame() {
+	public GuiFrame() {
 		this.setSize((int) (screenWidth*0.7),(int) (screenHeight*0.85) );
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setTitle("King of the Clouds Game");
@@ -160,7 +182,8 @@ public class guiFrame extends JFrame implements KeyListener {
 	    y = (this.screenHeight/2)-(this.getHeight()/2);
 	    this.setLocation(x, y);
 		con = this.getContentPane();
-		bundle = ResourceBundle.getBundle("myProp"); 
+		bundle = ResourceBundle.getBundle("pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/properties/myProp");
+		
 		try {
 		    url = getClass().getResource("others/music/KOTC.wav");
 		    audio = AudioSystem.getAudioInputStream(url);
@@ -179,26 +202,27 @@ public class guiFrame extends JFrame implements KeyListener {
         menuPanel.revalidate();
         menuPanel.setVisible(true);
         
-        game = new gamePanel(this);
+        game = new GamePanel(this);
         gamePanel = game.setUpGamePanel();
         
-        dialog = new escapeDialogPanel(this);
+        dialog = new EscapeDialogPanel(this);
         
-        difficultyFrame = new difficultyFrame(this);
+        difficultyFrame = new DifficultyFrame(this);
         difficultyFrame.setVisible(false);
         
         settingsPanel = new JPanel();
     	settingsPanel = this.settingsFrame();
     	
     	
-    	charPanel = new characterPanel(this);
+    	charPanel = new CharacterPanel(this);
     	characterPanel = charPanel.setUpCharacter();
 		
 		
-    	lngPanel = new languagePanel(this, difficultyFrame, dialog);
+    	lngPanel = new LanguagePanel(this, difficultyFrame, dialog);
     	languagePanel = lngPanel.setUpLanguages();
     	
-    	sound = new soundPanel(this); 
+    	
+    	sound = new SoundPanel(this); 
     	soundPanel = sound.setUpSounds();
     	
     	

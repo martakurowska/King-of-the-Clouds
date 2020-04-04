@@ -1,15 +1,25 @@
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*; 
+package pl.edu.pw.fizyka.pojava.Kasprzak_Kurowska;
 
-public class characterPanel implements ActionListener  {
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+public class CharacterPanel implements ActionListener  {
 
 	private JButton char1, char2, char3, char4, char5, char6; 
 	JPanel panel; 
 	Icon img;
 	protected int screenWidth  = Toolkit.getDefaultToolkit().getScreenSize().width;
     protected int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
-    guiFrame guiFrame;
+    GuiFrame guiFrame;
     
     
     public void setButton(JButton btn) {
@@ -19,7 +29,7 @@ public class characterPanel implements ActionListener  {
 		btn.addActionListener(this);
 	}  
      
-    public characterPanel(guiFrame gui) {
+    public CharacterPanel(GuiFrame gui) {
     	guiFrame = gui;
     	panel = new JPanel(); 
     	panel.setOpaque(false);

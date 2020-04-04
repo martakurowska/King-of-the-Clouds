@@ -1,10 +1,28 @@
-import java.awt.*;
-import java.awt.event.*;
-import java.io.IOException;
-import javax.sound.sampled.*;
-import javax.swing.*; 
+package pl.edu.pw.fizyka.pojava.Kasprzak_Kurowska;
 
-public class soundPanel extends JFrame implements ActionListener {
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.ButtonGroup;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+
+public class SoundPanel extends JFrame implements ActionListener {
 
 	JPanel panel; 
 	Font font;
@@ -12,7 +30,7 @@ public class soundPanel extends JFrame implements ActionListener {
 	JButton on, off;
 	Icon img;
 	ButtonGroup songButtonGroup; 
-	guiFrame guiFrame;
+	GuiFrame guiFrame;
 	GridBagConstraints c;
 	static final int SLIDER_MIN = 0;
     static final int SLIDER_MAX = 100;
@@ -40,7 +58,7 @@ public class soundPanel extends JFrame implements ActionListener {
     	panel.add(btn, c);
     }
     
-    public soundPanel(guiFrame gui) {
+    public SoundPanel(GuiFrame gui) {
     	
     	guiFrame = gui;
     	panel = new JPanel(); 

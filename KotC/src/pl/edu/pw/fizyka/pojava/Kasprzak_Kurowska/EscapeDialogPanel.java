@@ -1,9 +1,21 @@
-import java.awt.*;
-import java.awt.event.*;
-import java.util.ResourceBundle;
-import javax.swing.*;
+package pl.edu.pw.fizyka.pojava.Kasprzak_Kurowska;
 
-public class escapeDialogPanel extends JFrame implements ActionListener{
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.util.ResourceBundle;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class EscapeDialogPanel extends JFrame implements ActionListener{
 	
 	public ResourceBundle bundle; 
 	public JPanel panel, panelTop; 
@@ -11,11 +23,11 @@ public class escapeDialogPanel extends JFrame implements ActionListener{
 	public JButton no, yes;
 	private Font font; 
 	private Color color1, color2; 
-	private guiFrame guiFrame; 
+	private GuiFrame guiFrame; 
 	int x, y;
 	
-	public escapeDialogPanel(guiFrame gui) {
-		bundle = ResourceBundle.getBundle("myProp"); 
+	public EscapeDialogPanel(GuiFrame gui) {
+		bundle = ResourceBundle.getBundle("pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/properties/myProp");
 		guiFrame = gui;
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setSize(300,120);

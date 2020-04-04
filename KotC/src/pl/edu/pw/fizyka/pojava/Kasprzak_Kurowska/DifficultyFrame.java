@@ -1,9 +1,18 @@
-import javax.swing.*; 
-import java.awt.*; 
-import java.awt.event.*; 
-import java.util.*; 
+package pl.edu.pw.fizyka.pojava.Kasprzak_Kurowska;
 
-public class difficultyFrame extends JFrame implements ActionListener {
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.util.ResourceBundle;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class DifficultyFrame extends JFrame implements ActionListener {
 	
 	public ResourceBundle bundle; 
 	public JPanel panel; 
@@ -21,7 +30,7 @@ public class difficultyFrame extends JFrame implements ActionListener {
 		panel.add(btn);
 	} 
 	
-	public difficultyFrame(guiFrame guiFrame) {
+	public DifficultyFrame(GuiFrame guiFrame) {
 		
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setSize(300,200);
@@ -39,7 +48,7 @@ public class difficultyFrame extends JFrame implements ActionListener {
 		this.setFont(font);
 		this.setBackground(color);
 		this.setForeground(Color.BLACK);
-		bundle = ResourceBundle.getBundle("myProp"); 
+		bundle = ResourceBundle.getBundle("pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/properties/myProp");
 		
  		easy = new JButton(bundle.getString("easy")); 
  		easy.addActionListener(this);
@@ -77,3 +86,5 @@ public class difficultyFrame extends JFrame implements ActionListener {
 			
 	}
 }
+
+

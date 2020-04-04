@@ -1,18 +1,24 @@
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
+package pl.edu.pw.fizyka.pojava.Kasprzak_Kurowska;
 
-public class gamePanel {
+import java.awt.Graphics;
+import java.awt.GridBagConstraints;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class GamePanel {
 	
 	JPanel gamePanel;
 	GridBagConstraints c;
 	JLabel label;
 	JButton yes, no;
 	ImageIcon img, balloon;
-	guiFrame guiFrame;
-	characterPanel character;
+	GuiFrame guiFrame;
+	CharacterPanel character;
 	
-	public gamePanel(guiFrame gui) {
+	public GamePanel(GuiFrame gui) {
 		guiFrame = gui;
 		gamePanel = new JPanel() {
 			@Override

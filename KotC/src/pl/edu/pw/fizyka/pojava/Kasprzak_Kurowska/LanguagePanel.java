@@ -1,13 +1,26 @@
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
-import javax.swing.*;
+package pl.edu.pw.fizyka.pojava.Kasprzak_Kurowska;
 
-public class languagePanel implements ActionListener{
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+public class LanguagePanel implements ActionListener{
 	
 	public Locale enLocale = new Locale("en", "GB");
-	public Locale plLocale = new Locale("pl", "PL"); 				//Locale jest u¿ywane do identyfikacji obiektów 
-	public Locale frLocale = new Locale("fr", "FR"); 			//a nie jest samo w sobie kontenerem dla obiektów
+	public Locale plLocale = new Locale("pl", "PL"); 				//Locale jest uï¿½ywane do identyfikacji obiektï¿½w 
+	public Locale frLocale = new Locale("fr", "FR"); 			//a nie jest samo w sobie kontenerem dla obiektï¿½w
 	public Locale ruLocale = new Locale("ru", "RU"); 
 	public Locale svLocale = new Locale("sv", "SE"); 
 	 
@@ -18,10 +31,10 @@ public class languagePanel implements ActionListener{
     protected int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
     private Font font =new Font("Impact", Font.PLAIN, 34); 
 	private Color color= new Color(225,108,164); 
-    public difficultyFrame difficultyFrame;
+    public DifficultyFrame difficultyFrame;
 	public ResourceBundle bundle;
-	public guiFrame guiFrame;
-	public escapeDialogPanel dialogFrame;
+	public GuiFrame guiFrame;
+	public EscapeDialogPanel dialogFrame;
 
 	public void setButton(JButton btn) {
 		btn.setFocusPainted(false);
@@ -29,12 +42,12 @@ public class languagePanel implements ActionListener{
 		btn.addActionListener(this);
 	}
 	
-	public languagePanel(guiFrame gui, difficultyFrame difficulty, escapeDialogPanel dialog) {
+	public LanguagePanel(GuiFrame gui, DifficultyFrame difficulty, EscapeDialogPanel dialog) {
 		
 		panel = new JPanel();
 		panel.setOpaque(false);
 		panel.setLayout(new GridBagLayout());
-		bundle = ResourceBundle.getBundle("myProp"); 
+		bundle = ResourceBundle.getBundle("pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/properties/myProp");
 		
 		guiFrame = gui;
 		difficultyFrame = difficulty;
@@ -92,31 +105,31 @@ public class languagePanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand() == "english") {
-			languagePanel language = new languagePanel(guiFrame, difficultyFrame, dialogFrame);
+			LanguagePanel language = new LanguagePanel(guiFrame, difficultyFrame, dialogFrame);
 			changingLanguageOnGuiFrame(enLocale); 
 			changingLanguageOnDifficultyFrame(enLocale);
 			changeEscapeDialogPanel(enLocale);
         } 
         else if (e.getActionCommand() == "polish") {	
-        	languagePanel language = new languagePanel(guiFrame, difficultyFrame, dialogFrame);
+        	LanguagePanel language = new LanguagePanel(guiFrame, difficultyFrame, dialogFrame);
 			changingLanguageOnGuiFrame(plLocale); 
 			changingLanguageOnDifficultyFrame(plLocale);
 			changeEscapeDialogPanel(plLocale);
         }
         else if (e.getActionCommand() == "french") {  
-        	languagePanel language = new languagePanel(guiFrame, difficultyFrame, dialogFrame);
+        	LanguagePanel language = new LanguagePanel(guiFrame, difficultyFrame, dialogFrame);
 			changingLanguageOnGuiFrame(frLocale); 
 			changingLanguageOnDifficultyFrame(frLocale);
 			changeEscapeDialogPanel(frLocale);
         }
         else if (e.getActionCommand() == "russian") {  
-        	languagePanel language = new languagePanel(guiFrame, difficultyFrame, dialogFrame);
+        	LanguagePanel language = new LanguagePanel(guiFrame, difficultyFrame, dialogFrame);
 			changingLanguageOnGuiFrame(ruLocale); 
 			changingLanguageOnDifficultyFrame(ruLocale);
 			changeEscapeDialogPanel(ruLocale);
         }
         else if (e.getActionCommand() == "swedish") {
-        	languagePanel language = new languagePanel(guiFrame, difficultyFrame, dialogFrame);
+        	LanguagePanel language = new LanguagePanel(guiFrame, difficultyFrame, dialogFrame);
 			changingLanguageOnGuiFrame(svLocale);
 			changingLanguageOnDifficultyFrame(svLocale);
 			changeEscapeDialogPanel(svLocale);
@@ -128,7 +141,7 @@ public class languagePanel implements ActionListener{
 	}
  
  	public void changingLanguageOnGuiFrame(Locale newLocale) {
-		ResourceBundle newbundle = ResourceBundle.getBundle("myProp", newLocale);
+		ResourceBundle newbundle = ResourceBundle.getBundle("pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/properties/myProp", newLocale);
 		guiFrame.newGameBtn.setText(newbundle.getString("newgame"));
 		guiFrame.loadGameBtn.setText(newbundle.getString("loadgame"));
 		guiFrame.levelChangeBtn.setText(newbundle.getString("levelChange"));
@@ -141,14 +154,14 @@ public class languagePanel implements ActionListener{
 	} 
  	
  	public void changingLanguageOnDifficultyFrame(Locale newLocale) {
- 		ResourceBundle newbundle = ResourceBundle.getBundle("myProp", newLocale);
+ 		ResourceBundle newbundle = ResourceBundle.getBundle("pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/properties/myProp", newLocale);
  		difficultyFrame.easy.setText(newbundle.getString("easy"));
  		difficultyFrame.normal.setText(newbundle.getString("normal"));
  		difficultyFrame.hard.setText(newbundle.getString("hard"));
  	}
  	
  	public void changeEscapeDialogPanel(Locale newLocale) {
- 		ResourceBundle newbundle = ResourceBundle.getBundle("myProp", newLocale);
+ 		ResourceBundle newbundle = ResourceBundle.getBundle("pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/properties/myProp", newLocale);
  		dialogFrame.lbl.setText(newbundle.getString("label"));
  		dialogFrame.no.setText(newbundle.getString("no"));
  		dialogFrame.yes.setText(newbundle.getString("yes"));
