@@ -13,7 +13,7 @@ import java.util.ResourceBundle;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
+import javax.swing.JButton; 
 import javax.swing.JPanel;
 
 public class LanguagePanel implements ActionListener{

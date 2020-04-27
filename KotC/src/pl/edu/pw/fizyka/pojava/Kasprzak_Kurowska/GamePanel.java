@@ -14,7 +14,7 @@ public class GamePanel {
 	GridBagConstraints c;
 	JLabel label;
 	JButton yesButton, noButton;
-	ImageIcon backgroundImage, balloonImage;
+	ImageIcon backgroundImage, balloonImage; 
 	GuiFrame guiFrame;
 	CharacterPanel characterPanel;
 	

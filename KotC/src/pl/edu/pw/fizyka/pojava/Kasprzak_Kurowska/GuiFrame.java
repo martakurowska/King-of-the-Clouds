@@ -36,7 +36,7 @@ public class GuiFrame extends JFrame implements KeyListener {
 	private Font defaultFont; 
 	private Color colorOfButton; 
 	URL audioUrl;
-	AudioInputStream audio;
+	AudioInputStream audio; 
 	Clip music;
 	public JButton newGameBtn, loadGameBtn, exitGameBtn, settingsBtn, levelChangeBtn, soundButton, languageButton, characterButton, backToMenuButton;
 	protected int screenWidth  = Toolkit.getDefaultToolkit().getScreenSize().width;

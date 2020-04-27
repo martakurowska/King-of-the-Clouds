@@ -260,4 +260,4 @@ public class SoundPanel extends JFrame implements ActionListener {
         	catch(Exception f) {}
         }
 	}
-}
+} 

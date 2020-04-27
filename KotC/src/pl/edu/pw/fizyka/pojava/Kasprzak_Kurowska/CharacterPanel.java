@@ -96,7 +96,7 @@ public class CharacterPanel implements ActionListener  {
         panelSetup.add(character6, c);
     }
     
-    public JPanel setUpCharacter() {
+    public JPanel setUpCharacter() { 
 		return panelSetup;
 	}
 	
