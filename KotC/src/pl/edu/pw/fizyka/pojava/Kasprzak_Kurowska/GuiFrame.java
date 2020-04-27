@@ -20,6 +20,7 @@ import java.util.ResourceBundle;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -36,7 +37,7 @@ public class GuiFrame extends JFrame implements KeyListener {
 	private Color colorOfButton; 
 	URL audioUrl;
 	AudioInputStream audio; 
-	Clip music;
+	static Clip music;
 	public JButton newGameBtn, loadGameBtn, exitGameBtn, settingsBtn, levelChangeBtn, soundButton, languageButton, characterButton, backToMenuButton;
 	protected int screenWidth  = Toolkit.getDefaultToolkit().getScreenSize().width;
     protected int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
@@ -49,7 +50,7 @@ public class GuiFrame extends JFrame implements KeyListener {
 	GamePanel game;
 	EscapeDialogPanel escapeDialog;
 	boolean isGameActive = false;
-	ImageIcon balloonImage;
+	ImageIcon balloonImage; 
 	
 	public void setButton(JButton btn) {
 		btn.setFont(defaultFont);
@@ -173,9 +174,8 @@ public class GuiFrame extends JFrame implements KeyListener {
 	
 	
 	public GuiFrame() {
-		this.setMinimumSize(new Dimension(1300, 900));
-		//this.setSize((int) (screenWidth*0.7),(int) (screenHeight*0.85) );
-		this.setSize(1344, 918);
+		this.setMinimumSize(new Dimension((int) (screenWidth*0.7),(int) (screenHeight*0.85)));
+		this.setSize((int) (screenWidth*0.7),(int) (screenHeight*0.85) );
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setTitle("King of the Clouds Game");
 		this.setFocusable(true);
@@ -186,6 +186,7 @@ public class GuiFrame extends JFrame implements KeyListener {
 	    this.setLocation(width, height);
 		container = this.getContentPane();
 		languageBundle = ResourceBundle.getBundle("pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/properties/myProp");
+
 		
 		try {
 		    audioUrl = getClass().getResource("others/music/KOTC.wav");

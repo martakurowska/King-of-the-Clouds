@@ -2,16 +2,19 @@ package pl.edu.pw.fizyka.pojava.Kasprzak_Kurowska;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.Toolkit;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ButtonGroup;
@@ -21,6 +24,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JSlider;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener; 
+
 
 public class SoundPanel extends JFrame implements ActionListener {
 
@@ -32,9 +39,8 @@ public class SoundPanel extends JFrame implements ActionListener {
 	ButtonGroup songButtonGroup; 
 	GuiFrame guiFrame;
 	GridBagConstraints c;
-	static final int SLIDER_MIN = 0;
-    static final int SLIDER_MAX = 100;
-    static final int SLIDER_INIT = 0;
+	private JSlider volumeSlider; 
+	FloatControl gain; 
     protected int screenWidth  = Toolkit.getDefaultToolkit().getScreenSize().width;
     protected int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
      
@@ -68,50 +74,70 @@ public class SoundPanel extends JFrame implements ActionListener {
     	
     	c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
-
+        
+        c.gridx = 0; 
+        c.gridy = 0; 
+        c.gridwidth = 2;
+        gain = (FloatControl)guiFrame.music.getControl(FloatControl.Type.MASTER_GAIN);
+        volumeSlider = new JSlider(JSlider.HORIZONTAL, -40, 0, 0);
+        volumeSlider.setPreferredSize(new Dimension(300,50));
+        volumeSlider.setOpaque(false);
+    	volumeSlider.addChangeListener(new ChangeListener() { 		
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				gain.setValue(volumeSlider.getValue());
+			}
+    	}); 
+    	panelSetup.add(volumeSlider, c);
+    	
         c.insets = new Insets(-50, 30, 80, 30);
         
         c.gridx = 0;
-        c.gridy = 0;
+        c.gridy = 1;
+        c.gridwidth = 1; 
         imageVolume = new ImageIcon(getClass().getResource("others/music/vlm_on.png"));
         onButton = new JButton(imageVolume);
         setUpJButton(onButton);
         onButton.setActionCommand("on");
-        
+      		
         c.insets = new Insets(0, 20, 20, 20);
         c.gridx = 0; 
-        c.gridy = 1; 
+        c.gridy = 2; 
         song1 = new JRadioButton ("Cat goes fishing"); 
         setButton(song1);
         song1.setActionCommand("cgf");
     	
         c.gridx = 0;
-        c.gridy = 2;
+        c.gridy = 3;
         song2 = new JRadioButton("King of the Clouds"); 
         setButton(song2);
         song2.setSelected(true);
         song2.setActionCommand("kotc");
     	
         c.gridx = 0;
-        c.gridy = 3;
+        c.gridy = 4;
         song3 = new JRadioButton("Bohema");
         setButton(song3);
         song3.setActionCommand("Boh");
         
         c.gridx = 0;
-        c.gridy = 4;
+        c.gridy = 5;
         song4 = new JRadioButton("Rumadai"); 
         setButton(song4);
         song4.setActionCommand("r");
         
         c.gridx = 0;
-        c.gridy = 5;
+        c.gridy = 6;
         song5 = new JRadioButton("A Sky Full of Stars");
         setButton(song5);
         song5.setActionCommand("ASFoS");
         
+        c.gridx = 1; 
+        c.gridy = 0; 
+        
+        
         c.gridx = 1;
-        c.gridy = 0;
+        c.gridy = 1;
         c.insets = new Insets(-50, 30, 80, 30);
         imageVolume = new ImageIcon(getClass().getResource("others/music/vlm_off.png"));
         offButton = new JButton(imageVolume);
@@ -119,32 +145,32 @@ public class SoundPanel extends JFrame implements ActionListener {
         offButton.setActionCommand("off");
         
         c.gridx = 1;
-        c.gridy = 1;
+        c.gridy = 2;
         c.insets = new Insets(0, 20, 20, 20);
         song6 = new JRadioButton("Counting Stars");
         setButton(song6);
         song6.setActionCommand("CS");
         
         c.gridx = 1;
-        c.gridy = 2;
-        song7 = new JRadioButton("Gór¹ ty");
+        c.gridy = 3;
+        song7 = new JRadioButton("GÃ³rÄ… ty");
         setButton(song7);
         song7.setActionCommand("GT");
         
         c.gridx = 1;
-        c.gridy = 3;
+        c.gridy = 4;
         song8 = new JRadioButton("Dragonstea din tei");
         setButton(song8);
         song8.setActionCommand("ddt");
         
         c.gridx = 1;
-        c.gridy = 4;
+        c.gridy = 5;
         song9 = new JRadioButton("Pumped up Kicks");
         setButton(song9);
         song9.setActionCommand("PuK");
         
         c.gridx = 1;
-        c.gridy = 5;
+        c.gridy = 6;
         song10 = new JRadioButton("Up In The Air");
         setButton(song10);
         song10.setActionCommand("UITA");
@@ -160,6 +186,8 @@ public class SoundPanel extends JFrame implements ActionListener {
     	guiFrame.audio = AudioSystem.getAudioInputStream(guiFrame.audioUrl);
 	    guiFrame.music = AudioSystem.getClip();
 	    guiFrame.music.open(guiFrame.audio);
+        gain = (FloatControl)guiFrame.music.getControl(FloatControl.Type.MASTER_GAIN);
+		gain.setValue(volumeSlider.getValue());
 	    guiFrame.music.loop(-1);
 	    guiFrame.revalidate();
     }
@@ -185,6 +213,7 @@ public class SoundPanel extends JFrame implements ActionListener {
         			try {
         				guiFrame.audioUrl = getClass().getResource("others/music/cgf.wav");
         				this.setUpButtonsAction();
+        				
         			}
         			catch(Exception f) {}	
         			break;
@@ -253,5 +282,6 @@ public class SoundPanel extends JFrame implements ActionListener {
             		break;
         	}
         }
-	}
+	} 
+
 } 
