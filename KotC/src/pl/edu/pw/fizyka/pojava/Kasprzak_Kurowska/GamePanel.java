@@ -13,10 +13,10 @@ public class GamePanel {
 	JPanel gamePanel;
 	GridBagConstraints c;
 	JLabel label;
-	JButton yes, no;
-	ImageIcon img, balloon;
+	JButton yesButton, noButton;
+	ImageIcon backgroundImage, balloonImage;
 	GuiFrame guiFrame;
-	CharacterPanel character;
+	CharacterPanel characterPanel;
 	
 	public GamePanel(GuiFrame gui) {
 		guiFrame = gui;
@@ -24,10 +24,10 @@ public class GamePanel {
 			@Override
 		    public void paintComponent(Graphics G) {
 		        super.paintComponent(G);
-		        img = new ImageIcon(getClass().getResource("others/tlo.png"));
-		        G.drawImage(img.getImage(), 0, 0, guiFrame.getWidth(), guiFrame.getHeight(), 0, img.getIconHeight()-guiFrame.getHeight(), img.getIconWidth(), img.getIconHeight(), null);
-		        balloon = guiFrame.balloon;
-		        G.drawImage(balloon.getImage(), guiFrame.getHeight()/2, (guiFrame.getHeight()-(guiFrame.getHeight()/3)), null);
+		        backgroundImage = new ImageIcon(getClass().getResource("others/tlo.png"));
+		        G.drawImage(backgroundImage.getImage(), 0, 0, guiFrame.getWidth(), guiFrame.getHeight(), 0, backgroundImage.getIconHeight()-guiFrame.getHeight(), backgroundImage.getIconWidth(), backgroundImage.getIconHeight(), null);
+		        balloonImage = guiFrame.balloonImage;
+		        G.drawImage(balloonImage.getImage(), guiFrame.getHeight()/2, (guiFrame.getHeight()-(guiFrame.getHeight()/3)), null);
 		    }
 		}; 
 	}

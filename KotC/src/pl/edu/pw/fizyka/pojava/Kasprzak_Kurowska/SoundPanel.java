@@ -24,11 +24,11 @@ import javax.swing.JRadioButton;
 
 public class SoundPanel extends JFrame implements ActionListener {
 
-	JPanel panel; 
-	Font font;
+	JPanel panelSetup; 
+	Font defaultFont;
 	JRadioButton song1, song2, song3, song4, song5, song6, song7, song8, song9, song10;
-	JButton on, off;
-	Icon img;
+	JButton onButton, offButton;
+	Icon imageVolume;
 	ButtonGroup songButtonGroup; 
 	GuiFrame guiFrame;
 	GridBagConstraints c;
@@ -40,30 +40,30 @@ public class SoundPanel extends JFrame implements ActionListener {
      
     public void setButton (JRadioButton btn) {
     	btn.setOpaque(false);
-    	font = new Font("Impact", Font.PLAIN, 40); 
-    	btn.setFont(font); 
+    	defaultFont = new Font("Impact", Font.PLAIN, 40); 
+    	btn.setFont(defaultFont); 
     	btn.setForeground(Color.BLACK); 
     	btn.setBorderPainted(false);
 		btn.setFocusPainted(false);
 		btn.setContentAreaFilled(false);
 		btn.addActionListener(this);
 		songButtonGroup.add(btn);
-		panel.add(btn, c);
+		panelSetup.add(btn, c);
     }
     
     public void setUpJButton(JButton btn) {
     	btn.setBackground(new Color(225,108,164)); 
     	btn.setFocusPainted(false);
     	btn.addActionListener(this);
-    	panel.add(btn, c);
+    	panelSetup.add(btn, c);
     }
     
     public SoundPanel(GuiFrame gui) {
     	
     	guiFrame = gui;
-    	panel = new JPanel(); 
-    	panel.setOpaque(false);
-    	panel.setLayout(new GridBagLayout());
+    	panelSetup = new JPanel(); 
+    	panelSetup.setOpaque(false);
+    	panelSetup.setLayout(new GridBagLayout());
     	songButtonGroup = new ButtonGroup();
     	
     	c = new GridBagConstraints();
@@ -73,10 +73,10 @@ public class SoundPanel extends JFrame implements ActionListener {
         
         c.gridx = 0;
         c.gridy = 0;
-        img = new ImageIcon(getClass().getResource("others/music/vlm_on.png"));
-        on = new JButton(img);
-        setUpJButton(on);
-        on.setActionCommand("on");
+        imageVolume = new ImageIcon(getClass().getResource("others/music/vlm_on.png"));
+        onButton = new JButton(imageVolume);
+        setUpJButton(onButton);
+        onButton.setActionCommand("on");
         
         c.insets = new Insets(0, 20, 20, 20);
         c.gridx = 0; 
@@ -113,10 +113,10 @@ public class SoundPanel extends JFrame implements ActionListener {
         c.gridx = 1;
         c.gridy = 0;
         c.insets = new Insets(-50, 30, 80, 30);
-        img = new ImageIcon(getClass().getResource("others/music/vlm_off.png"));
-        off = new JButton(img);
-        setUpJButton(off);
-        off.setActionCommand("off");
+        imageVolume = new ImageIcon(getClass().getResource("others/music/vlm_off.png"));
+        offButton = new JButton(imageVolume);
+        setUpJButton(offButton);
+        offButton.setActionCommand("off");
         
         c.gridx = 1;
         c.gridy = 1;
@@ -149,15 +149,15 @@ public class SoundPanel extends JFrame implements ActionListener {
         setButton(song10);
         song10.setActionCommand("UITA");
 
-    	this.add(panel, BorderLayout.CENTER); 
+    	this.add(panelSetup, BorderLayout.CENTER); 
     }
 	
     public JPanel setUpSounds() {
-    	return panel; 
+    	return panelSetup; 
     }
     
     public void setUpButtonsAction() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-    	guiFrame.audio = AudioSystem.getAudioInputStream(guiFrame.url);
+    	guiFrame.audio = AudioSystem.getAudioInputStream(guiFrame.audioUrl);
 	    guiFrame.music = AudioSystem.getClip();
 	    guiFrame.music.open(guiFrame.audio);
 	    guiFrame.music.loop(-1);
@@ -169,7 +169,7 @@ public class SoundPanel extends JFrame implements ActionListener {
 		if (e.getActionCommand() == "cgf") {
 			try {
 				guiFrame.music.stop();
-			    guiFrame.url = getClass().getResource("others/music/cgf.wav");
+			    guiFrame.audioUrl = getClass().getResource("others/music/cgf.wav");
 			    this.setUpButtonsAction();
 			} 
 			catch(Exception f) {}			
@@ -177,7 +177,7 @@ public class SoundPanel extends JFrame implements ActionListener {
         else if (e.getActionCommand() == "kotc") {	
         	try {
         		guiFrame.music.stop();
-			    guiFrame.url = getClass().getResource("others/music/KOTC.wav");
+			    guiFrame.audioUrl = getClass().getResource("others/music/KOTC.wav");
 			    this.setUpButtonsAction();
 			}
         	catch(Exception f) {}
@@ -185,7 +185,7 @@ public class SoundPanel extends JFrame implements ActionListener {
         else if (e.getActionCommand() == "ddt") {  
         	try {
         		guiFrame.music.stop();
-			    guiFrame.url = getClass().getResource("others/music/DDT.wav");
+			    guiFrame.audioUrl = getClass().getResource("others/music/DDT.wav");
 			    this.setUpButtonsAction();
 			}
         	catch(Exception f) {}
@@ -193,7 +193,7 @@ public class SoundPanel extends JFrame implements ActionListener {
         else if (e.getActionCommand() == "r") {  
         	try {
         		guiFrame.music.stop();
-			    guiFrame.url = getClass().getResource("others/music/Rumadai.wav");
+			    guiFrame.audioUrl = getClass().getResource("others/music/Rumadai.wav");
 			    this.setUpButtonsAction();
 			} 
         	catch(Exception f) {}
@@ -201,7 +201,7 @@ public class SoundPanel extends JFrame implements ActionListener {
         else if (e.getActionCommand() == "ASFoS") {  
         	try {
         		guiFrame.music.stop();
-			    guiFrame.url = getClass().getResource("others/music/ASFoS.wav");
+			    guiFrame.audioUrl = getClass().getResource("others/music/ASFoS.wav");
 			    this.setUpButtonsAction();
 			} 
         	catch(Exception f) {}
@@ -209,7 +209,7 @@ public class SoundPanel extends JFrame implements ActionListener {
         else if (e.getActionCommand() == "CS") {  
         	try {
         		guiFrame.music.stop();
-			    guiFrame.url = getClass().getResource("others/music/CS.wav");
+			    guiFrame.audioUrl = getClass().getResource("others/music/CS.wav");
 			    this.setUpButtonsAction();
 			} 
         	catch(Exception f) {}
@@ -217,7 +217,7 @@ public class SoundPanel extends JFrame implements ActionListener {
         else if (e.getActionCommand() == "GT") {  
         	try {
         		guiFrame.music.stop();
-			    guiFrame.url = getClass().getResource("others/music/GTGJ.wav");
+			    guiFrame.audioUrl = getClass().getResource("others/music/GTGJ.wav");
 			    this.setUpButtonsAction();
 			} 
         	catch(Exception f) {}
@@ -225,7 +225,7 @@ public class SoundPanel extends JFrame implements ActionListener {
         else if (e.getActionCommand() == "Boh") {  
         	try {
         		guiFrame.music.stop();
-			    guiFrame.url = getClass().getResource("others/music/lece.wav");
+			    guiFrame.audioUrl = getClass().getResource("others/music/lece.wav");
 			    this.setUpButtonsAction();
 			} 
         	catch(Exception f) {}
@@ -233,7 +233,7 @@ public class SoundPanel extends JFrame implements ActionListener {
         else if (e.getActionCommand() == "PuK") {  
         	try {
         		guiFrame.music.stop();
-			    guiFrame.url = getClass().getResource("others/music/PuK.wav");
+			    guiFrame.audioUrl = getClass().getResource("others/music/PuK.wav");
 			    this.setUpButtonsAction();
 			} 
         	catch(Exception f) {}
@@ -241,7 +241,7 @@ public class SoundPanel extends JFrame implements ActionListener {
         else if (e.getActionCommand() == "UITA") {  
         	try {
         		guiFrame.music.stop();
-			    guiFrame.url = getClass().getResource("others/music/UiTA.wav");
+			    guiFrame.audioUrl = getClass().getResource("others/music/UiTA.wav");
 			    this.setUpButtonsAction();
 			} 
         	catch(Exception f) {}

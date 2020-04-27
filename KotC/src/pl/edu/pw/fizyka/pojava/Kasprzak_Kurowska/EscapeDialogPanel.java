@@ -17,41 +17,41 @@ import javax.swing.JPanel;
 
 public class EscapeDialogPanel extends JFrame implements ActionListener{
 	
-	public ResourceBundle bundle; 
-	public JPanel panel, panelTop; 
-	public JLabel lbl;
-	public JButton no, yes;
-	private Font font; 
-	private Color color1, color2; 
+	public ResourceBundle languageBundle; 
+	public JPanel panelSetup, panelTopSetup; 
+	public JLabel label;
+	public JButton noButton, yesButton;
+	private Font defaultFont; 
+	private Color colorOfButton, colorOfDialog; 
 	private GuiFrame guiFrame; 
-	int x, y;
+	int width, height;
 	
 	public EscapeDialogPanel(GuiFrame gui) {
-		bundle = ResourceBundle.getBundle("pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/properties/myProp");
+		languageBundle = ResourceBundle.getBundle("pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/properties/myProp");
 		guiFrame = gui;
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setSize(300,120);
 		this.setTitle("Choose");
 		this.setResizable(false);
-		x = (guiFrame.screenWidth/2)-(this.getWidth()/2);
-		y = (guiFrame.screenHeight/2)-(this.getHeight()/2);
-		this.setLocation(x, y);
-		font = new Font("Impact", Font.PLAIN, 20);  
-		color1 = new Color(225,108,164);	
-		color2 = new Color(251, 211, 224);
+		width = (guiFrame.screenWidth/2)-(this.getWidth()/2);
+		height = (guiFrame.screenHeight/2)-(this.getHeight()/2);
+		this.setLocation(width, height);
+		defaultFont = new Font("Impact", Font.PLAIN, 20);  
+		colorOfButton = new Color(225,108,164);	
+		colorOfDialog = new Color(251, 211, 224);
 		
-		panel = new JPanel(); 
-		panel.setLayout(new BorderLayout());
-		panel.setBackground(color2);;
-		panel.setLayout(new GridBagLayout());   
+		panelSetup = new JPanel(); 
+		panelSetup.setLayout(new BorderLayout());
+		panelSetup.setBackground(colorOfDialog);;
+		panelSetup.setLayout(new GridBagLayout());   
 		
-		panelTop = new JPanel();
-        lbl = new JLabel(bundle.getString("label"));
-        lbl.setFont(font);
-        panelTop.setBackground(color2);
-        lbl.setOpaque(false);
-        panelTop.add(lbl);
-        this.add(panelTop, BorderLayout.PAGE_START);
+		panelTopSetup = new JPanel();
+        label = new JLabel(languageBundle.getString("label"));
+        label.setFont(defaultFont);
+        panelTopSetup.setBackground(colorOfDialog);
+        label.setOpaque(false);
+        panelTopSetup.add(label);
+        this.add(panelTopSetup, BorderLayout.PAGE_START);
         
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
@@ -60,26 +60,26 @@ public class EscapeDialogPanel extends JFrame implements ActionListener{
         c.gridx = 0;
         c.gridy = 1;
 
-        no = new JButton(bundle.getString("no"));
-        no.setSelected(true);
-        no.setFont(font);
-        no.setSize(100, 100);
-        no.setBackground(color1);
-        no.addActionListener(this);
-        no.setActionCommand("no");
-        panel.add(no, c);
+        noButton = new JButton(languageBundle.getString("no"));
+        noButton.setSelected(true);
+        noButton.setFont(defaultFont);
+        noButton.setSize(100, 100);
+        noButton.setBackground(colorOfButton);
+        noButton.addActionListener(this);
+        noButton.setActionCommand("no");
+        panelSetup.add(noButton, c);
         
         c.gridx = 1;
         c.gridy = 1;
-        yes = new JButton(bundle.getString("yes"));
-        yes.setFont(font);
-        yes.setSize(100, 100);
-        yes.setBackground(color1);
-        yes.addActionListener(this);
-        yes.setActionCommand("yes");
-        panel.add(yes, c);
+        yesButton = new JButton(languageBundle.getString("yes"));
+        yesButton.setFont(defaultFont);
+        yesButton.setSize(100, 100);
+        yesButton.setBackground(colorOfButton);
+        yesButton.addActionListener(this);
+        yesButton.setActionCommand("yes");
+        panelSetup.add(yesButton, c);
         
-        this.add(panel, BorderLayout.CENTER);
+        this.add(panelSetup, BorderLayout.CENTER);
      
 	}
 	

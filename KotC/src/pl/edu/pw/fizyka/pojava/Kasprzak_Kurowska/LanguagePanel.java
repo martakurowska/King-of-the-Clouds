@@ -25,14 +25,12 @@ public class LanguagePanel implements ActionListener{
 	public Locale svLocale = new Locale("sv", "SE"); 
 	 
 	private JButton polish, english, french, russian, swedish; 
-	JPanel panel;
-	Icon img;
+	JPanel panelSetup;
+	Icon imageFlag;
 	protected int screenWidth  = Toolkit.getDefaultToolkit().getScreenSize().width;
     protected int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
-    private Font font =new Font("Impact", Font.PLAIN, 34); 
-	private Color color= new Color(225,108,164); 
     public DifficultyFrame difficultyFrame;
-	public ResourceBundle bundle;
+	public ResourceBundle languageBundle;
 	public GuiFrame guiFrame;
 	public EscapeDialogPanel dialogFrame;
 
@@ -44,10 +42,10 @@ public class LanguagePanel implements ActionListener{
 	
 	public LanguagePanel(GuiFrame gui, DifficultyFrame difficulty, EscapeDialogPanel dialog) {
 		
-		panel = new JPanel();
-		panel.setOpaque(false);
-		panel.setLayout(new GridBagLayout());
-		bundle = ResourceBundle.getBundle("pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/properties/myProp");
+		panelSetup = new JPanel();
+		panelSetup.setOpaque(false);
+		panelSetup.setLayout(new GridBagLayout());
+		languageBundle = ResourceBundle.getBundle("pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/properties/myProp");
 		
 		guiFrame = gui;
 		difficultyFrame = difficulty;
@@ -62,43 +60,43 @@ public class LanguagePanel implements ActionListener{
         c.gridx = 0;
         c.gridy = 0;
         
-        img = new ImageIcon(getClass().getResource("others/flags/uk.png"));
-        english = new JButton(img);
+        imageFlag = new ImageIcon(getClass().getResource("others/flags/uk.png"));
+        english = new JButton(imageFlag);
         setButton(english);
         english.setActionCommand("english");
-        panel.add(english, c);
+        panelSetup.add(english, c);
        
         c.gridx = 1;
         c.gridy = 0;
-        img = new ImageIcon(getClass().getResource("others/flags/poland.png"));
-        polish = new JButton(img);
+        imageFlag = new ImageIcon(getClass().getResource("others/flags/poland.png"));
+        polish = new JButton(imageFlag);
         setButton(polish);
         polish.setActionCommand("polish");
-        panel.add(polish, c);
+        panelSetup.add(polish, c);
         
         c.gridx = 0;
         c.gridy = 1;
-        img = new ImageIcon(getClass().getResource("others/flags/france.png"));
-        french = new JButton(img);
+        imageFlag = new ImageIcon(getClass().getResource("others/flags/france.png"));
+        french = new JButton(imageFlag);
         setButton(french);
         french.setActionCommand("french");
-        panel.add(french, c);
+        panelSetup.add(french, c);
         
         c.gridx = 1;
         c.gridy = 1;
-        img = new ImageIcon(getClass().getResource("others/flags/russia.png"));
-        russian = new JButton(img);
+        imageFlag = new ImageIcon(getClass().getResource("others/flags/russia.png"));
+        russian = new JButton(imageFlag);
         setButton(russian);
         russian.setActionCommand("russian");
-        panel.add(russian, c);
+        panelSetup.add(russian, c);
 
         c.gridx = 0;
         c.gridy = 2;
-        img = new ImageIcon(getClass().getResource("others/flags/sweden.png"));
-        swedish = new JButton(img);
+        imageFlag = new ImageIcon(getClass().getResource("others/flags/sweden.png"));
+        swedish = new JButton(imageFlag);
         setButton(swedish);
         swedish.setActionCommand("swedish");
-        panel.add(swedish, c);
+        panelSetup.add(swedish, c);
         
 	}
 	
@@ -137,33 +135,33 @@ public class LanguagePanel implements ActionListener{
 	}
 	
 	public JPanel setUpLanguages() {
-		return panel;
+		return panelSetup;
 	}
  
  	public void changingLanguageOnGuiFrame(Locale newLocale) {
-		ResourceBundle newbundle = ResourceBundle.getBundle("pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/properties/myProp", newLocale);
-		guiFrame.newGameBtn.setText(newbundle.getString("newgame"));
-		guiFrame.loadGameBtn.setText(newbundle.getString("loadgame"));
-		guiFrame.levelChangeBtn.setText(newbundle.getString("levelChange"));
-		guiFrame.settingsBtn.setText(newbundle.getString("settings"));
-		guiFrame.exitGameBtn.setText(newbundle.getString("exit"));
-		guiFrame.backToMenuButton.setText(newbundle.getString("backtomenu"));
-		guiFrame.characterButton.setText(newbundle.getString("character")); 
-		guiFrame.languageButton.setText(newbundle.getString("language"));
-		guiFrame.soundButton.setText(newbundle.getString("sound"));
+		ResourceBundle newBundle = ResourceBundle.getBundle("pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/properties/myProp", newLocale);
+		guiFrame.newGameBtn.setText(newBundle.getString("newgame"));
+		guiFrame.loadGameBtn.setText(newBundle.getString("loadgame"));
+		guiFrame.levelChangeBtn.setText(newBundle.getString("levelChange"));
+		guiFrame.settingsBtn.setText(newBundle.getString("settings"));
+		guiFrame.exitGameBtn.setText(newBundle.getString("exit"));
+		guiFrame.backToMenuButton.setText(newBundle.getString("backtomenu"));
+		guiFrame.characterButton.setText(newBundle.getString("character")); 
+		guiFrame.languageButton.setText(newBundle.getString("language"));
+		guiFrame.soundButton.setText(newBundle.getString("sound"));
 	} 
  	
  	public void changingLanguageOnDifficultyFrame(Locale newLocale) {
- 		ResourceBundle newbundle = ResourceBundle.getBundle("pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/properties/myProp", newLocale);
- 		difficultyFrame.easy.setText(newbundle.getString("easy"));
- 		difficultyFrame.normal.setText(newbundle.getString("normal"));
- 		difficultyFrame.hard.setText(newbundle.getString("hard"));
+ 		ResourceBundle newBundle = ResourceBundle.getBundle("pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/properties/myProp", newLocale);
+ 		difficultyFrame.easyButton.setText(newBundle.getString("easy"));
+ 		difficultyFrame.normalButton.setText(newBundle.getString("normal"));
+ 		difficultyFrame.hardButton.setText(newBundle.getString("hard"));
  	}
  	
  	public void changeEscapeDialogPanel(Locale newLocale) {
- 		ResourceBundle newbundle = ResourceBundle.getBundle("pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/properties/myProp", newLocale);
- 		dialogFrame.lbl.setText(newbundle.getString("label"));
- 		dialogFrame.no.setText(newbundle.getString("no"));
- 		dialogFrame.yes.setText(newbundle.getString("yes"));
+ 		ResourceBundle newBundle = ResourceBundle.getBundle("pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/properties/myProp", newLocale);
+ 		dialogFrame.label.setText(newBundle.getString("label"));
+ 		dialogFrame.noButton.setText(newBundle.getString("no"));
+ 		dialogFrame.yesButton.setText(newBundle.getString("yes"));
  	}
 }

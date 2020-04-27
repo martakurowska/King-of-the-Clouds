@@ -29,13 +29,13 @@ import javax.swing.JPanel;
 
 public class GuiFrame extends JFrame implements KeyListener {
 	                    
-	public ResourceBundle bundle;
-	int x, y;
-	ImageIcon img, img2;
-	Container con; 
-	private Font font; 
-	private Color color; 
-	URL url;
+	public ResourceBundle languageBundle;
+	int width, height;
+	ImageIcon menuImage, settingsImage;
+	Container container; 
+	private Font defaultFont; 
+	private Color colorOfButton; 
+	URL audioUrl;
 	AudioInputStream audio;
 	Clip music;
 	public JButton newGameBtn, loadGameBtn, exitGameBtn, settingsBtn, levelChangeBtn, soundButton, languageButton, characterButton, backToMenuButton;
@@ -48,13 +48,13 @@ public class GuiFrame extends JFrame implements KeyListener {
 	CharacterPanel charPanel; 
 	SoundPanel sound;
 	GamePanel game;
-	EscapeDialogPanel dialog;
+	EscapeDialogPanel escapeDialog;
 	boolean isGameActive = false;
-	ImageIcon balloon;
+	ImageIcon balloonImage;
 	
 	public void setButton(JButton btn) {
-		btn.setFont(font);
-        btn.setBackground(color); 
+		btn.setFont(defaultFont);
+        btn.setBackground(colorOfButton); 
         btn.setForeground(Color.BLACK);
         btn.setFocusPainted(false);
 	}
@@ -65,8 +65,8 @@ public class GuiFrame extends JFrame implements KeyListener {
 			@Override
 		    public void paintComponent(Graphics G) {
 		        super.paintComponent(G);
-		        img = new ImageIcon(getClass().getResource("others/menu2.png"));
-		        G.drawImage(img.getImage(), 0, 0, this.getWidth(), this.getHeight(), null);
+		        menuImage = new ImageIcon(getClass().getResource("others/menu2.png"));
+		        G.drawImage(menuImage.getImage(), 0, 0, this.getWidth(), this.getHeight(), null);
 		    }
 		};
         
@@ -84,37 +84,37 @@ public class GuiFrame extends JFrame implements KeyListener {
         menuPanel.add(lbl1, c);
         
         c.gridy = 1;
-    	font = new Font("Impact", Font.PLAIN, 34);   								
-		color = new Color(225,108,164);											
-        newGameBtn = new JButton(bundle.getString("newgame"));
+    	defaultFont = new Font("Impact", Font.PLAIN, 34);   								
+		colorOfButton = new Color(225,108,164);											
+        newGameBtn = new JButton(languageBundle.getString("newgame"));
         setButton(newGameBtn);
         newGameBtn.setActionCommand("newgame");
         newGameBtn.addActionListener(msHandler);
         menuPanel.add(newGameBtn, c);
 
         c.gridy = 2;
-        loadGameBtn = new JButton(bundle.getString("loadgame"));
+        loadGameBtn = new JButton(languageBundle.getString("loadgame"));
         setButton(loadGameBtn);
         loadGameBtn.setActionCommand("loadgame");
         loadGameBtn.addActionListener(msHandler);
         menuPanel.add(loadGameBtn, c);
 
         c.gridy = 3;
-        levelChangeBtn = new JButton(bundle.getString("levelChange"));
+        levelChangeBtn = new JButton(languageBundle.getString("levelChange"));
         setButton(levelChangeBtn);
         levelChangeBtn.setActionCommand("difficulty");
         levelChangeBtn.addActionListener(msHandler);
         menuPanel.add(levelChangeBtn, c);
 
         c.gridy = 4;
-        settingsBtn = new JButton(bundle.getString("settings"));
+        settingsBtn = new JButton(languageBundle.getString("settings"));
         setButton(settingsBtn);
         settingsBtn.setActionCommand("settings");
         settingsBtn.addActionListener(msHandler);
         menuPanel.add(settingsBtn, c);
         
         c.gridy = 5;
-        exitGameBtn = new JButton(bundle.getString("exit"));
+        exitGameBtn = new JButton(languageBundle.getString("exit"));
         setButton(exitGameBtn);
         exitGameBtn.setActionCommand("exitgame");
         exitGameBtn.addActionListener(msHandler);
@@ -129,38 +129,38 @@ public class GuiFrame extends JFrame implements KeyListener {
 			@Override
 		    public void paintComponent(Graphics G) {
 		        super.paintComponent(G);
-		        img2 = new ImageIcon(getClass().getResource("others/settings.png"));
-		        G.drawImage(img2.getImage(), 0, 0, this.getWidth(), this.getHeight(), null);
+		        settingsImage = new ImageIcon(getClass().getResource("others/settings.png"));
+		        G.drawImage(settingsImage.getImage(), 0, 0, this.getWidth(), this.getHeight(), null);
 		    }
 		};
 		settingsPanel.setPreferredSize(new Dimension((int) (screenWidth*0.7),(int) (screenHeight*0.85)));
 		settingsPanel.setLayout(new BorderLayout());
 		
-		font = new Font("Impact", Font.PLAIN, 34);   								
-		color = new Color(225,108,164);	
+		defaultFont = new Font("Impact", Font.PLAIN, 34);   								
+		colorOfButton = new Color(225,108,164);	
 		
 		settingsPanelTop = new JPanel();
 		settingsPanelTop.setOpaque(false);
 		
-		characterButton = new JButton(bundle.getString("character")); 
+		characterButton = new JButton(languageBundle.getString("character")); 
 		setButton(characterButton);
 		characterButton.setActionCommand("character");
 		characterButton.addActionListener(msHandler);
 		settingsPanelTop.add(characterButton);
 
-        languageButton = new JButton(bundle.getString("language"));
+        languageButton = new JButton(languageBundle.getString("language"));
         setButton(languageButton);
         languageButton.setActionCommand("language");
         languageButton.addActionListener(msHandler);
         settingsPanelTop.add(languageButton);
 
-        soundButton = new JButton(bundle.getString("sound"));
+        soundButton = new JButton(languageBundle.getString("sound"));
         setButton(soundButton);
         soundButton.setActionCommand("sound");
         soundButton.addActionListener(msHandler);
         settingsPanelTop.add(soundButton);
 
-        backToMenuButton = new JButton(bundle.getString("backtomenu"));
+        backToMenuButton = new JButton(languageBundle.getString("backtomenu"));
         setButton(backToMenuButton);
         backToMenuButton.setActionCommand("backToMenu");
         backToMenuButton.addActionListener(msHandler);
@@ -178,15 +178,15 @@ public class GuiFrame extends JFrame implements KeyListener {
 		this.setFocusable(true);
 	    this.requestFocusInWindow();
 	    this.addKeyListener(this);
-	    x = (this.screenWidth/2)-(this.getWidth()/2);
-	    y = (this.screenHeight/2)-(this.getHeight()/2);
-	    this.setLocation(x, y);
-		con = this.getContentPane();
-		bundle = ResourceBundle.getBundle("pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/properties/myProp");
+	    width = (this.screenWidth/2)-(this.getWidth()/2);
+	    height = (this.screenHeight/2)-(this.getHeight()/2);
+	    this.setLocation(width, height);
+		container = this.getContentPane();
+		languageBundle = ResourceBundle.getBundle("pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/properties/myProp");
 		
 		try {
-		    url = getClass().getResource("others/music/KOTC.wav");
-		    audio = AudioSystem.getAudioInputStream(url);
+		    audioUrl = getClass().getResource("others/music/KOTC.wav");
+		    audio = AudioSystem.getAudioInputStream(audioUrl);
 		    music = AudioSystem.getClip();
 		    music.open(audio);
 		    music.loop(-1);
@@ -194,18 +194,18 @@ public class GuiFrame extends JFrame implements KeyListener {
 		catch (Exception e) {
 		}
 		
-		balloon = new ImageIcon(getClass().getResource("others/balloons/balonMaly1.png"));
+		balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly1.png"));
 		
 		menuPanel = new JPanel();
 		menuPanel = this.menuFrame(); 
-        con.add(menuPanel);
+        container.add(menuPanel);
         menuPanel.revalidate();
         menuPanel.setVisible(true);
         
         game = new GamePanel(this);
         gamePanel = game.setUpGamePanel();
         
-        dialog = new EscapeDialogPanel(this);
+        escapeDialog = new EscapeDialogPanel(this);
         
         difficultyFrame = new DifficultyFrame(this);
         difficultyFrame.setVisible(false);
@@ -218,7 +218,7 @@ public class GuiFrame extends JFrame implements KeyListener {
     	characterPanel = charPanel.setUpCharacter();
 		
 		
-    	lngPanel = new LanguagePanel(this, difficultyFrame, dialog);
+    	lngPanel = new LanguagePanel(this, difficultyFrame, escapeDialog);
     	languagePanel = lngPanel.setUpLanguages();
     	
     	
@@ -234,7 +234,7 @@ public class GuiFrame extends JFrame implements KeyListener {
 			if (e.getActionCommand() == "newgame") {
 				settingsPanel.setVisible(false);
 	        	menuPanel.setVisible(false);
-	        	con.add(gamePanel);
+	        	container.add(gamePanel);
 	        	gamePanel.setVisible(false);
 	        	gamePanel.setVisible(true);
 	        	isGameActive = true;
@@ -250,7 +250,7 @@ public class GuiFrame extends JFrame implements KeyListener {
 	        else if (e.getActionCommand() == "settings") {
 	        	settingsPanel.setVisible(false);
 	        	menuPanel.setVisible(false);
-	        	con.add(settingsPanel);
+	        	container.add(settingsPanel);
 	        	settingsPanel.setVisible(true);
 	        	characterPanel.setVisible(false);
 	        	settingsPanel.add(characterPanel, BorderLayout.CENTER);
@@ -295,7 +295,7 @@ public class GuiFrame extends JFrame implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyChar()==KeyEvent.VK_ESCAPE) {
 			if (this.isGameActive==true) {
-				dialog.setVisible(true);
+				escapeDialog.setVisible(true);
 			}
 		}
 	}

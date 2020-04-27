@@ -14,20 +14,20 @@ import javax.swing.JPanel;
 
 public class DifficultyFrame extends JFrame implements ActionListener {
 	
-	public ResourceBundle bundle; 
-	public JPanel panel; 
-	public JButton easy, normal, hard; 
-	private Font font; 
-	private Color color; 
-	int x, y;
+	public ResourceBundle languageBundle; 
+	public JPanel panelSetup; 
+	public JButton easyButton, normalButton, hardButton; 
+	private Font defaultFont; 
+	private Color colorOfButton; 
+	int width, height;
 	
 	public void setButton(JButton btn) {
 		btn.addActionListener(this);
-		btn.setFont(font); 
-		btn.setBackground(color); 
+		btn.setFont(defaultFont); 
+		btn.setBackground(colorOfButton); 
 		btn.setForeground(Color.BLACK);
 		btn.setFocusPainted(false);
-		panel.add(btn);
+		panelSetup.add(btn);
 	} 
 	
 	public DifficultyFrame(GuiFrame guiFrame) {
@@ -36,38 +36,38 @@ public class DifficultyFrame extends JFrame implements ActionListener {
 		this.setSize(300,200);
 		this.setTitle("Choose your level");
 		this.setResizable(false);
-		x = (guiFrame.screenWidth/2)-(this.getWidth()/2);
-		y = (guiFrame.screenHeight/2)-(this.getHeight()/2);
-		this.setLocation(x, y);
-		font = new Font("Impact", Font.PLAIN, 34);   								 
-		color = new Color(225,108,164);	
+		width = (guiFrame.screenWidth/2)-(this.getWidth()/2);
+		height = (guiFrame.screenHeight/2)-(this.getHeight()/2);
+		this.setLocation(width, height);
+		defaultFont = new Font("Impact", Font.PLAIN, 34);   								 
+		colorOfButton = new Color(225,108,164);	
 		
-		panel = new JPanel();
-		panel.setLayout(new GridLayout(3,1)); 
+		panelSetup = new JPanel();
+		panelSetup.setLayout(new GridLayout(3,1)); 
 		
-		this.setFont(font);
-		this.setBackground(color);
+		this.setFont(defaultFont);
+		this.setBackground(colorOfButton);
 		this.setForeground(Color.BLACK);
-		bundle = ResourceBundle.getBundle("pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/properties/myProp");
+		languageBundle = ResourceBundle.getBundle("pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/properties/myProp");
 		
- 		easy = new JButton(bundle.getString("easy")); 
- 		easy.addActionListener(this);
-		easy.setActionCommand("Easy"); 
-		setButton(easy);
+ 		easyButton = new JButton(languageBundle.getString("easy")); 
+ 		easyButton.addActionListener(this);
+		easyButton.setActionCommand("Easy"); 
+		setButton(easyButton);
 	
 		
-		normal = new JButton(bundle.getString("normal")); 
-		normal.addActionListener(this);
-		normal.setActionCommand("Normal"); 
-		setButton(normal);
+		normalButton = new JButton(languageBundle.getString("normal")); 
+		normalButton.addActionListener(this);
+		normalButton.setActionCommand("Normal"); 
+		setButton(normalButton);
 	
 		
-		hard = new JButton(bundle.getString("hard")); 
-		hard.addActionListener(this);
-		hard.setActionCommand("Hard"); 
-		setButton(hard);
+		hardButton = new JButton(languageBundle.getString("hard")); 
+		hardButton.addActionListener(this);
+		hardButton.setActionCommand("Hard"); 
+		setButton(hardButton);
 	
-		this.add(panel);
+		this.add(panelSetup);
 		
 	} 
 	
