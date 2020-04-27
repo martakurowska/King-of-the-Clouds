@@ -15,7 +15,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.net.URL;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javax.sound.sampled.AudioInputStream;
@@ -67,6 +66,7 @@ public class GuiFrame extends JFrame implements KeyListener {
 		        super.paintComponent(G);
 		        menuImage = new ImageIcon(getClass().getResource("others/menu2.png"));
 		        G.drawImage(menuImage.getImage(), 0, 0, this.getWidth(), this.getHeight(), null);
+		        repaint();
 		    }
 		};
         
@@ -131,6 +131,7 @@ public class GuiFrame extends JFrame implements KeyListener {
 		        super.paintComponent(G);
 		        settingsImage = new ImageIcon(getClass().getResource("others/settings.png"));
 		        G.drawImage(settingsImage.getImage(), 0, 0, this.getWidth(), this.getHeight(), null);
+		        repaint();
 		    }
 		};
 		settingsPanel.setPreferredSize(new Dimension((int) (screenWidth*0.7),(int) (screenHeight*0.85)));
@@ -172,7 +173,9 @@ public class GuiFrame extends JFrame implements KeyListener {
 	
 	
 	public GuiFrame() {
-		this.setSize((int) (screenWidth*0.7),(int) (screenHeight*0.85) );
+		this.setMinimumSize(new Dimension(1300, 900));
+		//this.setSize((int) (screenWidth*0.7),(int) (screenHeight*0.85) );
+		this.setSize(1344, 918);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setTitle("King of the Clouds Game");
 		this.setFocusable(true);
@@ -199,7 +202,6 @@ public class GuiFrame extends JFrame implements KeyListener {
 		menuPanel = new JPanel();
 		menuPanel = this.menuFrame(); 
         container.add(menuPanel);
-        menuPanel.revalidate();
         menuPanel.setVisible(true);
         
         game = new GamePanel(this);
@@ -217,17 +219,12 @@ public class GuiFrame extends JFrame implements KeyListener {
     	charPanel = new CharacterPanel(this);
     	characterPanel = charPanel.setUpCharacter();
 		
-		
     	lngPanel = new LanguagePanel(this, difficultyFrame, escapeDialog);
     	languagePanel = lngPanel.setUpLanguages();
-    	
-    	
+    	    	
     	sound = new SoundPanel(this); 
-    	soundPanel = sound.setUpSounds();
-    	
-    	
+    	soundPanel = sound.setUpSounds();	
 	}
-	
 	
 	public class menuScreenHandler implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
@@ -235,7 +232,6 @@ public class GuiFrame extends JFrame implements KeyListener {
 				settingsPanel.setVisible(false);
 	        	menuPanel.setVisible(false);
 	        	container.add(gamePanel);
-	        	gamePanel.setVisible(false);
 	        	gamePanel.setVisible(true);
 	        	isGameActive = true;
 	        	
@@ -255,7 +251,6 @@ public class GuiFrame extends JFrame implements KeyListener {
 	        	characterPanel.setVisible(false);
 	        	settingsPanel.add(characterPanel, BorderLayout.CENTER);
 	    		characterPanel.setVisible(true);
-	        	
 	        }
 	        else if (e.getActionCommand() == "exitgame") {
 	            System.exit(0);
@@ -265,12 +260,13 @@ public class GuiFrame extends JFrame implements KeyListener {
 	        	languagePanel.setVisible(false);
 	        	soundPanel.setVisible(false);
 	        	characterPanel.setVisible(false);
-	        	menuPanel.setVisible(true);
+	        	container.remove(menuPanel); 
+	            container.add(menuPanel);
+	            menuPanel.setVisible(true);
 	        }
 	        else if (e.getActionCommand() == "language") {
 	        	characterPanel.setVisible(false);
 	        	soundPanel.setVisible(false);
-	        	languagePanel.setVisible(false);
 	        	settingsPanel.add(languagePanel, BorderLayout.CENTER);
 	        	languagePanel.setVisible(true);
 	        } 
@@ -278,15 +274,12 @@ public class GuiFrame extends JFrame implements KeyListener {
 	        	languagePanel.setVisible(false);
 	        	characterPanel.setVisible(false);
 	        	settingsPanel.add(soundPanel, BorderLayout.CENTER);
-	        	soundPanel.setVisible(false);
 	        	soundPanel.setVisible(true);
 	        }
 	        else if (e.getActionCommand() == "character") {
 	        	soundPanel.setVisible(false);
-	    		characterPanel.setVisible(false);
 				languagePanel.setVisible(false);
 				characterPanel.setVisible(true);
-			
 	        } 
 		}
 	}

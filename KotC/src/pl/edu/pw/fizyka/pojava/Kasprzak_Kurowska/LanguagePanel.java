@@ -1,7 +1,5 @@
 package pl.edu.pw.fizyka.pojava.Kasprzak_Kurowska;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;

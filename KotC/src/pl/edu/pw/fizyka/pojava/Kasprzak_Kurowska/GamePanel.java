@@ -27,7 +27,7 @@ public class GamePanel {
 		        backgroundImage = new ImageIcon(getClass().getResource("others/tlo.png"));
 		        G.drawImage(backgroundImage.getImage(), 0, 0, guiFrame.getWidth(), guiFrame.getHeight(), 0, backgroundImage.getIconHeight()-guiFrame.getHeight(), backgroundImage.getIconWidth(), backgroundImage.getIconHeight(), null);
 		        balloonImage = guiFrame.balloonImage;
-		        G.drawImage(balloonImage.getImage(), guiFrame.getHeight()/2, (guiFrame.getHeight()-(guiFrame.getHeight()/3)), null);
+		        G.drawImage(balloonImage.getImage(), (guiFrame.getWidth()/2-balloonImage.getIconWidth()/2), (guiFrame.getHeight()-(guiFrame.getHeight()/3)), null);
 		    }
 		}; 
 	}

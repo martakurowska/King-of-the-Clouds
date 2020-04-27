@@ -15,7 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class EscapeDialogPanel extends JFrame implements ActionListener{
+public class EscapeDialogPanel extends JFrame implements ActionListener {
 	
 	public ResourceBundle languageBundle; 
 	public JPanel panelSetup, panelTopSetup; 
@@ -89,7 +89,9 @@ public class EscapeDialogPanel extends JFrame implements ActionListener{
 			this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
 		} 
 		else if (e.getActionCommand() == "yes") {	
-			guiFrame.gamePanel.setVisible(false);
+			guiFrame.container.remove(guiFrame.gamePanel);
+			guiFrame.container.remove(guiFrame.menuPanel);
+			guiFrame.container.add(guiFrame.menuPanel);
 			guiFrame.menuPanel.setVisible(true);
 			this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
 		}

@@ -166,87 +166,7 @@ public class SoundPanel extends JFrame implements ActionListener {
     
     @Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand() == "cgf") {
-			try {
-				guiFrame.music.stop();
-			    guiFrame.audioUrl = getClass().getResource("others/music/cgf.wav");
-			    this.setUpButtonsAction();
-			} 
-			catch(Exception f) {}			
-        } 
-        else if (e.getActionCommand() == "kotc") {	
-        	try {
-        		guiFrame.music.stop();
-			    guiFrame.audioUrl = getClass().getResource("others/music/KOTC.wav");
-			    this.setUpButtonsAction();
-			}
-        	catch(Exception f) {}
-        }
-        else if (e.getActionCommand() == "ddt") {  
-        	try {
-        		guiFrame.music.stop();
-			    guiFrame.audioUrl = getClass().getResource("others/music/DDT.wav");
-			    this.setUpButtonsAction();
-			}
-        	catch(Exception f) {}
-        }
-        else if (e.getActionCommand() == "r") {  
-        	try {
-        		guiFrame.music.stop();
-			    guiFrame.audioUrl = getClass().getResource("others/music/Rumadai.wav");
-			    this.setUpButtonsAction();
-			} 
-        	catch(Exception f) {}
-        }
-        else if (e.getActionCommand() == "ASFoS") {  
-        	try {
-        		guiFrame.music.stop();
-			    guiFrame.audioUrl = getClass().getResource("others/music/ASFoS.wav");
-			    this.setUpButtonsAction();
-			} 
-        	catch(Exception f) {}
-        }
-        else if (e.getActionCommand() == "CS") {  
-        	try {
-        		guiFrame.music.stop();
-			    guiFrame.audioUrl = getClass().getResource("others/music/CS.wav");
-			    this.setUpButtonsAction();
-			} 
-        	catch(Exception f) {}
-        }
-        else if (e.getActionCommand() == "GT") {  
-        	try {
-        		guiFrame.music.stop();
-			    guiFrame.audioUrl = getClass().getResource("others/music/GTGJ.wav");
-			    this.setUpButtonsAction();
-			} 
-        	catch(Exception f) {}
-        }
-        else if (e.getActionCommand() == "Boh") {  
-        	try {
-        		guiFrame.music.stop();
-			    guiFrame.audioUrl = getClass().getResource("others/music/lece.wav");
-			    this.setUpButtonsAction();
-			} 
-        	catch(Exception f) {}
-        }
-        else if (e.getActionCommand() == "PuK") {  
-        	try {
-        		guiFrame.music.stop();
-			    guiFrame.audioUrl = getClass().getResource("others/music/PuK.wav");
-			    this.setUpButtonsAction();
-			} 
-        	catch(Exception f) {}
-        }
-        else if (e.getActionCommand() == "UITA") {  
-        	try {
-        		guiFrame.music.stop();
-			    guiFrame.audioUrl = getClass().getResource("others/music/UiTA.wav");
-			    this.setUpButtonsAction();
-			} 
-        	catch(Exception f) {}
-        }
-        else if (e.getActionCommand() == "on") {  
+    	if (e.getActionCommand() == "on") {  
         	try {
         		guiFrame.music.start();
 			} 
@@ -254,10 +174,84 @@ public class SoundPanel extends JFrame implements ActionListener {
         }
         else if (e.getActionCommand() == "off") {  
         	try {
-        		guiFrame.music.stop();
-			    
+        		guiFrame.music.stop(); 
 			} 
         	catch(Exception f) {}
+        } 
+        else {
+        	guiFrame.music.stop();
+        	switch(e.getActionCommand()) {
+        		case "cgf":
+        			try {
+        				guiFrame.audioUrl = getClass().getResource("others/music/cgf.wav");
+        				this.setUpButtonsAction();
+        			}
+        			catch(Exception f) {}	
+        			break;
+        		case "kotc":
+        			try {
+        				guiFrame.audioUrl = getClass().getResource("others/music/KOTC.wav");
+        				this.setUpButtonsAction();
+        			}
+        			catch(Exception f) {}	
+        			break;
+        		case "ddt":
+        			try {
+        				guiFrame.audioUrl = getClass().getResource("others/music/DDT.wav");
+        				this.setUpButtonsAction();
+        			}
+            		catch(Exception f) {}	
+            		break;
+        		case "r":
+        			try {
+        				guiFrame.audioUrl = getClass().getResource("others/music/Rumadai.wav");
+        				this.setUpButtonsAction();
+        			}
+            		catch(Exception f) {}	
+            		break;
+        		case "ASFoS":
+        			try {
+        				guiFrame.audioUrl = getClass().getResource("others/music/ASFoS.wav");
+        				this.setUpButtonsAction();
+        			}
+            		catch(Exception f) {}	
+            		break;
+        		case "CS":
+        			try {
+        				guiFrame.audioUrl = getClass().getResource("others/music/CS.wav");
+        				this.setUpButtonsAction();
+        			}
+            		catch(Exception f) {}	
+            		break;
+        		case "GT":
+        			try {
+        				guiFrame.audioUrl = getClass().getResource("others/music/GTGJ.wav");
+        				this.setUpButtonsAction();
+        			}
+            		catch(Exception f) {}	
+            		break;
+        		case "Boh":
+        			try {
+        				guiFrame.audioUrl = getClass().getResource("others/music/lece.wav");
+        				this.setUpButtonsAction();
+        			}
+            		catch(Exception f) {}	
+            		break;
+        		case "PuK":
+        			try {
+        				guiFrame.audioUrl = getClass().getResource("others/music/PuK.wav");
+        				this.setUpButtonsAction();
+        			}
+            		catch(Exception f) {}	
+            		break;
+        		case "UITA":
+        			try {
+        				guiFrame.audioUrl = getClass().getResource("others/music/UiTA.wav");
+        				this.setUpButtonsAction();
+        			}
+            		catch(Exception f) {}	
+            		break;
+        	}
         }
 	}
 } 
