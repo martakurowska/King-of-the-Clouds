@@ -124,7 +124,6 @@ public class GuiFrame extends JFrame implements KeyListener {
         return menuPanel;
 	}
 	
-	
 	public JPanel settingsFrame() {
 		settingsPanel = new JPanel() {
 			@Override
@@ -171,7 +170,6 @@ public class GuiFrame extends JFrame implements KeyListener {
         
         return settingsPanel;
 	}
-	
 	
 	public GuiFrame() {
 		this.setMinimumSize(new Dimension((int) (screenWidth*0.7),(int) (screenHeight*0.85)));

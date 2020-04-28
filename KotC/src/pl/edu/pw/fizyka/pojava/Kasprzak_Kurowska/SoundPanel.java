@@ -79,7 +79,7 @@ public class SoundPanel extends JFrame implements ActionListener {
         c.gridy = 0; 
         c.gridwidth = 2;
         gain = (FloatControl)guiFrame.music.getControl(FloatControl.Type.MASTER_GAIN);
-        volumeSlider = new JSlider(JSlider.HORIZONTAL, -40, 0, 0);
+        volumeSlider = new JSlider(JSlider.HORIZONTAL, -40, 6, 0);
         volumeSlider.setPreferredSize(new Dimension(300,50));
         volumeSlider.setOpaque(false);
     	volumeSlider.addChangeListener(new ChangeListener() { 		
@@ -93,10 +93,10 @@ public class SoundPanel extends JFrame implements ActionListener {
         c.gridx = 0;
         c.gridy = 1;
         c.gridwidth = 1; 
-        imageVolume = new ImageIcon(getClass().getResource("others/music/vlm_on.png"));
-        onButton = new JButton(imageVolume);
-        setUpJButton(onButton);
-        onButton.setActionCommand("on");
+        imageVolume = new ImageIcon(getClass().getResource("others/music/vlm_off.png"));
+        offButton = new JButton(imageVolume);
+        setUpJButton(offButton);
+        offButton.setActionCommand("off");
       		
         c.insets = new Insets(0, 20, 20, 20);
         c.gridx = 0; 
@@ -129,15 +129,14 @@ public class SoundPanel extends JFrame implements ActionListener {
         song5 = new JRadioButton("A Sky Full of Stars");
         setButton(song5);
         song5.setActionCommand("ASFoS");
-      
         
         c.gridx = 1;
         c.gridy = 1;
         c.insets = new Insets(-50, 30, 80, 30);
-        imageVolume = new ImageIcon(getClass().getResource("others/music/vlm_off.png"));
-        offButton = new JButton(imageVolume);
-        setUpJButton(offButton);
-        offButton.setActionCommand("off");
+        imageVolume = new ImageIcon(getClass().getResource("others/music/vlm_on.png"));
+        onButton = new JButton(imageVolume);
+        setUpJButton(onButton);
+        onButton.setActionCommand("on");
         
         c.gridx = 1;
         c.gridy = 2;
@@ -208,7 +207,6 @@ public class SoundPanel extends JFrame implements ActionListener {
         			try {
         				guiFrame.audioUrl = getClass().getResource("others/music/cgf.wav");
         				this.setUpButtonsAction();
-        				
         			}
         			catch(Exception f) {}	
         			break;
@@ -278,5 +276,4 @@ public class SoundPanel extends JFrame implements ActionListener {
         	}
         }
 	} 
-
 } 
