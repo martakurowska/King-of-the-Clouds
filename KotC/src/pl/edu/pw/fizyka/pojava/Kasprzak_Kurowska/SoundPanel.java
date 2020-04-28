@@ -74,7 +74,7 @@ public class SoundPanel extends JFrame implements ActionListener {
     	
     	c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
-        
+        c.insets = new Insets(-50, 30, 80, 30);
         c.gridx = 0; 
         c.gridy = 0; 
         c.gridwidth = 2;
@@ -89,8 +89,6 @@ public class SoundPanel extends JFrame implements ActionListener {
 			}
     	}); 
     	panelSetup.add(volumeSlider, c);
-    	
-        c.insets = new Insets(-50, 30, 80, 30);
         
         c.gridx = 0;
         c.gridy = 1;
@@ -131,10 +129,7 @@ public class SoundPanel extends JFrame implements ActionListener {
         song5 = new JRadioButton("A Sky Full of Stars");
         setButton(song5);
         song5.setActionCommand("ASFoS");
-        
-        c.gridx = 1; 
-        c.gridy = 0; 
-        
+      
         
         c.gridx = 1;
         c.gridy = 1;

@@ -37,7 +37,7 @@ public class GuiFrame extends JFrame implements KeyListener {
 	private Color colorOfButton; 
 	URL audioUrl;
 	AudioInputStream audio; 
-	static Clip music;
+	Clip music;
 	public JButton newGameBtn, loadGameBtn, exitGameBtn, settingsBtn, levelChangeBtn, soundButton, languageButton, characterButton, backToMenuButton;
 	protected int screenWidth  = Toolkit.getDefaultToolkit().getScreenSize().width;
     protected int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
@@ -187,7 +187,6 @@ public class GuiFrame extends JFrame implements KeyListener {
 		container = this.getContentPane();
 		languageBundle = ResourceBundle.getBundle("pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/properties/myProp");
 
-		
 		try {
 		    audioUrl = getClass().getResource("others/music/KOTC.wav");
 		    audio = AudioSystem.getAudioInputStream(audioUrl);
