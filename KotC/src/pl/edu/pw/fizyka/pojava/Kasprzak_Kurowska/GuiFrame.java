@@ -202,17 +202,14 @@ public class GuiFrame extends JFrame implements KeyListener {
         container.add(menuPanel);
         menuPanel.setVisible(true);
         
-        game = new GamePanel(this);
-        gamePanel = game.setUpGamePanel();
+        difficultyFrame = new DifficultyFrame(this);
+        difficultyFrame.speed = 15;
+        difficultyFrame.setVisible(false);
         
         escapeDialog = new EscapeDialogPanel(this);
         
-        difficultyFrame = new DifficultyFrame(this);
-        difficultyFrame.setVisible(false);
-        
         settingsPanel = new JPanel();
     	settingsPanel = this.settingsFrame();
-    	
     	
     	charPanel = new CharacterPanel(this);
     	characterPanel = charPanel.setUpCharacter();
@@ -229,6 +226,8 @@ public class GuiFrame extends JFrame implements KeyListener {
 			if (e.getActionCommand() == "newgame") {
 				settingsPanel.setVisible(false);
 	        	menuPanel.setVisible(false);
+	        	game = new GamePanel(GuiFrame.this);
+	            gamePanel = game.setUpGamePanel();
 	        	container.add(gamePanel);
 	        	gamePanel.setVisible(true);
 	        	isGameActive = true;

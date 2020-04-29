@@ -5,17 +5,22 @@ import javax.swing.ImageIcon;
 public class Balloon extends Sprite {
 
 	GuiFrame guiFrame; 
+	int balloonStartX, balloonStartY;
 	
-	public Balloon() {
+	public Balloon(GuiFrame gui) {
+		guiFrame = gui;
 		initialize();
+		
+		dx = guiFrame.difficultyFrame.speed;
+		System.out.println(dx);
 	}
 	
 	private void initialize() {
 		ImageIcon imageIcon = guiFrame.balloonImage; 
 		setImage(imageIcon.getImage()); 
 		
-		int balloonStartX = (guiFrame.getWidth()/2 - imageIcon.getIconWidth()/2); 
-		int balloonStartY = (guiFrame.getHeight()/2 - imageIcon.getIconHeight()/2);
+		balloonStartX = (guiFrame.getWidth()/2 - imageIcon.getIconWidth()/2); 
+		balloonStartY = (guiFrame.getHeight() - imageIcon.getIconHeight() - 30);
 		
 		setX(balloonStartX); 
 		setY(balloonStartY);

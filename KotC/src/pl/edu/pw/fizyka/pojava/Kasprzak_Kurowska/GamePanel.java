@@ -38,8 +38,8 @@ public class GamePanel extends JPanel implements KeyListener {
 	
 	public GamePanel(GuiFrame gui) {
 		guiFrame = gui;
-		balloon = new Balloon();
-	    keys = new boolean[] {false, false}; 
+		balloon = new Balloon(guiFrame);
+	    keys = new boolean[] {false, false}; //[0] - czy porusza siê lewo  [1]- czy porusza siê w prawo
 	    balloonSpeed = 10; 
 	      
 		gamePanel = new JPanel() {
@@ -59,7 +59,7 @@ public class GamePanel extends JPanel implements KeyListener {
 	}; 
 			
 		private void drawBalloon(Graphics g) {
-			g.drawImage(balloon.getImage(), getX(), getY(), this); 
+			g.drawImage(balloon.getImage(), balloon.getX(), balloon.getY(), this); 
 					
 		}
 		
@@ -73,23 +73,22 @@ public class GamePanel extends JPanel implements KeyListener {
 		
 		@Override 
 		public void keyReleased (KeyEvent e) {
-			if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
 				keys[0] = false; 
 			}
-			if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
 				keys[1] = false; 
 			}
 		}
 		
 		@Override
 		public void keyPressed (KeyEvent e) {
-			if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
 				keys[0] = true; 
-				dx = -2; 
+				//balloon.x -= balloon.dx;
 			} 
-			if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
 				keys[1] = true; 
-				dx = 2;
 			}	
 		}  
 		
