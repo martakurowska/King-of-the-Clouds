@@ -11,11 +11,11 @@ public class GameEventListener extends KeyAdapter {
 		this.board = board; 
 	}
 	
-	public void KeyReleased (KeyEvent e) {
+	public void keyReleased (KeyEvent e) {
 		this.board.keyReleased(e); 
 	}
 	
-	public void KeyPressed (KeyEvent e) {
+	public void keyPressed (KeyEvent e) {
 		this.board.keyPressed(e);
 		
 	}

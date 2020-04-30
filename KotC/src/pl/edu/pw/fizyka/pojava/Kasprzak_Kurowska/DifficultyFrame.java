@@ -20,7 +20,8 @@ public class DifficultyFrame extends JFrame implements ActionListener {
 	private Font defaultFont; 
 	private Color colorOfButton; 
 	int width, height;
-	int speed;
+	int balloonSpeed = 10;
+	public static int gameSpeed = 10; 
 	
 	public void setButton(JButton btn) {
 		btn.addActionListener(this);
@@ -75,13 +76,13 @@ public class DifficultyFrame extends JFrame implements ActionListener {
 	@Override 
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand() == "Easy") {
-			speed = 15;
+	       balloonSpeed = 15;
 			this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
 		} else if (e.getActionCommand() == "Normal") {
-			speed = 10;
+			balloonSpeed = 10;
 			this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
 		} else if (e.getActionCommand() == "Hard") {
-			speed = 5;
+			balloonSpeed = 5;
 			this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
 		}
 			

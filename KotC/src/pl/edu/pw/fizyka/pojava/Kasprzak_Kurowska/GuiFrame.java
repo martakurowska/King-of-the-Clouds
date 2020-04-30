@@ -203,7 +203,8 @@ public class GuiFrame extends JFrame implements KeyListener {
         menuPanel.setVisible(true);
         
         difficultyFrame = new DifficultyFrame(this);
-        difficultyFrame.speed = 15;
+        difficultyFrame.balloonSpeed = 15;
+        difficultyFrame.gameSpeed = 10;
         difficultyFrame.setVisible(false);
         
         escapeDialog = new EscapeDialogPanel(this);

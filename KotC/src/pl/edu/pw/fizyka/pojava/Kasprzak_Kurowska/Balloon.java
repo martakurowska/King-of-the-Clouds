@@ -1,5 +1,7 @@
 package pl.edu.pw.fizyka.pojava.Kasprzak_Kurowska;
 
+import java.awt.event.KeyEvent;
+
 import javax.swing.ImageIcon;
 
 public class Balloon extends Sprite {
@@ -11,7 +13,7 @@ public class Balloon extends Sprite {
 		guiFrame = gui;
 		initialize();
 		
-		dx = guiFrame.difficultyFrame.speed;
+		dx = guiFrame.difficultyFrame.balloonSpeed;
 		System.out.println(dx);
 	}
 	
@@ -28,7 +30,27 @@ public class Balloon extends Sprite {
 	
 	@Override
 	public void move() {
-		
+		x += dx; 
+	} 
+	
+	public void keyPressed(KeyEvent e) {
+		int key = e.getKeyCode();
+		if(key == KeyEvent.VK_LEFT || key == KeyEvent.VK_A) {
+			dx = -2; 
+		}
+		if(key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_D) {
+			dx = 2; 
+		}
+	} 
+	
+	public void keyReleased(KeyEvent e) {
+		int key = e.getKeyCode();
+		if(key == KeyEvent.VK_LEFT || key == KeyEvent.VK_A) {
+			dx = 0; 
+		}
+		if(key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_D) {
+			dx = 0; 
+		}
 	}
 
 }
