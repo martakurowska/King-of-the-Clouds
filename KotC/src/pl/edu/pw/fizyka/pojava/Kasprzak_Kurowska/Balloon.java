@@ -1,56 +1,37 @@
 package pl.edu.pw.fizyka.pojava.Kasprzak_Kurowska;
 
-import java.awt.event.KeyEvent;
-
 import javax.swing.ImageIcon;
 
 public class Balloon extends Sprite {
 
 	GuiFrame guiFrame; 
 	int balloonStartX, balloonStartY;
+	ImageIcon imageIcon;
 	
 	public Balloon(GuiFrame gui) {
 		guiFrame = gui;
 		initialize();
-		
-		dx = guiFrame.difficultyFrame.balloonSpeed;
-		System.out.println(dx);
 	}
 	
 	private void initialize() {
-		ImageIcon imageIcon = guiFrame.balloonImage; 
+		imageIcon = guiFrame.balloonImage; 
 		setImage(imageIcon.getImage()); 
 		
 		balloonStartX = (guiFrame.getWidth()/2 - imageIcon.getIconWidth()/2); 
-		balloonStartY = (guiFrame.getHeight() - imageIcon.getIconHeight() - 30);
-		
 		setX(balloonStartX); 
-		setY(balloonStartY);
 	}
 	
 	@Override
 	public void move() {
-		x += dx; 
-	} 
-	
-	public void keyPressed(KeyEvent e) {
-		int key = e.getKeyCode();
-		if(key == KeyEvent.VK_LEFT || key == KeyEvent.VK_A) {
-			dx = -2; 
+		x += dx;
+		
+		if(x < 0) {
+			x = 0;
 		}
-		if(key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_D) {
-			dx = 2; 
+		if(x > guiFrame.getWidth() - imageIcon.getIconWidth() -15) {
+			x = guiFrame.getWidth() - imageIcon.getIconWidth() -15;
 		}
-	} 
-	
-	public void keyReleased(KeyEvent e) {
-		int key = e.getKeyCode();
-		if(key == KeyEvent.VK_LEFT || key == KeyEvent.VK_A) {
-			dx = 0; 
-		}
-		if(key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_D) {
-			dx = 0; 
-		}
+		balloonStartY = (guiFrame.getHeight() - imageIcon.getIconHeight() - 50);
 	}
-
+	
 }

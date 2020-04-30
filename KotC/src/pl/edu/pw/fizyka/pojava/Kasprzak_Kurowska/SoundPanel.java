@@ -2,7 +2,6 @@ package pl.edu.pw.fizyka.pojava.Kasprzak_Kurowska;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -28,7 +27,6 @@ import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener; 
 
-
 public class SoundPanel extends JFrame implements ActionListener {
 
 	JPanel panelSetup; 
@@ -37,7 +35,7 @@ public class SoundPanel extends JFrame implements ActionListener {
 	JButton onButton, offButton;
 	Icon imageVolume;
 	ButtonGroup songButtonGroup; 
-	GuiFrame guiFrame;
+	SettingsPanel settingsPanel;
 	GridBagConstraints c;
 	private JSlider volumeSlider; 
 	FloatControl gain; 
@@ -64,9 +62,9 @@ public class SoundPanel extends JFrame implements ActionListener {
     	panelSetup.add(btn, c);
     }
     
-    public SoundPanel(GuiFrame gui) {
+    public SoundPanel(SettingsPanel settings) {
     	
-    	guiFrame = gui;
+    	settingsPanel = settings;;
     	panelSetup = new JPanel(); 
     	panelSetup.setOpaque(false);
     	panelSetup.setLayout(new GridBagLayout());
@@ -78,7 +76,7 @@ public class SoundPanel extends JFrame implements ActionListener {
         c.gridx = 0; 
         c.gridy = 0; 
         c.gridwidth = 2;
-        gain = (FloatControl)guiFrame.music.getControl(FloatControl.Type.MASTER_GAIN);
+        gain = (FloatControl)settingsPanel.guiFrame.music.getControl(FloatControl.Type.MASTER_GAIN);
         volumeSlider = new JSlider(JSlider.HORIZONTAL, -40, 6, 0);
         volumeSlider.setPreferredSize(new Dimension(300,50));
         volumeSlider.setOpaque(false);
@@ -177,98 +175,98 @@ public class SoundPanel extends JFrame implements ActionListener {
     }
     
     public void setUpButtonsAction() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-    	guiFrame.audio = AudioSystem.getAudioInputStream(guiFrame.audioUrl);
-	    guiFrame.music = AudioSystem.getClip();
-	    guiFrame.music.open(guiFrame.audio);
-        gain = (FloatControl)guiFrame.music.getControl(FloatControl.Type.MASTER_GAIN);
+    	settingsPanel.guiFrame.audio = AudioSystem.getAudioInputStream(settingsPanel.guiFrame.audioUrl);
+    	settingsPanel.guiFrame.music = AudioSystem.getClip();
+    	settingsPanel.guiFrame.music.open(settingsPanel.guiFrame.audio);
+        gain = (FloatControl)settingsPanel.guiFrame.music.getControl(FloatControl.Type.MASTER_GAIN);
 		gain.setValue(volumeSlider.getValue());
-	    guiFrame.music.loop(-1);
-	    guiFrame.revalidate();
+		settingsPanel.guiFrame.music.loop(-1);
+		settingsPanel.guiFrame.revalidate();
     }
     
     @Override
 	public void actionPerformed(ActionEvent e) {
     	if (e.getActionCommand() == "on") {  
         	try {
-        		guiFrame.music.start();
+        		settingsPanel.guiFrame.music.start();
 			} 
         	catch(Exception f) {}
         }
         else if (e.getActionCommand() == "off") {  
         	try {
-        		guiFrame.music.stop(); 
+        		settingsPanel.guiFrame.music.stop(); 
 			} 
         	catch(Exception f) {}
         } 
         else {
-        	guiFrame.music.stop();
+        	settingsPanel.guiFrame.music.stop();
         	switch(e.getActionCommand()) {
         		case "cgf":
         			try {
-        				guiFrame.audioUrl = getClass().getResource("others/music/cgf.wav");
+        				settingsPanel.guiFrame.audioUrl = getClass().getResource("others/music/cgf.wav");
         				this.setUpButtonsAction();
         			}
         			catch(Exception f) {}	
         			break;
         		case "kotc":
         			try {
-        				guiFrame.audioUrl = getClass().getResource("others/music/KOTC.wav");
+        				settingsPanel.guiFrame.audioUrl = getClass().getResource("others/music/KOTC.wav");
         				this.setUpButtonsAction();
         			}
         			catch(Exception f) {}	
         			break;
         		case "ddt":
         			try {
-        				guiFrame.audioUrl = getClass().getResource("others/music/DDT.wav");
+        				settingsPanel.guiFrame.audioUrl = getClass().getResource("others/music/DDT.wav");
         				this.setUpButtonsAction();
         			}
             		catch(Exception f) {}	
             		break;
         		case "r":
         			try {
-        				guiFrame.audioUrl = getClass().getResource("others/music/Rumadai.wav");
+        				settingsPanel.guiFrame.audioUrl = getClass().getResource("others/music/Rumadai.wav");
         				this.setUpButtonsAction();
         			}
             		catch(Exception f) {}	
             		break;
         		case "ASFoS":
         			try {
-        				guiFrame.audioUrl = getClass().getResource("others/music/ASFoS.wav");
+        				settingsPanel.guiFrame.audioUrl = getClass().getResource("others/music/ASFoS.wav");
         				this.setUpButtonsAction();
         			}
             		catch(Exception f) {}	
             		break;
         		case "CS":
         			try {
-        				guiFrame.audioUrl = getClass().getResource("others/music/CS.wav");
+        				settingsPanel.guiFrame.audioUrl = getClass().getResource("others/music/CS.wav");
         				this.setUpButtonsAction();
         			}
             		catch(Exception f) {}	
             		break;
         		case "GT":
         			try {
-        				guiFrame.audioUrl = getClass().getResource("others/music/GTGJ.wav");
+        				settingsPanel.guiFrame.audioUrl = getClass().getResource("others/music/GTGJ.wav");
         				this.setUpButtonsAction();
         			}
             		catch(Exception f) {}	
             		break;
         		case "Boh":
         			try {
-        				guiFrame.audioUrl = getClass().getResource("others/music/lece.wav");
+        				settingsPanel.guiFrame.audioUrl = getClass().getResource("others/music/lece.wav");
         				this.setUpButtonsAction();
         			}
             		catch(Exception f) {}	
             		break;
         		case "PuK":
         			try {
-        				guiFrame.audioUrl = getClass().getResource("others/music/PuK.wav");
+        				settingsPanel.guiFrame.audioUrl = getClass().getResource("others/music/PuK.wav");
         				this.setUpButtonsAction();
         			}
             		catch(Exception f) {}	
             		break;
         		case "UITA":
         			try {
-        				guiFrame.audioUrl = getClass().getResource("others/music/UiTA.wav");
+        				settingsPanel.guiFrame.audioUrl = getClass().getResource("others/music/UiTA.wav");
         				this.setUpButtonsAction();
         			}
             		catch(Exception f) {}	

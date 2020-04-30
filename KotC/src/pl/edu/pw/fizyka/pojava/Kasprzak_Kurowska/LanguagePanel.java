@@ -29,7 +29,8 @@ public class LanguagePanel implements ActionListener{
     protected int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
     public DifficultyFrame difficultyFrame;
 	public ResourceBundle languageBundle;
-	public GuiFrame guiFrame;
+	public MenuPanel menuPanel;
+	public SettingsPanel settingsPanel;
 	public EscapeDialogPanel dialogFrame;
 
 	public void setButton(JButton btn) {
@@ -38,16 +39,17 @@ public class LanguagePanel implements ActionListener{
 		btn.addActionListener(this);
 	}
 	
-	public LanguagePanel(GuiFrame gui, DifficultyFrame difficulty, EscapeDialogPanel dialog) {
+	public LanguagePanel(MenuPanel menu, SettingsPanel settings, DifficultyFrame difficulty, EscapeDialogPanel dialog) {
 		
 		panelSetup = new JPanel();
 		panelSetup.setOpaque(false);
 		panelSetup.setLayout(new GridBagLayout());
 		languageBundle = ResourceBundle.getBundle("pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/properties/myProp");
 		
-		guiFrame = gui;
+		menuPanel = menu;
 		difficultyFrame = difficulty;
 		dialogFrame = dialog;
+		settingsPanel = settings;
 		
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
@@ -101,34 +103,34 @@ public class LanguagePanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand() == "english") {
-			LanguagePanel language = new LanguagePanel(guiFrame, difficultyFrame, dialogFrame);
 			changingLanguageOnGuiFrame(enLocale); 
 			changingLanguageOnDifficultyFrame(enLocale);
 			changeEscapeDialogPanel(enLocale);
+			changingLanguageOnSettingsPanel(enLocale);
         } 
         else if (e.getActionCommand() == "polish") {	
-        	LanguagePanel language = new LanguagePanel(guiFrame, difficultyFrame, dialogFrame);
 			changingLanguageOnGuiFrame(plLocale); 
 			changingLanguageOnDifficultyFrame(plLocale);
 			changeEscapeDialogPanel(plLocale);
+			changingLanguageOnSettingsPanel(plLocale);
         }
         else if (e.getActionCommand() == "french") {  
-        	LanguagePanel language = new LanguagePanel(guiFrame, difficultyFrame, dialogFrame);
 			changingLanguageOnGuiFrame(frLocale); 
 			changingLanguageOnDifficultyFrame(frLocale);
 			changeEscapeDialogPanel(frLocale);
+			changingLanguageOnSettingsPanel(frLocale);
         }
         else if (e.getActionCommand() == "russian") {  
-        	LanguagePanel language = new LanguagePanel(guiFrame, difficultyFrame, dialogFrame);
 			changingLanguageOnGuiFrame(ruLocale); 
 			changingLanguageOnDifficultyFrame(ruLocale);
 			changeEscapeDialogPanel(ruLocale);
+			changingLanguageOnSettingsPanel(ruLocale);
         }
         else if (e.getActionCommand() == "swedish") {
-        	LanguagePanel language = new LanguagePanel(guiFrame, difficultyFrame, dialogFrame);
 			changingLanguageOnGuiFrame(svLocale);
 			changingLanguageOnDifficultyFrame(svLocale);
 			changeEscapeDialogPanel(svLocale);
+			changingLanguageOnSettingsPanel(svLocale);
         } 
 	}
 	
@@ -138,16 +140,20 @@ public class LanguagePanel implements ActionListener{
  
  	public void changingLanguageOnGuiFrame(Locale newLocale) {
 		ResourceBundle newBundle = ResourceBundle.getBundle("pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/properties/myProp", newLocale);
-		guiFrame.newGameBtn.setText(newBundle.getString("newgame"));
-		guiFrame.loadGameBtn.setText(newBundle.getString("loadgame"));
-		guiFrame.levelChangeBtn.setText(newBundle.getString("levelChange"));
-		guiFrame.settingsBtn.setText(newBundle.getString("settings"));
-		guiFrame.exitGameBtn.setText(newBundle.getString("exit"));
-		guiFrame.backToMenuButton.setText(newBundle.getString("backtomenu"));
-		guiFrame.characterButton.setText(newBundle.getString("character")); 
-		guiFrame.languageButton.setText(newBundle.getString("language"));
-		guiFrame.soundButton.setText(newBundle.getString("sound"));
+		menuPanel.newGameBtn.setText(newBundle.getString("newgame"));
+		menuPanel.loadGameBtn.setText(newBundle.getString("loadgame"));
+		menuPanel.levelChangeBtn.setText(newBundle.getString("levelChange"));
+		menuPanel.settingsBtn.setText(newBundle.getString("settings"));
+		menuPanel.exitGameBtn.setText(newBundle.getString("exit"));
 	} 
+ 	
+ 	public void changingLanguageOnSettingsPanel(Locale newLocale) {
+ 		ResourceBundle newBundle = ResourceBundle.getBundle("pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/properties/myProp", newLocale);
+ 		settingsPanel.backToMenuButton.setText(newBundle.getString("backtomenu"));
+ 		settingsPanel.characterButton.setText(newBundle.getString("character")); 
+ 		settingsPanel.languageButton.setText(newBundle.getString("language"));
+ 		settingsPanel.soundButton.setText(newBundle.getString("sound"));
+ 	}
  	
  	public void changingLanguageOnDifficultyFrame(Locale newLocale) {
  		ResourceBundle newBundle = ResourceBundle.getBundle("pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/properties/myProp", newLocale);

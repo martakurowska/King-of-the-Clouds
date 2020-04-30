@@ -51,4 +51,5 @@ public abstract class Sprite {
 	public boolean isDeadBalloon(boolean deadBalloon) {
 		return this.deadBalloon; 
 	}
+
 }

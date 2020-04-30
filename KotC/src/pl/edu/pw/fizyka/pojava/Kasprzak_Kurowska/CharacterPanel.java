@@ -19,7 +19,7 @@ public class CharacterPanel implements ActionListener  {
 	Icon balloonImage;
 	protected int screenWidth  = Toolkit.getDefaultToolkit().getScreenSize().width;
     protected int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
-    GuiFrame guiFrame;
+    SettingsPanel settingsPanel;
     
     
     public void setButton(JButton btn) {
@@ -29,15 +29,15 @@ public class CharacterPanel implements ActionListener  {
 		btn.addActionListener(this);
 	}  
      
-    public CharacterPanel(GuiFrame gui) {
-    	guiFrame = gui;
+    public CharacterPanel(SettingsPanel settings) {
+    	settingsPanel = settings;;
     	panelSetup = new JPanel(); 
     	panelSetup.setOpaque(false);
     	panelSetup.setLayout(new GridBagLayout());   
     	GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.ipadx = -280;
-        c.ipady = -60;
+        c.ipadx = -35;
+        c.ipady = -8;
         c.insets = new Insets(-90, 80, 50, 80);
 
         c.gridx = 0;
@@ -103,22 +103,22 @@ public class CharacterPanel implements ActionListener  {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand() == "yellow") {
-			guiFrame.balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly1.png"));
+			settingsPanel.guiFrame.balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly1.png"));
 		} 
 		else if (e.getActionCommand() == "happy") {	
-			guiFrame.balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly2.png"));
+			settingsPanel.guiFrame.balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly2.png"));
 		}
 		else if (e.getActionCommand() == "orange") {  
-			guiFrame.balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly3.png"));
+			settingsPanel.guiFrame.balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly3.png"));
 		}
 		else if (e.getActionCommand() == "blue") {  
-			guiFrame.balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly4.png"));
+			settingsPanel.guiFrame.balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly4.png"));
 		}
 		else if (e.getActionCommand() == "moro") {
-			guiFrame.balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly5.png"));
+			settingsPanel.guiFrame.balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly5.png"));
 		} 
 		else if (e.getActionCommand() == "crazy") {
-			guiFrame.balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly6.png"));
+			settingsPanel.guiFrame.balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly6.png"));
 		}	
 	}
 }
