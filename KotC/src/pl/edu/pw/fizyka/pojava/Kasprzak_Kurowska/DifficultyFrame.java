@@ -21,7 +21,7 @@ public class DifficultyFrame extends JFrame implements ActionListener {
 	private Color colorOfButton; 
 	int width, height;
 	int balloonSpeed = 10;
-	public static int gameSpeed = 10; 
+	public static final int gameSpeed = 10; 
 	
 	public void setButton(JButton btn) {
 		btn.addActionListener(this);

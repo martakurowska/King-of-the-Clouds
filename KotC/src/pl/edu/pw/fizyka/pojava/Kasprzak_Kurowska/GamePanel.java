@@ -5,19 +5,15 @@ import java.awt.GridBagConstraints;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.Timer; 
 
 public class GamePanel extends JPanel implements KeyListener {
 	
 	JPanel gamePanel;
-	GridBagConstraints c;
 	JLabel label;
 	JButton yesButton, noButton;
 	ImageIcon backgroundImage, balloonImage; 
@@ -27,43 +23,43 @@ public class GamePanel extends JPanel implements KeyListener {
 	DifficultyFrame difficultyFrame; 
 	GameLoop gameLoop; 
 	Timer timer; 
-	//ArrayList<Planes> planes; 
-	//ArrayList<Gold> gold;
 	
 	public GamePanel(GuiFrame gui) {
 		guiFrame = gui;
 		balloon = new Balloon(guiFrame);
-	    addKeyListener(new GameEventListener(this));
-	    setFocusable(true);
-	   /* this.timer = new Timer(difficultyFrame.gameSpeed, new GameLoop(this));
-	    timer.start(); */
+		this.timer = new Timer(DifficultyFrame.gameSpeed, new GameLoop(this));
+		this.timer.start(); 
+		
 		gamePanel = new JPanel() {
-			@Override
-		    public void paintComponent(Graphics g) {
+			//@Override
+		    protected void paintComponent(Graphics g) {
 		        super.paintComponent(g);
 		        backgroundImage = new ImageIcon(getClass().getResource("others/tlo.png"));
-		        g.drawImage(backgroundImage.getImage(), 0, 0, guiFrame.getWidth(), guiFrame.getHeight(), 0, backgroundImage.getIconHeight()-guiFrame.getHeight(), backgroundImage.getIconWidth(), backgroundImage.getIconHeight(), null);
-		        doDrawing(g);	        
+		        g.drawImage(backgroundImage.getImage(), 0, 0, guiFrame.getWidth(), guiFrame.getHeight(), 0, backgroundImage.getIconHeight()-guiFrame.getHeight(),
+		              backgroundImage.getIconWidth(), backgroundImage.getIconHeight(), null); 	
+		        doDrawing(g);
+		    	System.out.println("repaint");
 		    }
 		}; 
+			gamePanel.addKeyListener(new GameEventListener(this));
+			gamePanel.setFocusable(true);
 	}; 
 		
-	
 		private void drawBalloon(Graphics g) {
-			g.drawImage(balloon.getImage(), balloon.getX(), balloon.getY(), this); 
-					
+			g.drawImage(balloon.getImage(), balloon.getX(), balloon.getY(), this); 		
 		}
 		
 		private void doDrawing(Graphics g) {
-			drawBalloon(g); 
-		}
+			drawBalloon(g); 	
+		} 
 		
 		public void doOneLoop() {
-			update();
 			repaint();
+			update();	
 		}
 		
 		private void update() {
+			System.out.println("update"); 
 			this.balloon.move();
 		}
 		
@@ -82,9 +78,7 @@ public class GamePanel extends JPanel implements KeyListener {
 		}
 
 		@Override
-		public void keyTyped(KeyEvent e) {
-		
-			
+		public void keyTyped(KeyEvent e) {			
 		}
 		
 	}
