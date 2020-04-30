@@ -18,6 +18,7 @@ public class GamePanel extends JPanel {
 	GuiFrame guiFrame;
 	CharacterPanel characterPanel;
 	Balloon balloon; 
+	Background background;
 	String balloonPath;
 	boolean isGameRunning = true;
 	boolean[] keys; 
@@ -32,13 +33,15 @@ public class GamePanel extends JPanel {
 		guiFrame = gui;
 		timer = new Timer(10, new GameLoop(this));
 		timer.start();
-		backgroundImage = new ImageIcon(getClass().getResource("others/tlo.png"));
+		//backgroundImage = new ImageIcon(getClass().getResource("others/tlo.png"));
 		balloon = new Balloon(guiFrame);
+		background = new Background(guiFrame);
 	    
 	}
 		
 	public void doOneLoop() {
 		this.balloon.move();
+		this.background.move();
 		repaint();
 	}
 	
@@ -47,7 +50,7 @@ public class GamePanel extends JPanel {
 		
 		super.paintComponent(g);
 		yPos = guiFrame.getHeight() - balloon.imageIcon.getIconHeight() - 50;
-	    g.drawImage(backgroundImage.getImage(), 0, 0, guiFrame.getWidth(), guiFrame.getHeight(), 0, backgroundImage.getIconHeight()-guiFrame.getHeight(), backgroundImage.getIconWidth(), backgroundImage.getIconHeight(), null);
+	    g.drawImage(background.getImage(), 0, 0, guiFrame.getWidth(), guiFrame.getHeight(), 0, background.getBcgrndYTop(), background.imageIcon.getIconWidth(), background.getBcgrndYBottom(), null);
 	    if(isGameRunning) {
 			g.drawImage(balloon.getImage(), balloon.getX(), yPos, this); 
 		} else {

@@ -7,8 +7,8 @@ public abstract class Sprite {
 	private Image image;
 	private boolean deadBalloon;
 	protected int x; 
-	protected int y; 
-	protected int dx; 
+	protected int y, bcgrndYTop, bcgrndYBottom; 
+	protected int dx, dy; 
 	
 	public abstract void move(); 
 	
@@ -36,12 +36,28 @@ public abstract class Sprite {
 		this.y = y; 
 	}
 	
+	public void setBcgrndYTop(int y) {
+		this.bcgrndYTop = y; 
+	}
+	
+	public void setBcgrndYBottom(int y) {
+		this.bcgrndYBottom = y; 
+	}
+	
 	public int getX() {
 		return this.x; 
 	}
 	
 	public int getY() {
 		return this.y;
+	}
+	
+	public int getBcgrndYTop() {
+		return this.bcgrndYTop;
+	}
+	
+	public int getBcgrndYBottom() {
+		return this.bcgrndYBottom;
 	}
 	
 	public void setDeadBalloon(boolean deadBalloon) {

@@ -12,24 +12,21 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-
 public class SettingsPanel extends JPanel{
 	
 	JPanel settingsPanelTop;
 	JButton levelChangeBtn, soundButton, languageButton, characterButton, backToMenuButton;
-	Font defaultFont = new Font("Impact", Font.PLAIN, 34);   								
-	Color colorOfButton = new Color(225,108,164);
 	ImageIcon settingsImage;
-	GuiFrame guiFrame;
 	settingsScreenHandler sSHandler = new settingsScreenHandler();
 	JPanel languagePanel,  characterPanel, soundPanel;
+	GuiFrame guiFrame;
 	LanguagePanel lngPanel;
 	CharacterPanel charPanel; 
 	SoundPanel sound;
 	
 	public void setButton(JButton btn) {
-		btn.setFont(defaultFont);
-        btn.setBackground(colorOfButton); 
+		btn.setFont(guiFrame.menuPanel.defaultFont);
+        btn.setBackground(guiFrame.menuPanel.colorOfButton); 
         btn.setForeground(Color.BLACK);
         btn.setFocusPainted(false);
 	}
@@ -39,9 +36,6 @@ public class SettingsPanel extends JPanel{
 		guiFrame = gui;
 		this.setPreferredSize(new Dimension((int) (guiFrame.screenWidth*0.7),(int) (guiFrame.screenHeight*0.85)));
 		this.setLayout(new BorderLayout());
-		
-		defaultFont = new Font("Impact", Font.PLAIN, 34);   								
-		colorOfButton = new Color(225,108,164);	
 		
 		settingsPanelTop = new JPanel();
 		settingsPanelTop.setOpaque(false);

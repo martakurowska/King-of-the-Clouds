@@ -38,7 +38,7 @@ public class CharacterPanel implements ActionListener  {
         c.fill = GridBagConstraints.HORIZONTAL;
         c.ipadx = -35;
         c.ipady = -8;
-        c.insets = new Insets(-90, 80, 50, 80);
+        c.insets = new Insets(-90, 100, 50, 100);
 
         c.gridx = 0;
         c.gridy = 0;
@@ -69,7 +69,7 @@ public class CharacterPanel implements ActionListener  {
     	
         c.gridx = 0;
         c.gridy = 1;
-        c.insets = new Insets(0, 80, 0, 80);
+        c.insets = new Insets(0, 100, 0, 100);
         balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly4.png"));
         character4 = new JButton(balloonImage);
         character4.addActionListener(this);

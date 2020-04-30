@@ -19,6 +19,7 @@ public class Balloon extends Sprite {
 		
 		balloonStartX = (guiFrame.getWidth()/2 - imageIcon.getIconWidth()/2); 
 		setX(balloonStartX); 
+		
 	}
 	
 	@Override
@@ -31,7 +32,9 @@ public class Balloon extends Sprite {
 		if(x > guiFrame.getWidth() - imageIcon.getIconWidth() -15) {
 			x = guiFrame.getWidth() - imageIcon.getIconWidth() -15;
 		}
+		
 		balloonStartY = (guiFrame.getHeight() - imageIcon.getIconHeight() - 50);
+		setY(balloonStartY);
 	}
 	
 }
