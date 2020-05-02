@@ -24,11 +24,14 @@ public class EscapeDialogPanel extends JFrame implements ActionListener {
 	private Font defaultFont; 
 	private Color colorOfButton, colorOfDialog; 
 	private GuiFrame guiFrame; 
+	private GamePanel gamePanel;
 	int width, height;
 	
-	public EscapeDialogPanel(GuiFrame gui) {
+	public EscapeDialogPanel(GuiFrame gui, GamePanel game) {
 		languageBundle = ResourceBundle.getBundle("pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/properties/myProp");
 		guiFrame = gui;
+		gamePanel = game;
+		gamePanel.isGameRunning = false;
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setSize(300,120);
 		this.setTitle("Choose");
@@ -86,10 +89,12 @@ public class EscapeDialogPanel extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand() == "no") {
+			gamePanel.isGameRunning = true;
+			gamePanel.timer.start();
 			this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
 		} 
 		else if (e.getActionCommand() == "yes") {
-			guiFrame.gamePanel.timer.stop();
+			gamePanel.timer.stop();
 			guiFrame.isGameActive = false;
 			guiFrame.setResizable(true);
 			guiFrame.container.remove(guiFrame.gamePanel);

@@ -22,7 +22,7 @@ public class Background extends Sprite {
 		startYBottom = imageIcon.getIconHeight();
 		setBcgrndYBottom(startYBottom);
 		
-		dy = 3;
+		dy = 1.5;
 	}
 	
 	@Override

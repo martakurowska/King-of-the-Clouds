@@ -1,37 +1,38 @@
 package pl.edu.pw.fizyka.pojava.Kasprzak_Kurowska;
 
-import java.awt.Image;
 import java.util.Random;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
-public class Treasures extends Sprite {
+public class Points extends Sprite {
 
-	GuiFrame guiFrame; 
+	GamePanel gamePanel;
 	boolean visible; 
 	public ImageIcon imageIcon;
 	public int treasureX, treasureY; 
 	Random rand = new Random();
 	
-	public Treasures(GuiFrame gui) {
-		guiFrame = gui; 
+	public Points(GamePanel game) { 
+		gamePanel = game;
 		initialize();
 	}
 	
 	private void initialize() {
-		imageIcon = new ImageIcon(getClass().getResource("others/punkty_.png")); 
+		imageIcon = new ImageIcon(getClass().getResource("others/point.png")); 
 		setImage(imageIcon.getImage()); 
-		for (int i = 0; i < 7; i++) {
-			x = rand.nextInt((guiFrame.getWidth() - imageIcon.getIconWidth()));
-			setX(x);
-		}
 		
+		x = rand.nextInt((int) (1.5 * gamePanel.guiFrame.getWidth() - imageIcon.getIconWidth()));
+		setX(x);
+		
+		y = rand.nextInt(gamePanel.background.imageIcon.getIconHeight() - gamePanel.guiFrame.getHeight()) * (-1);
+		setY(y);
+		
+		dy = 2;
 	}
 
 	@Override
 	public void move() { 
-		
+		y += dy;
 	}
 
 	public boolean isVisible() {

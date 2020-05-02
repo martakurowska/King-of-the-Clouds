@@ -63,7 +63,6 @@ public class GuiFrame extends JFrame implements KeyListener {
         menuPanel.setVisible(true);
         
         difficultyFrame = new DifficultyFrame(this);
-        escapeDialog = new EscapeDialogPanel(this);
         settingsPanel = new SettingsPanel(this); 	
 	}
 	
@@ -71,6 +70,7 @@ public class GuiFrame extends JFrame implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyChar()==KeyEvent.VK_ESCAPE) {
 			if (this.isGameActive==true) {
+				escapeDialog = new EscapeDialogPanel(this, gamePanel);
 				escapeDialog.setVisible(true);
 			}
 		}
