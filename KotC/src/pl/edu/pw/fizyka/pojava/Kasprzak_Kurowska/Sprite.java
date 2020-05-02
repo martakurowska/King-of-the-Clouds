@@ -7,7 +7,7 @@ public abstract class Sprite {
 	private Image image;
 	private boolean deadBalloon;
 	protected int x; 
-	protected int y, bcgrndYTop, bcgrndYBottom; 
+	protected int y, bcgrndYTop, bcgrndYBottom, planeYTop, planeYBottom; 
 	protected int dx, dy; 
 	
 	public abstract void move(); 
@@ -44,6 +44,14 @@ public abstract class Sprite {
 		this.bcgrndYBottom = y; 
 	}
 	
+	public void setPlaneYTop(int y) {
+		this.planeYTop = y; 
+	}
+	
+	public void setPlaneYBottom(int y) {
+		this.planeYBottom = y; 
+	}
+	
 	public int getX() {
 		return this.x; 
 	}
@@ -58,6 +66,14 @@ public abstract class Sprite {
 	
 	public int getBcgrndYBottom() {
 		return this.bcgrndYBottom;
+	}
+	
+	public int getPlaneYTop() {
+		return this.planeYTop;
+	}
+	
+	public int getPlaneYBottom() {
+		return this.planeYBottom;
 	}
 	
 	public void setDeadBalloon(boolean deadBalloon) {

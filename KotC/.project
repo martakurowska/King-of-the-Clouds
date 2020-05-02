@@ -14,4 +14,31 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/others/punkty_.png</name>
+			<type>1</type>
+			<location>C:/Users/Tosia/Downloads/punkty_.png</location>
+		</link>
+		<link>
+			<name>src/pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/others/plane/plane1.png</name>
+			<type>1</type>
+			<location>C:/Users/Tosia/Downloads/plane1.png</location>
+		</link>
+		<link>
+			<name>src/pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/others/plane/plane2.png</name>
+			<type>1</type>
+			<location>C:/Users/Tosia/Downloads/plane2.png</location>
+		</link>
+		<link>
+			<name>src/pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/others/plane/plane3.png</name>
+			<type>1</type>
+			<location>C:/Users/Tosia/Downloads/plane3.png</location>
+		</link>
+		<link>
+			<name>src/pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/others/plane/plane4.png</name>
+			<type>1</type>
+			<location>C:/Users/Tosia/Downloads/plane4.png</location>
+		</link>
+	</linkedResources>
 </projectDescription>

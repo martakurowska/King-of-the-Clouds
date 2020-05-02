@@ -30,7 +30,7 @@ public class GuiFrame extends JFrame implements KeyListener {
 	DifficultyFrame difficultyFrame;
 	SettingsPanel settingsPanel;
 	boolean isGameActive = false;
-	ImageIcon balloonImage; 
+	ImageIcon balloonImage, planeImage; 
 	
 	public GuiFrame() {
 		this.setMinimumSize(new Dimension((int) (screenWidth*0.7),(int) (screenHeight*0.85)));
