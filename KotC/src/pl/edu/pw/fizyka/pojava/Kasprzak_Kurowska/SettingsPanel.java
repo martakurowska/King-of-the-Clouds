@@ -68,7 +68,7 @@ public class SettingsPanel extends JPanel{
         charPanel = new CharacterPanel(this);
     	characterPanel = charPanel.setUpCharacter();
 		
-    	lngPanel = new LanguagePanel(guiFrame.menuPanel, this, guiFrame.difficultyFrame, guiFrame.escapeDialog);
+    	lngPanel = new LanguagePanel(guiFrame.menuPanel, this, guiFrame.difficultyFrame, guiFrame);
     	languagePanel = lngPanel.setUpLanguages();
     	    	
     	sound = new SoundPanel(this); 

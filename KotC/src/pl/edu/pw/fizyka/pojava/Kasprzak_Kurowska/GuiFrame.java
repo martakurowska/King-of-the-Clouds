@@ -64,13 +64,15 @@ public class GuiFrame extends JFrame implements KeyListener {
         
         difficultyFrame = new DifficultyFrame(this);
         settingsPanel = new SettingsPanel(this); 	
+        
+        escapeDialog = new EscapeDialogPanel(this);
 	}
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyChar()==KeyEvent.VK_ESCAPE) {
 			if (this.isGameActive==true) {
-				escapeDialog = new EscapeDialogPanel(this, gamePanel);
+				gamePanel.isGameRunning = false;
 				escapeDialog.setVisible(true);
 			}
 		}

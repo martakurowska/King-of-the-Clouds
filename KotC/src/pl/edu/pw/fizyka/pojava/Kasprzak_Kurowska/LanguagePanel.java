@@ -31,7 +31,7 @@ public class LanguagePanel implements ActionListener{
 	public ResourceBundle languageBundle;
 	public MenuPanel menuPanel;
 	public SettingsPanel settingsPanel;
-	public EscapeDialogPanel dialogFrame;
+	public GuiFrame guiFrame;
 
 	public void setButton(JButton btn) {
 		btn.setFocusPainted(false);
@@ -39,7 +39,7 @@ public class LanguagePanel implements ActionListener{
 		btn.addActionListener(this);
 	}
 	
-	public LanguagePanel(MenuPanel menu, SettingsPanel settings, DifficultyFrame difficulty, EscapeDialogPanel dialog) {
+	public LanguagePanel(MenuPanel menu, SettingsPanel settings, DifficultyFrame difficulty, GuiFrame gui) {
 		
 		panelSetup = new JPanel();
 		panelSetup.setOpaque(false);
@@ -48,7 +48,7 @@ public class LanguagePanel implements ActionListener{
 		
 		menuPanel = menu;
 		difficultyFrame = difficulty;
-		dialogFrame = dialog;
+		guiFrame = gui;
 		settingsPanel = settings;
 		
         GridBagConstraints c = new GridBagConstraints();
@@ -164,8 +164,8 @@ public class LanguagePanel implements ActionListener{
  	
  	public void changeEscapeDialogPanel(Locale newLocale) {
  		ResourceBundle newBundle = ResourceBundle.getBundle("pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/properties/myProp", newLocale);
- 		dialogFrame.label.setText(newBundle.getString("label"));
- 		dialogFrame.noButton.setText(newBundle.getString("no"));
- 		dialogFrame.yesButton.setText(newBundle.getString("yes"));
+ 		guiFrame.escapeDialog.label.setText(newBundle.getString("label"));
+ 		guiFrame.escapeDialog.noButton.setText(newBundle.getString("no"));
+ 		guiFrame.escapeDialog.yesButton.setText(newBundle.getString("yes"));
  	}
 }
