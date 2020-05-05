@@ -11,10 +11,6 @@ public class Planes extends Sprite {
 	int number;
 	Random rand = new Random();
 	private boolean visible = true; 	 
-	public static final int speedPlane = 10;
-	public static final int planeRows = 4; 
-	public static final int planeColumns = 8;
-	
 	
 	public Planes(GamePanel game) {
 		gamePanel = game; 
@@ -48,9 +44,8 @@ public class Planes extends Sprite {
 		
 	@Override
 	public void move() {		
-	
-		y += dy; 
-		
+		if(visible) 
+			y += dy; 
 	}
 	
 	public boolean isVisible() {

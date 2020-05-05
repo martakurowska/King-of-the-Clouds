@@ -5,7 +5,7 @@ import java.awt.Image;
 public abstract class Sprite {
 
 	private Image image;
-	private boolean deadBalloon;
+	private boolean dead;
 	protected int x; 
 	protected int y, bcgrndYTop, bcgrndYBottom;
 	protected double dx, dy; 
@@ -13,11 +13,11 @@ public abstract class Sprite {
 	public abstract void move(); 
 	
 	public Sprite () {
-		deadBalloon = false; 
+		dead = false; 
 	}
 	
-	public void deadBalloon() {
-		this.deadBalloon = true; 
+	public void die() {
+		this.dead = true; 
 	}
 	
 	public void setImage(Image image) {
@@ -60,12 +60,12 @@ public abstract class Sprite {
 		return this.bcgrndYBottom;
 	}
 	
-	public void setDeadBalloon(boolean deadBalloon) {
-		this.deadBalloon = deadBalloon; 
+	public void setDead(boolean dead) {
+		this.dead = dead; 
 	}	
 	
-	public boolean isDeadBalloon(boolean deadBalloon) {
-		return this.deadBalloon; 
+	public boolean isDead() {
+		return this.dead; 
 	}
 
 }

@@ -54,14 +54,34 @@ public class GamePanel extends JPanel {
 	public void doOneLoop() {
 		
 		if(this.isGameRunning) {
+			
 			this.balloon.move();
 			this.background.move();
+			
 			for(Planes p : planes) {
-				p.move();
+				if(p.isDead()) 
+					continue;
+				if(!p.isDead()) {
+					if(p.getX() + p.imageIcon.getIconWidth() >= balloon.getX() && p.getX() <= balloon.getX() + balloon.imageIcon.getIconWidth() && p.getY() + p.imageIcon.getIconHeight() >= balloon.getY() && p.getY() <= balloon.getY() + balloon.imageIcon.getIconHeight()) {
+						p.setVisible(false);
+						p.die();
+					}	
+					p.move();
+				}
 			}
+			
 			for(Points p : points) {
-				p.move();
+				if(p.isDead()) 
+					continue;
+				if(!p.isDead()) {
+					if(p.getX() + p.imageIcon.getIconWidth() >= balloon.getX() && p.getX() <= balloon.getX() + balloon.imageIcon.getIconWidth() && p.getY() + p.imageIcon.getIconHeight() >= balloon.getY() && p.getY() <= balloon.getY() + balloon.imageIcon.getIconHeight()) {
+						p.setVisible(false);
+						p.die();
+					}	
+					p.move();
+				}
 			}
+			
 			repaint();
 		}
 		else {
@@ -79,13 +99,18 @@ public class GamePanel extends JPanel {
 	    g.drawImage(background.getImage(), 0, 0, guiFrame.getWidth(), guiFrame.getHeight(), 0, background.getBcgrndYTop(), background.imageIcon.getIconWidth(), background.getBcgrndYBottom(), null);
 	   
 	    for (Points p : points) {
-			g.drawImage(p.getImage(), p.getX(), p.getY(), this); 
+	    	if(p.isVisible()) {
+	    		g.drawImage(p.getImage(), p.getX(), p.getY(), this); 
+	    	}
 		}
 	    
 		g.drawImage(balloon.getImage(), balloon.getX(), yPos, this); 
 	    
 		for (Planes p : planes) {
-			g.drawImage(p.getImage(), p.getX(), p.getY(), this); 
+			if(p.isVisible()) {
+				g.drawImage(p.getImage(), p.getX(), p.getY(), this); 
+			}
+			
 		}		
 	}
 }

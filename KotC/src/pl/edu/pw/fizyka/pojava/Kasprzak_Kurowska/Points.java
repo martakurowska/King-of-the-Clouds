@@ -7,9 +7,8 @@ import javax.swing.ImageIcon;
 public class Points extends Sprite {
 
 	GamePanel gamePanel;
-	boolean visible; 
 	public ImageIcon imageIcon;
-	public int treasureX, treasureY; 
+	private boolean visible = true; 
 	Random rand = new Random();
 	
 	public Points(GamePanel game) { 
@@ -32,7 +31,8 @@ public class Points extends Sprite {
 
 	@Override
 	public void move() { 
-		y += dy;
+		if(visible)
+			y += dy;
 	}
 
 	public boolean isVisible() {
