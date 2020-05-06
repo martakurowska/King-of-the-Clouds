@@ -7,6 +7,7 @@ public class Background extends Sprite {
 	GuiFrame guiFrame; 
 	ImageIcon imageIcon;
 	int startYTop, startYBottom;
+	boolean end = false;
 	
 	public Background(GuiFrame gui) {
 		guiFrame = gui;
@@ -31,6 +32,7 @@ public class Background extends Sprite {
 		if (bcgrndYTop <= 10) {
 			bcgrndYTop = 10;
 			bcgrndYBottom = guiFrame.getHeight();
+			end = true;
 		}
 		
 		bcgrndYTop -= dy;

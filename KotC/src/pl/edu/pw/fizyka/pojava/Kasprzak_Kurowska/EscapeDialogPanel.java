@@ -90,6 +90,8 @@ public class EscapeDialogPanel extends JFrame implements ActionListener {
 		} 
 		else if (e.getActionCommand() == "yes") {
 			guiFrame.gamePanel.timer.stop();
+			guiFrame.menuPanel.lives = guiFrame.gamePanel.balloon.lives;
+			guiFrame.setResizable(true);
 			guiFrame.isGameActive = false;
 			guiFrame.container.remove(guiFrame.gamePanel);
 			guiFrame.container.remove(guiFrame.menuPanel);

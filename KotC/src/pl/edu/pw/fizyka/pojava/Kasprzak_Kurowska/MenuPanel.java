@@ -23,8 +23,9 @@ public class MenuPanel extends JPanel{
 	Font defaultFont = new Font("Impact", Font.PLAIN, 34);   								
 	Color colorOfButton = new Color(225,108,164);		
 	public JButton newGameBtn, loadGameBtn, exitGameBtn, settingsBtn, saveBtn;
-	ImageIcon menuImage;
+	ImageIcon menuImage, points, livesIcon;
 	GridBagConstraints c;
+	int score = 0, lives = 3;
 	
 	public void setButton(JButton btn) {
 		btn.setFont(defaultFont);
@@ -81,10 +82,28 @@ public class MenuPanel extends JPanel{
 	}
 
 	@Override
-	public void paintComponent(Graphics G) {
-		super.paintComponent(G);
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
 		menuImage = new ImageIcon(getClass().getResource("others/menu2.png"));
-		G.drawImage(menuImage.getImage(), 0, 0, this.getWidth(), this.getHeight(), null);
+		g.drawImage(menuImage.getImage(), 0, 0, this.getWidth(), this.getHeight(), null);
+		
+		points = new ImageIcon(getClass().getResource("others/point.png"));
+		g.drawImage(points.getImage(), 5, 5, this);	
+		g.setColor(new Color(253,191,0));
+		g.setFont(guiFrame.menuPanel.defaultFont);
+		g.drawString(String.valueOf(score) , 64, 45);
+		
+		if (lives == 3) {
+			livesIcon = new ImageIcon(getClass().getResource("others/hearts/3lives.png")); 
+		}
+		else if (lives == 2) {
+			livesIcon = new ImageIcon(getClass().getResource("others/hearts/2lives.png")); 
+		}
+		else if (lives == 1) {
+			livesIcon = new ImageIcon(getClass().getResource("others/hearts/1lives.png")); 
+		}
+		g.drawImage(livesIcon.getImage(), guiFrame.getWidth() - 197, 5, this);
+		
 		repaint();
 	}
 	

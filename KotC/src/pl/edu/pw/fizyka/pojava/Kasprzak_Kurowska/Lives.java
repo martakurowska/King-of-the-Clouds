@@ -18,7 +18,7 @@ public class Lives extends Sprite {
 	
 	@Override
 	public void move() {
-		x = gamePanel.guiFrame.getWidth() - 187;
+		x = gamePanel.guiFrame.getWidth() - 197;
 		setX(x); 
 		if (gamePanel.balloon.lives == 3) {
 			imageIcon = new ImageIcon(getClass().getResource("others/hearts/3lives.png")); 

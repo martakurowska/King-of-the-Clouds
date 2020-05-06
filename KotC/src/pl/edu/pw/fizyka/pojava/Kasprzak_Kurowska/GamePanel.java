@@ -1,6 +1,5 @@
 package pl.edu.pw.fizyka.pojava.Kasprzak_Kurowska;
 
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
@@ -29,31 +28,32 @@ public class GamePanel extends JPanel implements ActionListener{
 	Timer timer; 
 	private ArrayList<Planes> planes;
 	private ArrayList<Points> points; 
-	Score point; 
-	Lives life; 
+	Score score; 
+	Lives lives; 
 	Random rand = new Random();
 	
 	public GamePanel(GuiFrame gui) {
-	
+		
 		guiFrame = gui;
+		guiFrame.setResizable(false);
 		timer = new Timer(10, new GameLoop(this));
 		timer.start();
 		balloon = new Balloon(guiFrame);
 		background = new Background(guiFrame);
 
    		planes = new ArrayList<>();
-	    for (int i = 0; i < 70; i++) {
+	    for (int i = 0; i < 45; i++) {
 	    	Planes singlePlane = new Planes(this);
             planes.add(singlePlane); 	
 	    }
 	                 
 		points = new ArrayList<>();
-		for (int i = 0; i < 35; i++) {
+		for (int i = 0; i < 25; i++) {
 			Points singlePoint = new Points(this); 
         	points.add(singlePoint); 	
 		}
-		point = new Score(this);
-		life = new Lives(this); 
+		score = new Score(this);
+		lives = new Lives(this); 
 	
 		goOut = new JButton("OK");
 		goOut.setFont(guiFrame.menuPanel.defaultFont);
@@ -76,7 +76,7 @@ public class GamePanel extends JPanel implements ActionListener{
 			
 			this.balloon.move();
 			this.background.move();
-			this.life.move();
+			this.lives.move();
 			
 			for(Planes p : planes) {
 				if(p.isDead()) 
@@ -97,7 +97,7 @@ public class GamePanel extends JPanel implements ActionListener{
 				if(!p.isDead()) {
 					if(p.getX() + p.imageIcon.getIconWidth() >= balloon.getX() && p.getX() <= balloon.getX() + balloon.imageIcon.getIconWidth() && p.getY() + p.imageIcon.getIconHeight() >= balloon.getY() && p.getY() <= balloon.getY() + balloon.imageIcon.getIconHeight()) {
 						p.setVisible(false);
-						balloon.points += 20; 
+						score.score += 20;
 						p.die();
 					}	
 					p.move();
@@ -132,21 +132,31 @@ public class GamePanel extends JPanel implements ActionListener{
 			if(p.isVisible()) {
 				g.drawImage(p.getImage(), p.getX(), p.getY(), this); 
 			}
-			
 		}	
-		g.drawImage(point.getImage(), point.getX(), point.getY(), this);	
+		
+		g.drawImage(score.getImage(), score.getX(), score.getY(), this);	
 		g.setColor(new Color(253,191,0));
 		g.setFont(guiFrame.menuPanel.defaultFont);
-		g.drawString(balloon.getPoints(), 64, 45);
-		g.drawImage(life.getImage(), life.getX(), life.getY(), this);	
-		if(balloon.lives==0) {
+		g.drawString(score.getPoints(), 64, 45);
+		
+		g.drawImage(lives.getImage(), lives.getX(), lives.getY(), this);	
+		
+		if(balloon.lives == 0) {
 			g.setColor(new Color(237,28,36));
 			Font defaultFont = new Font("Impact", Font.PLAIN, 120);  
 			g.setFont(defaultFont); 
 			FontMetrics fontMetrics = this.getFontMetrics(defaultFont);
 			String gameOver = "GAME OVER"; 
-			g.drawString(gameOver, guiFrame.getWidth()/2-fontMetrics.stringWidth(gameOver)/2 - 6,
-					guiFrame.getHeight()/2 - 60); 
+			g.drawString(gameOver, guiFrame.getWidth()/2-fontMetrics.stringWidth(gameOver)/2 - 6, guiFrame.getHeight()/2 - 60); 
+			goOut.setVisible(true);
+		}
+		if(background.end == true) {
+			g.setColor(new Color(237,28,36));
+			Font defaultFont = new Font("Impact", Font.PLAIN, 120);  
+			g.setFont(defaultFont); 
+			FontMetrics fontMetrics = this.getFontMetrics(defaultFont);
+			String gameOver = "YOU WON!"; 
+			g.drawString(gameOver, guiFrame.getWidth()/2-fontMetrics.stringWidth(gameOver)/2 - 6, guiFrame.getHeight()/2 - 60); 
 			goOut.setVisible(true);
 		}
 		
@@ -154,9 +164,19 @@ public class GamePanel extends JPanel implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if(balloon.lives == 0) {
+			guiFrame.menuPanel.score = 0;
+			guiFrame.menuPanel.lives = 3;
+			// balonik i poziom trudnoœci powracaj¹ do podstawowych 
+		}
+		else if(background.end == true) {
+			guiFrame.menuPanel.score = score.score;
+			guiFrame.menuPanel.lives = balloon.lives;
+		}
+		guiFrame.setResizable(true);
+		guiFrame.container.remove(guiFrame.menuPanel);
+		guiFrame.container.add(guiFrame.menuPanel);
 		GamePanel.this.setVisible(false);
-		guiFrame.container.remove(guiFrame.menuPanel); 
-    	guiFrame.container.add(guiFrame.menuPanel);
     	guiFrame.menuPanel.setVisible(true);
     	guiFrame.container.remove(guiFrame.gamePanel);
 		this.timer.stop();

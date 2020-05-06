@@ -15,7 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 public class GuiFrame extends JFrame implements KeyListener {
-	                    
+	
 	public ResourceBundle languageBundle;
 	URL audioUrl;
 	AudioInputStream audio; 
@@ -32,7 +32,7 @@ public class GuiFrame extends JFrame implements KeyListener {
 	ImageIcon balloonImage, planeImage; 
 	
 	public GuiFrame() {
-		this.setMinimumSize(new Dimension((int) (screenWidth*0.7),(int) (screenHeight*0.85)));
+		this.setMinimumSize(new Dimension(1070, 725));
 		this.setSize((int) (screenWidth*0.7),(int) (screenHeight*0.85));
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setTitle("King of the Clouds Game");

@@ -14,26 +14,4 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>src/pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/others/hearts/0lives.png</name>
-			<type>1</type>
-			<location>C:/Users/Tosia/Desktop/studia/fotonika rok 2/PROJEKT XD/GRAFIKA DO GRY XD/0lives.png</location>
-		</link>
-		<link>
-			<name>src/pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/others/hearts/1lives.png</name>
-			<type>1</type>
-			<location>C:/Users/Tosia/Desktop/studia/fotonika rok 2/PROJEKT XD/GRAFIKA DO GRY XD/1lives.png</location>
-		</link>
-		<link>
-			<name>src/pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/others/hearts/2lives.png</name>
-			<type>1</type>
-			<location>C:/Users/Tosia/Desktop/studia/fotonika rok 2/PROJEKT XD/GRAFIKA DO GRY XD/2lives.png</location>
-		</link>
-		<link>
-			<name>src/pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/others/hearts/3lives.png</name>
-			<type>1</type>
-			<location>C:/Users/Tosia/Desktop/studia/fotonika rok 2/PROJEKT XD/GRAFIKA DO GRY XD/3lives.png</location>
-		</link>
-	</linkedResources>
 </projectDescription>

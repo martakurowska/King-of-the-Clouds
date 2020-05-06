@@ -34,10 +34,10 @@ public class Planes extends Sprite {
 		
 		setImage(imageIcon.getImage()); 
 		
-		x = rand.nextInt((int) (1.5 * gamePanel.guiFrame.getWidth() - imageIcon.getIconWidth())); 
+		x = rand.nextInt((int) (gamePanel.guiFrame.getWidth() - imageIcon.getIconWidth())); 
 		setX(x); 
 	    
-		y = rand.nextInt((int) (2.2 * gamePanel.background.imageIcon.getIconHeight())) * (-1);
+		y = rand.nextInt((int) (2.15 * gamePanel.background.imageIcon.getIconHeight())) * (-1);
 		setY(y);
 		
 		dy = 5;

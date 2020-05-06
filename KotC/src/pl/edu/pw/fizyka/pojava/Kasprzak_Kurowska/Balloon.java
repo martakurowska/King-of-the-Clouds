@@ -5,12 +5,11 @@ import javax.swing.ImageIcon;
 public class Balloon extends Sprite {
 
 	GuiFrame guiFrame; 
-	int balloonStartX, balloonStartY, points, lives;
+	int balloonStartX, balloonStartY, lives;
 	ImageIcon imageIcon;
 	
 	public Balloon(GuiFrame gui) {
 		guiFrame = gui;
-		points = 0; 
 		initialize();
 	}
 	
@@ -21,7 +20,7 @@ public class Balloon extends Sprite {
 		balloonStartX = (guiFrame.getWidth()/2 - imageIcon.getIconWidth()/2); 
 		setX(balloonStartX); 
 		
-		lives = 3; 
+		lives = guiFrame.menuPanel.lives;
 	}
 	
 	@Override
@@ -39,7 +38,4 @@ public class Balloon extends Sprite {
 		setY(balloonStartY);
 	}
 	
-	public String getPoints() {
-		return String.valueOf(points); 
-	}
 }
