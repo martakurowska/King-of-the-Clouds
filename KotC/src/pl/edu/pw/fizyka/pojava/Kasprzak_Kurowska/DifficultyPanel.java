@@ -14,7 +14,8 @@ import javax.swing.JPanel;
 public class DifficultyPanel extends JPanel implements ActionListener {
 
 	SettingsPanel settingsPanel; 
-	int speed; 
+	Planes plane; 
+	int speed, speedPlane; 
 	JButton hardButton, normalButton, easyButton; 
 	Font defaultFont = new Font("Impact", Font.PLAIN, 60);  
 	
@@ -29,6 +30,7 @@ public class DifficultyPanel extends JPanel implements ActionListener {
 	public DifficultyPanel(SettingsPanel settings) {
 		
 		settingsPanel = settings;  
+
 		this.setOpaque(false);
 		this.setLayout(new GridBagLayout());   
     	GridBagConstraints c = new GridBagConstraints();
@@ -65,9 +67,11 @@ public class DifficultyPanel extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand() == "easy") {
-			speed = 12;		
+			speed = 12;	
+
 		} else if (e.getActionCommand() == "normal") {
 			speed = 8;
+	
 		} else if (e.getActionCommand() == "hard") {
 			speed = 5;
 		}

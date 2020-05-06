@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 public class Points extends Sprite {
 
 	GamePanel gamePanel;
-	public ImageIcon imageIcon;
+	public ImageIcon imageIcon; 
 	private boolean visible = true; 
 	Random rand = new Random();
 	

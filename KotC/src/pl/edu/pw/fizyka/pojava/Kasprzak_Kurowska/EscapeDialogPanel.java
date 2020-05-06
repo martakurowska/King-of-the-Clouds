@@ -80,7 +80,7 @@ public class EscapeDialogPanel extends JFrame implements ActionListener {
         this.add(panelSetup, BorderLayout.CENTER);
      
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand() == "no") {
@@ -91,7 +91,6 @@ public class EscapeDialogPanel extends JFrame implements ActionListener {
 		else if (e.getActionCommand() == "yes") {
 			guiFrame.gamePanel.timer.stop();
 			guiFrame.isGameActive = false;
-			guiFrame.setResizable(true);
 			guiFrame.container.remove(guiFrame.gamePanel);
 			guiFrame.container.remove(guiFrame.menuPanel);
 			guiFrame.container.add(guiFrame.menuPanel);

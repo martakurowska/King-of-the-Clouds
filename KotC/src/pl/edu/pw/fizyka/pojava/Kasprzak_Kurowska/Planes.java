@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 public class Planes extends Sprite {
 	
 	GamePanel gamePanel;
+	DifficultyPanel difficultyPanel; 
 	public ImageIcon imageIcon;
 	int number;
 	Random rand = new Random();
@@ -14,6 +15,7 @@ public class Planes extends Sprite {
 	
 	public Planes(GamePanel game) {
 		gamePanel = game; 
+		difficultyPanel = difficultyPanel; 
 		initialize();
 	}
 
