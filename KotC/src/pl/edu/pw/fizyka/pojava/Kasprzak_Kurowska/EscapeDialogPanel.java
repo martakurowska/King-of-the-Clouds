@@ -8,7 +8,6 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
-import java.util.ResourceBundle;
 
 import javax.swing.JButton; 
 import javax.swing.JFrame;
@@ -91,7 +90,6 @@ public class EscapeDialogPanel extends JFrame implements ActionListener {
 		else if (e.getActionCommand() == "yes") {
 			guiFrame.gamePanel.timer.stop();
 			guiFrame.menuPanel.lives = guiFrame.gamePanel.balloon.lives;
-			guiFrame.setResizable(true);
 			guiFrame.isGameActive = false;
 			guiFrame.container.remove(guiFrame.gamePanel);
 			guiFrame.container.remove(guiFrame.menuPanel);

@@ -29,6 +29,7 @@ public class GuiFrame extends JFrame implements KeyListener {
 	EscapeDialogPanel escapeDialog;
 	SettingsPanel settingsPanel;
 	boolean isGameActive = false;
+	String youWon, gameOver;
 	ImageIcon balloonImage, planeImage; 
 	
 	public GuiFrame() {
@@ -40,6 +41,8 @@ public class GuiFrame extends JFrame implements KeyListener {
 	    this.requestFocusInWindow();
 	    this.addKeyListener(this);
 	    languageBundle = ResourceBundle.getBundle("pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/properties/myProp");
+	    youWon = languageBundle.getString("youwon");
+	    gameOver = languageBundle.getString("gameover");
 	    width = (this.screenWidth/2)-(this.getWidth()/2);
 	    height = (this.screenHeight/2)-(this.getHeight()/2);
 	    this.setLocation(width, height);

@@ -3,7 +3,6 @@ package pl.edu.pw.fizyka.pojava.Kasprzak_Kurowska;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Locale;
@@ -161,5 +160,7 @@ public class LanguagePanel implements ActionListener{
  		guiFrame.escapeDialog.label.setText(newBundle.getString("label"));
  		guiFrame.escapeDialog.noButton.setText(newBundle.getString("no"));
  		guiFrame.escapeDialog.yesButton.setText(newBundle.getString("yes"));
+ 		guiFrame.youWon = newBundle.getString("youwon");
+ 		guiFrame.gameOver = newBundle.getString("gameover");
  	}
 }

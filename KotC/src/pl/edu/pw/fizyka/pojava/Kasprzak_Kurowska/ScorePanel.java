@@ -1,6 +1,5 @@
 package pl.edu.pw.fizyka.pojava.Kasprzak_Kurowska;
 
-import java.awt.Dimension;
 import java.awt.GridBagLayout;
 
 import javax.swing.JPanel;

@@ -12,6 +12,8 @@ public class Lives extends Sprite {
 		gamePanel = game; 	
 		imageIcon = new ImageIcon(getClass().getResource("others/hearts/3lives.png")); 
 		setImage(imageIcon.getImage());
+		x = gamePanel.guiFrame.getWidth() - 197;
+		setX(x);
 		y = 5; 
 		setY(y); 
 	}

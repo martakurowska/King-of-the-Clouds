@@ -1,6 +1,5 @@
 package pl.edu.pw.fizyka.pojava.Kasprzak_Kurowska;
 
-
 import java.util.Random;
 import javax.swing.ImageIcon;
 
@@ -34,7 +33,7 @@ public class Planes extends Sprite {
 		
 		setImage(imageIcon.getImage()); 
 		
-		x = rand.nextInt((int) (gamePanel.guiFrame.getWidth() - imageIcon.getIconWidth())); 
+		x = rand.nextInt((int) (gamePanel.guiFrame.getWidth() - imageIcon.getIconWidth()) * 2); 
 		setX(x); 
 	    
 		y = rand.nextInt((int) (2.15 * gamePanel.background.imageIcon.getIconHeight())) * (-1);

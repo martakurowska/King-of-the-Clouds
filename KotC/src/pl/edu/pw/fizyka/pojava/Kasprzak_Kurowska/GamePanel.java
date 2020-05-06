@@ -35,20 +35,19 @@ public class GamePanel extends JPanel implements ActionListener{
 	public GamePanel(GuiFrame gui) {
 		
 		guiFrame = gui;
-		guiFrame.setResizable(false);
 		timer = new Timer(10, new GameLoop(this));
 		timer.start();
 		balloon = new Balloon(guiFrame);
 		background = new Background(guiFrame);
 
    		planes = new ArrayList<>();
-	    for (int i = 0; i < 45; i++) {
+	    for (int i = 0; i < 90; i++) {
 	    	Planes singlePlane = new Planes(this);
             planes.add(singlePlane); 	
 	    }
 	                 
 		points = new ArrayList<>();
-		for (int i = 0; i < 25; i++) {
+		for (int i = 0; i < 50; i++) {
 			Points singlePoint = new Points(this); 
         	points.add(singlePoint); 	
 		}
@@ -146,8 +145,7 @@ public class GamePanel extends JPanel implements ActionListener{
 			Font defaultFont = new Font("Impact", Font.PLAIN, 120);  
 			g.setFont(defaultFont); 
 			FontMetrics fontMetrics = this.getFontMetrics(defaultFont);
-			String gameOver = "GAME OVER"; 
-			g.drawString(gameOver, guiFrame.getWidth()/2-fontMetrics.stringWidth(gameOver)/2 - 6, guiFrame.getHeight()/2 - 60); 
+			g.drawString(guiFrame.gameOver, guiFrame.getWidth()/2-fontMetrics.stringWidth(guiFrame.gameOver)/2 - 6, guiFrame.getHeight()/2 - 60); 
 			goOut.setVisible(true);
 		}
 		if(background.end == true) {
@@ -155,8 +153,7 @@ public class GamePanel extends JPanel implements ActionListener{
 			Font defaultFont = new Font("Impact", Font.PLAIN, 120);  
 			g.setFont(defaultFont); 
 			FontMetrics fontMetrics = this.getFontMetrics(defaultFont);
-			String gameOver = "YOU WON!"; 
-			g.drawString(gameOver, guiFrame.getWidth()/2-fontMetrics.stringWidth(gameOver)/2 - 6, guiFrame.getHeight()/2 - 60); 
+			g.drawString(guiFrame.youWon, guiFrame.getWidth()/2-fontMetrics.stringWidth(guiFrame.youWon)/2 - 6, guiFrame.getHeight()/2 - 60); 
 			goOut.setVisible(true);
 		}
 		

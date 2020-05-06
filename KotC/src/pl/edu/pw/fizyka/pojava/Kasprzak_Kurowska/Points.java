@@ -20,10 +20,10 @@ public class Points extends Sprite {
 		imageIcon = new ImageIcon(getClass().getResource("others/point.png")); 
 		setImage(imageIcon.getImage()); 
 		
-		x = rand.nextInt((int) (gamePanel.guiFrame.getWidth() - imageIcon.getIconWidth()));
+		x = rand.nextInt((int) (gamePanel.guiFrame.getWidth() - imageIcon.getIconWidth()) * 2);
 		setX(x);
 		
-		y = rand.nextInt(gamePanel.background.imageIcon.getIconHeight() - gamePanel.guiFrame.getHeight()*2) * (-1);
+		y = rand.nextInt(gamePanel.background.imageIcon.getIconHeight() - gamePanel.guiFrame.getHeight() * 2) * (-1);
 		setY(y);
 		
 		dy = 2;
