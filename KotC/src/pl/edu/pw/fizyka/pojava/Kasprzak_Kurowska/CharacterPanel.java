@@ -17,8 +17,6 @@ public class CharacterPanel implements ActionListener  {
 	private JButton character1, character2, character3, character4, character5, character6; 
 	JPanel panelSetup; 
 	Icon balloonImage;
-	protected int screenWidth  = Toolkit.getDefaultToolkit().getScreenSize().width;
-    protected int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
     SettingsPanel settingsPanel;
     
     

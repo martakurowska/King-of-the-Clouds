@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 public class SettingsPanel extends JPanel{
 	
 	JPanel settingsPanelTop;
-	JButton levelChangeBtn, soundButton, languageButton, characterButton, backToMenuButton;
+	JButton levelChangeBtn, soundButton, languageButton, characterButton, backToMenuButton, difficultyButton;
 	ImageIcon settingsImage;
 	settingsScreenHandler sSHandler = new settingsScreenHandler();
 	JPanel languagePanel,  characterPanel, soundPanel;
@@ -23,6 +23,7 @@ public class SettingsPanel extends JPanel{
 	LanguagePanel lngPanel;
 	CharacterPanel charPanel; 
 	SoundPanel sound;
+	DifficultyPanel difficultyPanel; 
 	
 	public void setButton(JButton btn) {
 		btn.setFont(guiFrame.menuPanel.defaultFont);
@@ -46,6 +47,12 @@ public class SettingsPanel extends JPanel{
 		characterButton.addActionListener(sSHandler);
 		settingsPanelTop.add(characterButton);
 
+		difficultyButton = new JButton(guiFrame.languageBundle.getString("levelChange")); 
+		setButton(difficultyButton); 
+		difficultyButton.setActionCommand("difficulty"); 
+		difficultyButton.addActionListener(sSHandler);
+		settingsPanelTop.add(difficultyButton);
+		
         languageButton = new JButton(guiFrame.languageBundle.getString("language"));
         setButton(languageButton);
         languageButton.setActionCommand("language");
@@ -73,7 +80,9 @@ public class SettingsPanel extends JPanel{
     	    	
     	sound = new SoundPanel(this); 
     	soundPanel = sound.setUpSounds();	
-
+    	
+    	difficultyPanel = new DifficultyPanel(this); 
+    	
 	}
 	
 	public class settingsScreenHandler implements ActionListener {
@@ -83,6 +92,7 @@ public class SettingsPanel extends JPanel{
 	        	languagePanel.setVisible(false);
 	        	soundPanel.setVisible(false);
 	        	characterPanel.setVisible(false);
+	        	difficultyPanel.setVisible(false);
 	        	guiFrame.container.remove(guiFrame.menuPanel); 
 	        	guiFrame.container.add(guiFrame.menuPanel);
 	        	guiFrame.menuPanel.setVisible(true);
@@ -104,6 +114,13 @@ public class SettingsPanel extends JPanel{
 	        	languagePanel.setVisible(false);
 	        	characterPanel.setVisible(true);
 	        } 
+	        
+	        else if (e.getActionCommand() == "difficulty") {
+	        	soundPanel.setVisible(false);
+	        	languagePanel.setVisible(false);
+	        	characterPanel.setVisible(false);
+	        	difficultyPanel.setVisible(true);
+	        }
 		}
 	}
 	
