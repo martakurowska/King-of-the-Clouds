@@ -25,8 +25,7 @@ public class LanguagePanel implements ActionListener{
 	private JButton polish, english, french, russian, swedish; 
 	JPanel panelSetup;
 	Icon imageFlag;
-	protected int screenWidth  = Toolkit.getDefaultToolkit().getScreenSize().width;
-    protected int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
+	GridBagConstraints c;
 	public ResourceBundle languageBundle;
 	public MenuPanel menuPanel;
 	public SettingsPanel settingsPanel;
@@ -36,6 +35,7 @@ public class LanguagePanel implements ActionListener{
 		btn.setFocusPainted(false);
 		btn.setContentAreaFilled(false);
 		btn.addActionListener(this);
+		panelSetup.add(btn, c);
 	}
 	
 	public LanguagePanel(MenuPanel menu, SettingsPanel settings, GuiFrame gui) {
@@ -49,7 +49,7 @@ public class LanguagePanel implements ActionListener{
 		guiFrame = gui;
 		settingsPanel = settings;
 		
-        GridBagConstraints c = new GridBagConstraints();
+        c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
         c.ipadx = -35;
         c.ipady = -98;
@@ -62,7 +62,6 @@ public class LanguagePanel implements ActionListener{
         english = new JButton(imageFlag);
         setButton(english);
         english.setActionCommand("english");
-        panelSetup.add(english, c);
        
         c.gridx = 1;
         c.gridy = 0;
@@ -70,7 +69,6 @@ public class LanguagePanel implements ActionListener{
         polish = new JButton(imageFlag);
         setButton(polish);
         polish.setActionCommand("polish");
-        panelSetup.add(polish, c);
         
         c.gridx = 0;
         c.gridy = 1;
@@ -78,7 +76,6 @@ public class LanguagePanel implements ActionListener{
         french = new JButton(imageFlag);
         setButton(french);
         french.setActionCommand("french");
-        panelSetup.add(french, c);
         
         c.gridx = 1;
         c.gridy = 1;
@@ -86,7 +83,6 @@ public class LanguagePanel implements ActionListener{
         russian = new JButton(imageFlag);
         setButton(russian);
         russian.setActionCommand("russian");
-        panelSetup.add(russian, c);
 
         c.gridx = 0;
         c.gridy = 2;
@@ -94,7 +90,6 @@ public class LanguagePanel implements ActionListener{
         swedish = new JButton(imageFlag);
         setButton(swedish);
         swedish.setActionCommand("swedish");
-        panelSetup.add(swedish, c);
         
 	}
 	

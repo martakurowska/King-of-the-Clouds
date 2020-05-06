@@ -17,7 +17,6 @@ import javax.swing.JPanel;
 
 public class EscapeDialogPanel extends JFrame implements ActionListener {
 	
-	public ResourceBundle languageBundle; 
 	public JPanel panelSetup, panelTopSetup; 
 	public JLabel label;
 	public JButton noButton, yesButton;
@@ -27,7 +26,6 @@ public class EscapeDialogPanel extends JFrame implements ActionListener {
 	int width, height;
 	
 	public EscapeDialogPanel(GuiFrame gui) {
-		languageBundle = ResourceBundle.getBundle("pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/properties/myProp");
 		guiFrame = gui;
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setSize(300,120);
@@ -46,7 +44,7 @@ public class EscapeDialogPanel extends JFrame implements ActionListener {
 		panelSetup.setLayout(new GridBagLayout());   
 		
 		panelTopSetup = new JPanel();
-        label = new JLabel(languageBundle.getString("label"));
+        label = new JLabel(guiFrame.languageBundle.getString("label"));
         label.setFont(defaultFont);
         panelTopSetup.setBackground(colorOfDialog);
         label.setOpaque(false);
@@ -60,7 +58,7 @@ public class EscapeDialogPanel extends JFrame implements ActionListener {
         c.gridx = 0;
         c.gridy = 1;
 
-        noButton = new JButton(languageBundle.getString("no"));
+        noButton = new JButton(guiFrame.languageBundle.getString("no"));
         noButton.setSelected(true);
         noButton.setFont(defaultFont);
         noButton.setSize(100, 100);
@@ -71,7 +69,7 @@ public class EscapeDialogPanel extends JFrame implements ActionListener {
         
         c.gridx = 1;
         c.gridy = 1;
-        yesButton = new JButton(languageBundle.getString("yes"));
+        yesButton = new JButton(guiFrame.languageBundle.getString("yes"));
         yesButton.setFont(defaultFont);
         yesButton.setSize(100, 100);
         yesButton.setBackground(colorOfButton);

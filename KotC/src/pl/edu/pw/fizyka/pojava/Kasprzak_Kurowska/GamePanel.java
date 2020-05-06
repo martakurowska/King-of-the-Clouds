@@ -13,12 +13,8 @@ import javax.swing.Timer;
 
 public class GamePanel extends JPanel {
 	
-	JPanel gamePanel;
 	GridBagConstraints c;
-	JLabel label;
-	ImageIcon backgroundImage, balloonImage; 
 	GuiFrame guiFrame;
-	CharacterPanel characterPanel;
 	Balloon balloon;  
 	Background background;
 	boolean isGameRunning = true;

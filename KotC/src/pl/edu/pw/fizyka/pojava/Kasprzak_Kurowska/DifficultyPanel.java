@@ -1,6 +1,7 @@
 package pl.edu.pw.fizyka.pojava.Kasprzak_Kurowska;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -12,15 +13,16 @@ import javax.swing.JPanel;
 
 public class DifficultyPanel extends JPanel implements ActionListener {
 
-	GuiFrame guiFrame; 
 	SettingsPanel settingsPanel; 
 	int speed; 
 	JButton hardButton, normalButton, easyButton; 
+	Font defaultFont = new Font("Impact", Font.PLAIN, 60);  
 	
     public void setButton(JButton btn) {
 		btn.addActionListener(this);
+		btn.setFocusPainted(false);
 		btn.setForeground(Color.BLACK);
-		btn.setFont(settingsPanel.guiFrame.menuPanel.defaultFont);
+		btn.setFont(defaultFont);
 		btn.setBackground(settingsPanel.guiFrame.menuPanel.colorOfButton);
 	}  
     
@@ -31,8 +33,8 @@ public class DifficultyPanel extends JPanel implements ActionListener {
 		this.setLayout(new GridBagLayout());   
     	GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.ipadx = 50; 
-        c.ipady = 20;
+        c.ipadx = 90; 
+        c.ipady = 30;
         c.insets = new Insets(35, 0, 35, 0);
 
         c.gridx = 0;

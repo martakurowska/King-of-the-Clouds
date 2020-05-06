@@ -24,19 +24,22 @@ public class MenuPanel extends JPanel{
 	Color colorOfButton = new Color(225,108,164);		
 	public JButton newGameBtn, loadGameBtn, exitGameBtn, settingsBtn, saveBtn;
 	ImageIcon menuImage;
+	GridBagConstraints c;
 	
 	public void setButton(JButton btn) {
 		btn.setFont(defaultFont);
         btn.setBackground(colorOfButton); 
         btn.setForeground(Color.BLACK);
         btn.setFocusPainted(false);
+        btn.addActionListener(msHandler);
+        this.add(btn, c);
 	}
 	
 	public MenuPanel(GuiFrame gui) {
 			
         guiFrame = gui;
 		this.setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
+        c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
         c.ipadx = 150;
         c.ipady = 15;
@@ -54,36 +57,26 @@ public class MenuPanel extends JPanel{
         newGameBtn = new JButton(guiFrame.languageBundle.getString("newgame"));
         setButton(newGameBtn);
         newGameBtn.setActionCommand("newgame");
-        newGameBtn.addActionListener(msHandler);
-        this.add(newGameBtn, c);
 
         c.gridy = 2;
         loadGameBtn = new JButton(guiFrame.languageBundle.getString("loadgame"));
         setButton(loadGameBtn);
         loadGameBtn.setActionCommand("loadgame");
-        loadGameBtn.addActionListener(msHandler);
-        this.add(loadGameBtn, c);
 
         c.gridy = 3;
         saveBtn = new JButton(guiFrame.languageBundle.getString("savegame"));
         setButton(saveBtn);
         saveBtn.setActionCommand("savegame");
-        saveBtn.addActionListener(msHandler);
-        this.add(saveBtn, c);
 
         c.gridy = 4;
         settingsBtn = new JButton(guiFrame.languageBundle.getString("settings"));
         setButton(settingsBtn);
         settingsBtn.setActionCommand("settings");
-        settingsBtn.addActionListener(msHandler);
-        this.add(settingsBtn, c);
         
         c.gridy = 5;
         exitGameBtn = new JButton(guiFrame.languageBundle.getString("exit"));
         setButton(exitGameBtn);
         exitGameBtn.setActionCommand("exitgame");
-        exitGameBtn.addActionListener(msHandler);
-        this.add(exitGameBtn, c);
 		
 	}
 
@@ -98,7 +91,6 @@ public class MenuPanel extends JPanel{
 	public class menuScreenHandler implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			if (e.getActionCommand() == "newgame") {
-				guiFrame.settingsPanel.setVisible(false);
 	        	MenuPanel.this.setVisible(false);
 	        	guiFrame.gamePanel = new GamePanel(guiFrame);
 	        	guiFrame.container.add(guiFrame.gamePanel);

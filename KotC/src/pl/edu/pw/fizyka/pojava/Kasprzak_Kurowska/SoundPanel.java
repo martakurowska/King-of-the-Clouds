@@ -20,14 +20,13 @@ import javax.swing.ButtonGroup;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener; 
 
-public class SoundPanel extends JFrame implements ActionListener {
+public class SoundPanel extends JPanel implements ActionListener {
 
 	JPanel panelSetup; 
 	Font defaultFont;
@@ -42,7 +41,7 @@ public class SoundPanel extends JFrame implements ActionListener {
     protected int screenWidth  = Toolkit.getDefaultToolkit().getScreenSize().width;
     protected int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
      
-    public void setButton (JRadioButton btn) {
+    public void setJRadioButton (JRadioButton btn) {
     	btn.setOpaque(false);
     	defaultFont = new Font("Impact", Font.PLAIN, 40); 
     	btn.setFont(defaultFont); 
@@ -100,32 +99,32 @@ public class SoundPanel extends JFrame implements ActionListener {
         c.gridx = 0; 
         c.gridy = 2; 
         song1 = new JRadioButton ("Cat goes fishing"); 
-        setButton(song1);
+        setJRadioButton(song1);
         song1.setActionCommand("cgf");
     	
         c.gridx = 0;
         c.gridy = 3;
         song2 = new JRadioButton("King of the Clouds"); 
-        setButton(song2);
+        setJRadioButton(song2);
         song2.setSelected(true);
         song2.setActionCommand("kotc");
     	
         c.gridx = 0;
         c.gridy = 4;
         song3 = new JRadioButton("Bohema");
-        setButton(song3);
+        setJRadioButton(song3);
         song3.setActionCommand("Boh");
         
         c.gridx = 0;
         c.gridy = 5;
         song4 = new JRadioButton("Rumadai"); 
-        setButton(song4);
+        setJRadioButton(song4);
         song4.setActionCommand("r");
         
         c.gridx = 0;
         c.gridy = 6;
         song5 = new JRadioButton("A Sky Full of Stars");
-        setButton(song5);
+        setJRadioButton(song5);
         song5.setActionCommand("ASFoS");
         
         c.gridx = 1;
@@ -140,31 +139,31 @@ public class SoundPanel extends JFrame implements ActionListener {
         c.gridy = 2;
         c.insets = new Insets(0, 20, 20, 20);
         song6 = new JRadioButton("Counting Stars");
-        setButton(song6);
+        setJRadioButton(song6);
         song6.setActionCommand("CS");
         
         c.gridx = 1;
         c.gridy = 3;
         song7 = new JRadioButton("Górą ty");
-        setButton(song7);
+        setJRadioButton(song7);
         song7.setActionCommand("GT");
         
         c.gridx = 1;
         c.gridy = 4;
         song8 = new JRadioButton("Dragonstea din tei");
-        setButton(song8);
+        setJRadioButton(song8);
         song8.setActionCommand("ddt");
         
         c.gridx = 1;
         c.gridy = 5;
         song9 = new JRadioButton("Pumped up Kicks");
-        setButton(song9);
+        setJRadioButton(song9);
         song9.setActionCommand("PuK");
         
         c.gridx = 1;
         c.gridy = 6;
         song10 = new JRadioButton("Up In The Air");
-        setButton(song10);
+        setJRadioButton(song10);
         song10.setActionCommand("UITA");
 
     	this.add(panelSetup, BorderLayout.CENTER); 

@@ -30,6 +30,8 @@ public class SettingsPanel extends JPanel{
         btn.setBackground(guiFrame.menuPanel.colorOfButton); 
         btn.setForeground(Color.BLACK);
         btn.setFocusPainted(false);
+        btn.addActionListener(sSHandler);
+        settingsPanelTop.add(btn);
 	}
 	
 	public SettingsPanel(GuiFrame gui) {
@@ -44,32 +46,23 @@ public class SettingsPanel extends JPanel{
 		characterButton = new JButton(guiFrame.languageBundle.getString("character")); 
 		setButton(characterButton);
 		characterButton.setActionCommand("character");
-		characterButton.addActionListener(sSHandler);
-		settingsPanelTop.add(characterButton);
 
 		difficultyButton = new JButton(guiFrame.languageBundle.getString("levelChange")); 
 		setButton(difficultyButton); 
 		difficultyButton.setActionCommand("difficulty"); 
-		difficultyButton.addActionListener(sSHandler);
-		settingsPanelTop.add(difficultyButton);
 		
         languageButton = new JButton(guiFrame.languageBundle.getString("language"));
         setButton(languageButton);
         languageButton.setActionCommand("language");
-        languageButton.addActionListener(sSHandler);
-        settingsPanelTop.add(languageButton);
 
         soundButton = new JButton(guiFrame.languageBundle.getString("sound"));
         setButton(soundButton);
         soundButton.setActionCommand("sound");
-        soundButton.addActionListener(sSHandler);
-        settingsPanelTop.add(soundButton);
 
         backToMenuButton = new JButton(guiFrame.languageBundle.getString("backtomenu"));
         setButton(backToMenuButton);
         backToMenuButton.setActionCommand("backToMenu");
-        backToMenuButton.addActionListener(sSHandler);
-        settingsPanelTop.add(backToMenuButton);
+
         this.add(settingsPanelTop, BorderLayout.PAGE_START);
 
         charPanel = new CharacterPanel(this);
