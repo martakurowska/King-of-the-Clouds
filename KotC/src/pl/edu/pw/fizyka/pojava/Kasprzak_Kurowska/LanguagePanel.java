@@ -27,7 +27,6 @@ public class LanguagePanel implements ActionListener{
 	Icon imageFlag;
 	protected int screenWidth  = Toolkit.getDefaultToolkit().getScreenSize().width;
     protected int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
-    public DifficultyFrame difficultyFrame;
 	public ResourceBundle languageBundle;
 	public MenuPanel menuPanel;
 	public SettingsPanel settingsPanel;
@@ -39,7 +38,7 @@ public class LanguagePanel implements ActionListener{
 		btn.addActionListener(this);
 	}
 	
-	public LanguagePanel(MenuPanel menu, SettingsPanel settings, DifficultyFrame difficulty, GuiFrame gui) {
+	public LanguagePanel(MenuPanel menu, SettingsPanel settings, GuiFrame gui) {
 		
 		panelSetup = new JPanel();
 		panelSetup.setOpaque(false);
@@ -47,7 +46,6 @@ public class LanguagePanel implements ActionListener{
 		languageBundle = ResourceBundle.getBundle("pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/properties/myProp");
 		
 		menuPanel = menu;
-		difficultyFrame = difficulty;
 		guiFrame = gui;
 		settingsPanel = settings;
 		
@@ -142,7 +140,7 @@ public class LanguagePanel implements ActionListener{
 		ResourceBundle newBundle = ResourceBundle.getBundle("pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/properties/myProp", newLocale);
 		menuPanel.newGameBtn.setText(newBundle.getString("newgame"));
 		menuPanel.loadGameBtn.setText(newBundle.getString("loadgame"));
-		menuPanel.levelChangeBtn.setText(newBundle.getString("levelChange"));
+		menuPanel.saveBtn.setText(newBundle.getString("savegame"));
 		menuPanel.settingsBtn.setText(newBundle.getString("settings"));
 		menuPanel.exitGameBtn.setText(newBundle.getString("exit"));
 	} 
@@ -152,14 +150,15 @@ public class LanguagePanel implements ActionListener{
  		settingsPanel.backToMenuButton.setText(newBundle.getString("backtomenu"));
  		settingsPanel.characterButton.setText(newBundle.getString("character")); 
  		settingsPanel.languageButton.setText(newBundle.getString("language"));
+ 		settingsPanel.difficultyButton.setText(newBundle.getString("levelChange"));
  		settingsPanel.soundButton.setText(newBundle.getString("sound"));
  	}
  	
  	public void changingLanguageOnDifficultyFrame(Locale newLocale) {
  		ResourceBundle newBundle = ResourceBundle.getBundle("pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/properties/myProp", newLocale);
- 		difficultyFrame.easyButton.setText(newBundle.getString("easy"));
- 		difficultyFrame.normalButton.setText(newBundle.getString("normal"));
- 		difficultyFrame.hardButton.setText(newBundle.getString("hard"));
+ 		settingsPanel.difficultyPanel.easyButton.setText(newBundle.getString("easy"));
+ 		settingsPanel.difficultyPanel.normalButton.setText(newBundle.getString("normal"));
+ 		settingsPanel.difficultyPanel.hardButton.setText(newBundle.getString("hard"));
  	}
  	
  	public void changeEscapeDialogPanel(Locale newLocale) {

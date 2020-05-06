@@ -75,7 +75,7 @@ public class SettingsPanel extends JPanel{
         charPanel = new CharacterPanel(this);
     	characterPanel = charPanel.setUpCharacter();
 		
-    	lngPanel = new LanguagePanel(guiFrame.menuPanel, this, guiFrame.difficultyFrame, guiFrame);
+    	lngPanel = new LanguagePanel(guiFrame.menuPanel, this, guiFrame);
     	languagePanel = lngPanel.setUpLanguages();
     	    	
     	sound = new SoundPanel(this); 
@@ -91,6 +91,7 @@ public class SettingsPanel extends JPanel{
 	        	SettingsPanel.this.setVisible(false);
 	        	languagePanel.setVisible(false);
 	        	soundPanel.setVisible(false);
+	        	difficultyPanel.setVisible(false);
 	        	characterPanel.setVisible(false);
 	        	difficultyPanel.setVisible(false);
 	        	guiFrame.container.remove(guiFrame.menuPanel); 
@@ -100,11 +101,13 @@ public class SettingsPanel extends JPanel{
 	        else if (e.getActionCommand() == "language") {
 	        	characterPanel.setVisible(false);
 	        	soundPanel.setVisible(false);
+	        	difficultyPanel.setVisible(false);
 	        	SettingsPanel.this.add(languagePanel, BorderLayout.CENTER);
 	        	languagePanel.setVisible(true);
 	        } 
 	        else if (e.getActionCommand() == "sound") {
 	        	languagePanel.setVisible(false);
+	        	difficultyPanel.setVisible(false);
 	        	characterPanel.setVisible(false);
 	        	SettingsPanel.this.add(soundPanel, BorderLayout.CENTER);
 	        	soundPanel.setVisible(true);
@@ -112,6 +115,8 @@ public class SettingsPanel extends JPanel{
 	        else if (e.getActionCommand() == "character") {
 	        	soundPanel.setVisible(false);
 	        	languagePanel.setVisible(false);
+	        	difficultyPanel.setVisible(false);
+	        	SettingsPanel.this.add(characterPanel, BorderLayout.CENTER);
 	        	characterPanel.setVisible(true);
 	        } 
 	        
@@ -119,6 +124,7 @@ public class SettingsPanel extends JPanel{
 	        	soundPanel.setVisible(false);
 	        	languagePanel.setVisible(false);
 	        	characterPanel.setVisible(false);
+	        	SettingsPanel.this.add(difficultyPanel, BorderLayout.CENTER);
 	        	difficultyPanel.setVisible(true);
 	        }
 		}

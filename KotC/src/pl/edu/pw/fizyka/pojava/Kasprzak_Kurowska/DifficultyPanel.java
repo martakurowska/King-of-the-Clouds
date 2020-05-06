@@ -6,7 +6,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ResourceBundle;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -15,7 +14,8 @@ public class DifficultyPanel extends JPanel implements ActionListener {
 
 	GuiFrame guiFrame; 
 	SettingsPanel settingsPanel; 
-	private JButton hardButton, normalButton, easyButton; 
+	int speed; 
+	JButton hardButton, normalButton, easyButton; 
 	
     public void setButton(JButton btn) {
 		btn.addActionListener(this);
@@ -31,7 +31,9 @@ public class DifficultyPanel extends JPanel implements ActionListener {
 		this.setLayout(new GridBagLayout());   
     	GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
-    //    c.insets = new Insets(0, 0, 0, 0);
+        c.ipadx = 50; 
+        c.ipady = 20;
+        c.insets = new Insets(35, 0, 35, 0);
 
         c.gridx = 0;
         c.gridy = 0; 
@@ -54,11 +56,18 @@ public class DifficultyPanel extends JPanel implements ActionListener {
         hardButton.setActionCommand("hard");
         this.add(hardButton, c);
         
+        speed = 12; 
 		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
+		if(e.getActionCommand() == "easy") {
+			speed = 12;		
+		} else if (e.getActionCommand() == "normal") {
+			speed = 8;
+		} else if (e.getActionCommand() == "hard") {
+			speed = 5;
+		}
 	}
 }

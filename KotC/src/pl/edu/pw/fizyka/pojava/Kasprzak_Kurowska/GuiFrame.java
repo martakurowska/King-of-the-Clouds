@@ -27,7 +27,6 @@ public class GuiFrame extends JFrame implements KeyListener {
 	MenuPanel menuPanel;
 	GamePanel gamePanel;
 	EscapeDialogPanel escapeDialog;
-	DifficultyFrame difficultyFrame;
 	SettingsPanel settingsPanel;
 	boolean isGameActive = false;
 	ImageIcon balloonImage, planeImage; 
@@ -62,7 +61,6 @@ public class GuiFrame extends JFrame implements KeyListener {
         container.add(menuPanel);
         menuPanel.setVisible(true);
         
-        difficultyFrame = new DifficultyFrame(this);
         settingsPanel = new SettingsPanel(this); 	
         
         escapeDialog = new EscapeDialogPanel(this);
@@ -78,10 +76,10 @@ public class GuiFrame extends JFrame implements KeyListener {
 		}
 		if(isGameActive) {
 			if(e.getKeyCode()==KeyEvent.VK_LEFT || e.getKeyCode()==KeyEvent.VK_A) {
-				gamePanel.balloon.dx = -difficultyFrame.speed;
+				gamePanel.balloon.dx = -settingsPanel.difficultyPanel.speed;
 			}
 			if(e.getKeyCode()==KeyEvent.VK_RIGHT || e.getKeyCode()==KeyEvent.VK_D ) {		
-				gamePanel.balloon.dx = difficultyFrame.speed;
+				gamePanel.balloon.dx = settingsPanel.difficultyPanel.speed;
 			}		
 		}
 	}

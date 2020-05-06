@@ -22,7 +22,7 @@ public class MenuPanel extends JPanel{
 	GuiFrame guiFrame;
 	Font defaultFont = new Font("Impact", Font.PLAIN, 34);   								
 	Color colorOfButton = new Color(225,108,164);		
-	public JButton newGameBtn, loadGameBtn, exitGameBtn, settingsBtn, levelChangeBtn;
+	public JButton newGameBtn, loadGameBtn, exitGameBtn, settingsBtn, saveBtn;
 	ImageIcon menuImage;
 	
 	public void setButton(JButton btn) {
@@ -65,11 +65,11 @@ public class MenuPanel extends JPanel{
         this.add(loadGameBtn, c);
 
         c.gridy = 3;
-        levelChangeBtn = new JButton(guiFrame.languageBundle.getString("levelChange"));
-        setButton(levelChangeBtn);
-        levelChangeBtn.setActionCommand("difficulty");
-        levelChangeBtn.addActionListener(msHandler);
-        this.add(levelChangeBtn, c);
+        saveBtn = new JButton(guiFrame.languageBundle.getString("savegame"));
+        setButton(saveBtn);
+        saveBtn.setActionCommand("savegame");
+        saveBtn.addActionListener(msHandler);
+        this.add(saveBtn, c);
 
         c.gridy = 4;
         settingsBtn = new JButton(guiFrame.languageBundle.getString("settings"));
@@ -108,9 +108,9 @@ public class MenuPanel extends JPanel{
 	        else if (e.getActionCommand() == "loadgame") {
 	        	
 	        } 
-	        else if (e.getActionCommand() == "difficulty") {
-	        	guiFrame.difficultyFrame.setVisible(true);
-	        }
+	        else if (e.getActionCommand() == "savegame") {
+	        		
+	        } 
 	        else if (e.getActionCommand() == "settings") {
 	        	MenuPanel.this.setVisible(false);
 	        	guiFrame.container.add(guiFrame.settingsPanel);
