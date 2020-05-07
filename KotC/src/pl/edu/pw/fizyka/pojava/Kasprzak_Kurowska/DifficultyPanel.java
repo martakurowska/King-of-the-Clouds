@@ -19,7 +19,8 @@ public class DifficultyPanel extends JPanel implements ActionListener {
 	SettingsPanel settingsPanel; 
 	Planes plane; 
 	int speed, speedPlane; 
-	JButton hardButton, normalButton, easyButton; 
+	JButton hardButton, normalButton, easyButton, points500, points1000; 
+	GridBagConstraints constraints;
 	String normalString = "500p", hardString = "1000p";
 	Font defaultButtonFont = new Font("Impact", Font.PLAIN, 60);  
 	Font defaultLabelFont = new Font("Impact", Font.PLAIN, 30);  
@@ -29,6 +30,16 @@ public class DifficultyPanel extends JPanel implements ActionListener {
 		btn.setForeground(Color.BLACK);
 		btn.setFont(defaultButtonFont);
 		btn.addActionListener(this);
+		this.add(btn, constraints);
+	}  
+    
+    public void setPointsButton(JButton btn) {
+		btn.setFocusPainted(false);
+		btn.setBorderPainted(false);
+		btn.setContentAreaFilled(false);
+		btn.setForeground(Color.BLACK);
+		btn.setFont(defaultButtonFont);
+		this.add(btn, constraints);
 	}  
     
 	public DifficultyPanel(SettingsPanel settings) {
@@ -37,30 +48,39 @@ public class DifficultyPanel extends JPanel implements ActionListener {
 
 		this.setOpaque(false);
 		this.setLayout(new GridBagLayout());   
-    	GridBagConstraints costraints = new GridBagConstraints();
-        costraints.fill = GridBagConstraints.HORIZONTAL;
-        costraints.ipadx = 90; 
-        costraints.ipady = 30;
-        costraints.insets = new Insets(35, 0, 35, 0);
+    	constraints = new GridBagConstraints();
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.ipadx = 90; 
+        constraints.ipady = 30;
+        constraints.insets = new Insets(35, 0, 70, 0);
 
-        costraints.gridx = 0;
-        costraints.gridy = 0; 
+        constraints.gridx = 0;
+        constraints.gridy = 0; 
         easyButton = new JButton(settingsPanel.guiFrame.languageBundle.getString("easy")); 
         setButton(easyButton); 
-        this.add(easyButton, costraints);
         
-        costraints.gridx = 0; 
-        costraints.gridy = 1; 
+        constraints.gridx = 0; 
+        constraints.gridy = 1; 
+        constraints.insets = new Insets(0, 0, 0, 0);
         normalButton = new JButton(settingsPanel.guiFrame.languageBundle.getString("normal")); 
         setButton(normalButton); 
-        this.add(normalButton, costraints); 
         
-        costraints.gridx = 0; 
-        costraints.gridy = 3; 
+        constraints.gridx = 0;
+        constraints.gridy = 3;
         hardButton = new JButton(settingsPanel.guiFrame.languageBundle.getString("hard")); 
         setButton(hardButton); 
-        hardButton.setBackground(new Color(193, 193, 193));
-        this.add(hardButton, costraints);
+
+        constraints.gridx = 0; 
+        constraints.gridy = 2; 
+        points500 = new JButton("500p");
+        setPointsButton(points500);
+        points500.setFont(defaultLabelFont);
+        
+        constraints.gridx = 0; 
+        constraints.gridy = 4; 
+        points1000 = new JButton("1000p");
+        setPointsButton(points1000);
+        points1000.setFont(defaultLabelFont);
         
         speed = 12; 
 		
@@ -68,12 +88,6 @@ public class DifficultyPanel extends JPanel implements ActionListener {
 	
 	@Override
 	public void paintComponent(Graphics g) {
-		
-		g.setFont(defaultLabelFont);
-		g.setColor(Color.BLACK);
-		FontMetrics fontMetrics = this.getFontMetrics(defaultLabelFont);
-		g.drawString(normalString, settingsPanel.guiFrame.getWidth()/2-fontMetrics.stringWidth(normalString)/2 - 10, 500);
-		g.drawString(hardString, settingsPanel.guiFrame.getWidth()/2-fontMetrics.stringWidth(normalString)/2 - 15, 680);
 		
 		//Przycisk easy jest zawsze dostepny
 		if(settingsPanel.guiFrame.menuPanel.score >= 0) {
@@ -84,6 +98,7 @@ public class DifficultyPanel extends JPanel implements ActionListener {
 		//Przyciski normal i hard sa dostêpne po uzyskaniu 500/100 punktow, jesli gracz straci wszystkie zycia, a zatem tez punkty, to przyciski znowu staja sie niedostepne
 		if(settingsPanel.guiFrame.menuPanel.score >= 500) {
 			normalButton.setBackground(settingsPanel.guiFrame.menuPanel.colorOfButton);
+			normalButton.setBorderPainted(true);
 			normalButton.setActionCommand("normal");
 		}
 		else {
@@ -94,6 +109,7 @@ public class DifficultyPanel extends JPanel implements ActionListener {
 		
 		if(settingsPanel.guiFrame.menuPanel.score >= 1000) {
 			hardButton.setBackground(settingsPanel.guiFrame.menuPanel.colorOfButton);
+			hardButton.setBorderPainted(true);
 			hardButton.setActionCommand("hard");
 		}
 		else {

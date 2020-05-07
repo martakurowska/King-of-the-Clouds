@@ -1,8 +1,6 @@
 package pl.edu.pw.fizyka.pojava.Kasprzak_Kurowska;
 
-import java.awt.Color;
 import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -18,7 +16,7 @@ import javax.swing.JPanel;
 //Marta Kurowska
 public class CharacterPanel extends JPanel implements ActionListener  {
 
-	private JButton character1, character2, character3, character4, character5, character6, char4BW, char5BW, char6BW; 
+	private JButton character1, character2, character3, character4, character5, character6, points400, points800, points1200;
 	Icon balloonImage;
 	String blueBalloon = "400p", moroBalloon = "800p", crazyBalloon = "1200p"; 
 	Font defaultLabelFont = new Font("Impact", Font.PLAIN, 30);
@@ -30,6 +28,7 @@ public class CharacterPanel extends JPanel implements ActionListener  {
 		btn.setFocusPainted(false);
 		btn.setContentAreaFilled(false);
 		btn.addActionListener(this);
+		btn.setFont(defaultLabelFont);
 		this.add(btn, constraints);
 	}  
      
@@ -67,79 +66,67 @@ public class CharacterPanel extends JPanel implements ActionListener  {
         constraints.gridx = 0;
         constraints.gridy = 1;
         constraints.insets = new Insets(0, 100, 0, 100);
-        balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly4.png"));
-        character4 = new JButton(balloonImage);
+        character4 = new JButton();
         setButton(character4);
-        character4.setVisible(false);
-        balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly4bw.png"));
-        char4BW = new JButton(balloonImage);
-        setButton(char4BW);
-        char4BW.setVisible(false);
         
         constraints.gridx = 1;
         constraints.gridy = 1;
-        balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly5.png"));
-        character5 = new JButton(balloonImage);
+        character5 = new JButton();
         setButton(character5);
-        character5.setVisible(false);
-        balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly5bw.png"));
-        char5BW = new JButton(balloonImage);
-        setButton(char5BW);
-        char5BW.setVisible(false);
 
-        
         constraints.gridx = 2;
         constraints.gridy = 1;
-        balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly6.png"));
-        character6 = new JButton(balloonImage);
+        character6 = new JButton();
         setButton(character6);
-        character6.setVisible(false);
-        balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly6bw.png"));
-        char6BW = new JButton(balloonImage);
-        setButton(char6BW);
-        char6BW.setVisible(false);
+        
+        constraints.gridx = 0;
+        constraints.gridy = 2;
+        points400 = new JButton("400p");
+        setButton(points400);
+        
+        constraints.gridx = 1;
+        constraints.gridy = 2;
+        points800 = new JButton("800p");
+        setButton(points800);
+        
+        constraints.gridx = 2;
+        constraints.gridy = 2;
+        points1200 = new JButton("1200p");
+        setButton(points1200);
+        
     }
     
     @Override
 	public void paintComponent(Graphics g) {
-    	g.setFont(defaultLabelFont);
-		g.setColor(Color.BLACK);
-		FontMetrics fontMetrics = this.getFontMetrics(defaultLabelFont);
-		g.drawString(blueBalloon, settingsPanel.guiFrame.getWidth()/5-fontMetrics.stringWidth(blueBalloon)/2, 550);
-		g.drawString(moroBalloon, settingsPanel.guiFrame.getWidth()/2-fontMetrics.stringWidth(moroBalloon)/2, 550);
-		g.drawString(crazyBalloon, (settingsPanel.guiFrame.getWidth()/5)*4-fontMetrics.stringWidth(crazyBalloon)/2 - 15, 550);
+    	if(settingsPanel.guiFrame.menuPanel.score >= 400) {
+    		balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly4.png"));
+    		character4.setIcon(balloonImage);
+		    character4.setActionCommand("blue"); 
+    	} else {
+			balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly4bw.png"));
+			character4.setIcon(balloonImage);
+		    character4.setActionCommand(""); 
+		}
     	
-		 if(settingsPanel.guiFrame.menuPanel.score >= 400) {
-			 char4BW.setVisible(false);
-			 character4.setVisible(true);
-		     character4.setActionCommand("blue"); 
-		  }
-		 else {
-			 character4.setVisible(false);
-			 char4BW.setVisible(true);
-		     char4BW.setActionCommand(""); 
-		 }
-		 if(settingsPanel.guiFrame.menuPanel.score >= 800) {
-			 char5BW.setVisible(false);
-			 character5.setVisible(true);
-		     character5.setActionCommand("moro"); 
-	   	  }
-		 else {
-			 character5.setVisible(false);
-			 char5BW.setVisible(true);
-		     char5BW.setActionCommand(""); 
-			 }
-		 
-		 if(settingsPanel.guiFrame.menuPanel.score >= 1200) {
-			 character6.setVisible(false);
-			 char6BW.setVisible(true);
-		     char6BW.setActionCommand("crazy"); 
-		  }
-		 else {
-			 character6.setVisible(false);
-			 char6BW.setVisible(true);
-		     char6BW.setActionCommand(""); 
-			 }
+    	if(settingsPanel.guiFrame.menuPanel.score >= 800) {
+    		balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly5.png"));
+    		character5.setIcon(balloonImage);
+		    character5.setActionCommand("moro"); 
+    	} else {
+			balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly5bw.png"));
+			character5.setIcon(balloonImage);
+		    character5.setActionCommand(""); 
+		}
+    	
+    	if(settingsPanel.guiFrame.menuPanel.score >= 1200) {
+    		balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly6.png"));
+    		character6.setIcon(balloonImage);
+		    character6.setActionCommand("crazy"); 
+    	} else {
+			balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly6bw.png"));
+			character6.setIcon(balloonImage);
+		    character6.setActionCommand(""); 
+		}
     }
 	
 	@Override

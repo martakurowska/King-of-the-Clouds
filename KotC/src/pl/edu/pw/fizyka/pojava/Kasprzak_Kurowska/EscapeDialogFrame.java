@@ -83,7 +83,7 @@ public class EscapeDialogFrame extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		//jesli "no" to gra sie wznawia, okienko sie zamyka, jesli "yes" to timer.stop() czyli funkcja doOneLoop zatrzymuje sie, zapisywane sa zycia i uzyskane punkty, wracamy do menu
+		//jesli "no" to gra sie wznawia, okienko sie zamyka, jesli "yes" to timer.stop() czyli funkcja doOneLoop zatrzymuje sie, zapisywane sa zycia, ale nie sa zapisywane punkty, bo gracz nie ukonczy³ gry, wracamy do menu
 		if (e.getActionCommand() == "no") {
 			guiFrame.gamePanel.isGameRunning = true;
 			guiFrame.gamePanel.timer.start();

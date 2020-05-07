@@ -102,13 +102,7 @@ public class MenuPanel extends JPanel{
 			livesIcon = new ImageIcon(getClass().getResource("others/hearts/1lives.png")); 
 		}
 		g.drawImage(livesIcon.getImage(), guiFrame.getWidth() - 197, 5, this);
-		
-		//jesli gracz jest nowy lub stracil wszystkie punkty to ustawiany jest poziom easy
-		if(score == 0) {
-			guiFrame.settingsPanel.difficultyPanel.speed = 12;
-			
-		}
-		
+
 		repaint();
 	}
 	
