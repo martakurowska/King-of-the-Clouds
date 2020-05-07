@@ -6,7 +6,6 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.Toolkit;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,6 +25,7 @@ import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener; 
 
+//Wiktoria Kasprzak: layout panelu, Marta Kurowska: ustawienia dzwiekowe
 public class SoundPanel extends JPanel implements ActionListener {
 
 	JPanel panelSetup; 
@@ -38,8 +38,6 @@ public class SoundPanel extends JPanel implements ActionListener {
 	GridBagConstraints c;
 	private JSlider volumeSlider; 
 	FloatControl gain; 
-    protected int screenWidth  = Toolkit.getDefaultToolkit().getScreenSize().width;
-    protected int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
      
     public void setJRadioButton (JRadioButton btn) {
     	btn.setOpaque(false);

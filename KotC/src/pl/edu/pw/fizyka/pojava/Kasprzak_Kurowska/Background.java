@@ -2,6 +2,7 @@ package pl.edu.pw.fizyka.pojava.Kasprzak_Kurowska;
 
 import javax.swing.ImageIcon;
 
+//Marta Kurowska
 public class Background extends Sprite {
 	
 	GuiFrame guiFrame; 
@@ -18,7 +19,9 @@ public class Background extends Sprite {
 		imageIcon = new ImageIcon(getClass().getResource("others/tlo.png"));
 		setImage(imageIcon.getImage());
 		
-		startYTop = imageIcon.getIconHeight()-guiFrame.getHeight();
+		//yTop i yBottom okreslaja jak¹ czesc tla gry widzimy, odpowiadaja one wysokosciom: lewego gornego rogu widzianej czesci tla oraz prawego dolnego rogu
+		
+		startYTop = imageIcon.getIconHeight() - guiFrame.getHeight(); 
 		setBcgrndYTop(startYTop);
 		startYBottom = imageIcon.getIconHeight();
 		setBcgrndYBottom(startYBottom);
@@ -29,14 +32,15 @@ public class Background extends Sprite {
 	@Override
 	public void move() {
 		
-		if (bcgrndYTop <= 10) {
+		//Jesli lewy gorny rog osiagnie wysokosc 10, to tlo przestaje sie poruszac i zostaje na wysokosci 10
+		//boolean end jest uzywany do konczenia gry, zatem jesli end == true to nastepuje koniec
+		if(bcgrndYTop <= 10) {
 			bcgrndYTop = 10;
 			bcgrndYBottom = guiFrame.getHeight();
 			end = true;
+		} else {
+			bcgrndYTop -= dy;
+			bcgrndYBottom -= dy;
 		}
-		
-		bcgrndYTop -= dy;
-		bcgrndYBottom -= dy;
-		
 	}
 }

@@ -11,12 +11,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+//Marta Kurowska
 public class SettingsPanel extends JPanel{
 	
 	JPanel settingsPanelTop;
 	JButton levelChangeBtn, soundButton, languageButton, characterButton, backToMenuButton, difficultyButton;
 	ImageIcon settingsImage;
-	settingsScreenHandler sSHandler = new settingsScreenHandler();
+	SettingsScreenHandler sSHandler = new SettingsScreenHandler();
 	JPanel languagePanel,  characterPanel, soundPanel;
 	GuiFrame guiFrame;
 	LanguagePanel lngPanel;
@@ -36,7 +37,7 @@ public class SettingsPanel extends JPanel{
 	public SettingsPanel(GuiFrame gui) {
 		
 		guiFrame = gui;
-		this.setPreferredSize(new Dimension((int) (guiFrame.screenWidth*0.7),(int) (guiFrame.screenHeight*0.85)));
+		this.setPreferredSize(new Dimension((int) (guiFrame.screenWidth * 0.7),(int) (guiFrame.screenHeight * 0.85)));
 		this.setLayout(new BorderLayout());
 		
 		settingsPanelTop = new JPanel();
@@ -77,9 +78,9 @@ public class SettingsPanel extends JPanel{
     	
 	}
 	
-	public class settingsScreenHandler implements ActionListener {
+	public class SettingsScreenHandler implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-	        if (e.getActionCommand() == "backToMenu") {
+	        if(e.getActionCommand() == "backToMenu") {
 	        	SettingsPanel.this.setVisible(false);
 	        	languagePanel.setVisible(false);
 	        	soundPanel.setVisible(false);
@@ -90,21 +91,21 @@ public class SettingsPanel extends JPanel{
 	        	guiFrame.container.add(guiFrame.menuPanel);
 	        	guiFrame.menuPanel.setVisible(true);
 	        }
-	        else if (e.getActionCommand() == "language") {
+	        else if(e.getActionCommand() == "language") {
 	        	characterPanel.setVisible(false);
 	        	soundPanel.setVisible(false);
 	        	difficultyPanel.setVisible(false);
 	        	SettingsPanel.this.add(languagePanel, BorderLayout.CENTER);
 	        	languagePanel.setVisible(true);
 	        } 
-	        else if (e.getActionCommand() == "sound") {
+	        else if(e.getActionCommand() == "sound") {
 	        	languagePanel.setVisible(false);
 	        	difficultyPanel.setVisible(false);
 	        	characterPanel.setVisible(false);
 	        	SettingsPanel.this.add(soundPanel, BorderLayout.CENTER);
 	        	soundPanel.setVisible(true);
 	        }
-	        else if (e.getActionCommand() == "character") {
+	        else if(e.getActionCommand() == "character") {
 	        	soundPanel.setVisible(false);
 	        	languagePanel.setVisible(false);
 	        	difficultyPanel.setVisible(false);
@@ -112,7 +113,7 @@ public class SettingsPanel extends JPanel{
 	        	characterPanel.setVisible(true);
 	        } 
 	        
-	        else if (e.getActionCommand() == "difficulty") {
+	        else if(e.getActionCommand() == "difficulty") {
 	        	soundPanel.setVisible(false);
 	        	languagePanel.setVisible(false);
 	        	characterPanel.setVisible(false);

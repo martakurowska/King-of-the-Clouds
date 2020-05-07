@@ -16,9 +16,10 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+//Wiktoria Kasprzak, Marta Kurowska
 public class GamePanel extends JPanel implements ActionListener{
 	
-	GridBagConstraints c;
+	GridBagConstraints constraints;
 	GuiFrame guiFrame;
 	Balloon balloon;  
 	Background background;
@@ -41,13 +42,13 @@ public class GamePanel extends JPanel implements ActionListener{
 		background = new Background(guiFrame);
 
    		planes = new ArrayList<>();
-	    for (int i = 0; i < 90; i++) {
+	    for (int ii = 0; ii < 90; ii++) {
 	    	Planes singlePlane = new Planes(this);
             planes.add(singlePlane); 	
 	    }
 	                 
 		points = new ArrayList<>();
-		for (int i = 0; i < 50; i++) {
+		for (int ii = 0; ii < 50; ii++) {
 			Points singlePoint = new Points(this); 
         	points.add(singlePoint); 	
 		}
@@ -61,15 +62,15 @@ public class GamePanel extends JPanel implements ActionListener{
         goOut.setFocusPainted(false);
         goOut.addActionListener(this);
         this.setLayout(new GridBagLayout());
-        c = new GridBagConstraints();
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.insets = new Insets(0, 0, 0, 0);
-        this.add(goOut, c); 
+        constraints = new GridBagConstraints();
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.insets = new Insets(0, 0, 0, 0);
+        this.add(goOut, constraints); 
         goOut.setVisible(false);
 	} 	 
-		
+	
+	//doOneLoop() to metoda podpieta pod timer, wykonuje sie co 10ms, co zapewnia plynnosc animacji
 	public void doOneLoop() {
-		
 		
 		if(this.isGameRunning) {
 			
@@ -77,6 +78,7 @@ public class GamePanel extends JPanel implements ActionListener{
 			this.background.move();
 			this.lives.move();
 			
+			//Kolizje i poruszanie siê punktow i samolotow : jesli punkt zderzy sie z balonem to dodawane jest 20pkt, jesli samolot zderzy sie z balonem odejmowane jest jedno zycie
 			for(Planes p : planes) {
 				if(p.isDead()) 
 					continue;
@@ -102,7 +104,6 @@ public class GamePanel extends JPanel implements ActionListener{
 					p.move();
 				}
 			}
-			
 			repaint();
 		}
 		else {
@@ -117,9 +118,11 @@ public class GamePanel extends JPanel implements ActionListener{
 		
 		yPos = guiFrame.getHeight() - balloon.imageIcon.getIconHeight() - 50;
 		
-	    g.drawImage(background.getImage(), 0, 0, guiFrame.getWidth(), guiFrame.getHeight(), 0,
-	    		background.getBcgrndYTop(), background.imageIcon.getIconWidth(), background.getBcgrndYBottom(), null);
-	    for (Points p : points) {
+		//drukowanie tla
+	    g.drawImage(background.getImage(), 0, 0, guiFrame.getWidth(), guiFrame.getHeight(), 0, background.getBcgrndYTop(), background.imageIcon.getIconWidth(), background.getBcgrndYBottom(), null);
+	  
+	    //drukowanie wszystkich zywych punktow i samolotow oraz balonika
+	    for(Points p : points) {
 	    	if(p.isVisible()) {
 	    		g.drawImage(p.getImage(), p.getX(), p.getY(), this); 
 	    	}
@@ -127,19 +130,22 @@ public class GamePanel extends JPanel implements ActionListener{
 	    
 		g.drawImage(balloon.getImage(), balloon.getX(), yPos, this); 
 	    
-		for (Planes p : planes) {
+		for(Planes p : planes) {
 			if(p.isVisible()) {
 				g.drawImage(p.getImage(), p.getX(), p.getY(), this); 
 			}
 		}	
 		
+		//drukowanie uzyskanych punktow w lewym gornym rogu
 		g.drawImage(score.getImage(), score.getX(), score.getY(), this);	
 		g.setColor(new Color(253,191,0));
 		g.setFont(guiFrame.menuPanel.defaultFont);
 		g.drawString(score.getPoints(), 64, 45);
 		
+		//drukowanie ilosci zyc w prawym gornym rogu
 		g.drawImage(lives.getImage(), lives.getX(), lives.getY(), this);	
 		
+		//jesli gracz straci wszystkie zycia to gra zatrzymuje sie, pojawia siê napis You Won i przysick zabierajacy gracza do menu
 		if(balloon.lives == 0) {
 			g.setColor(new Color(237,28,36));
 			Font defaultFont = new Font("Impact", Font.PLAIN, 120);  
@@ -148,6 +154,7 @@ public class GamePanel extends JPanel implements ActionListener{
 			g.drawString(guiFrame.gameOver, guiFrame.getWidth()/2-fontMetrics.stringWidth(guiFrame.gameOver)/2 - 6, guiFrame.getHeight()/2 - 60); 
 			goOut.setVisible(true);
 		}
+		//jesli gracz dotrze do konca mapy, to pojawia siê napis Game Over i przycisk zabieraj¹cy gracza do menu
 		if(background.end == true) {
 			g.setColor(new Color(237,28,36));
 			Font defaultFont = new Font("Impact", Font.PLAIN, 120);  
@@ -156,15 +163,14 @@ public class GamePanel extends JPanel implements ActionListener{
 			g.drawString(guiFrame.youWon, guiFrame.getWidth()/2-fontMetrics.stringWidth(guiFrame.youWon)/2 - 6, guiFrame.getHeight()/2 - 60); 
 			goOut.setVisible(true);
 		}
-		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		//jesli podczas gry uzytkownik stracil wszystkie zycia, to klikniecie "OK" zabiera mu szystkie punkty w zamian za 3 zycia, jesli wygral zapisywane s¹ jego zycia i punkty
 		if(balloon.lives == 0) {
 			guiFrame.menuPanel.score = 0;
 			guiFrame.menuPanel.lives = 3;
-			// balonik i poziom trudnoœci powracaj¹ do podstawowych 
 		}
 		else if(background.end == true) {
 			guiFrame.menuPanel.score = score.score;

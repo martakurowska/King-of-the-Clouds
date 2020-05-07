@@ -2,6 +2,8 @@ package pl.edu.pw.fizyka.pojava.Kasprzak_Kurowska;
 
 import java.awt.Image;
 
+//Wiktoria Kasprzak
+//Sprite to w programowaniu obiekt graficzny 2d, ktory jest wstawiany do panelu
 public abstract class Sprite {
 
 	private Image image;
@@ -12,7 +14,7 @@ public abstract class Sprite {
 	
 	public abstract void move(); 
 	
-	public Sprite () {
+	public Sprite() {
 		dead = false; 
 	}
 	
@@ -67,5 +69,4 @@ public abstract class Sprite {
 	public boolean isDead() {
 		return this.dead; 
 	}
-
 }

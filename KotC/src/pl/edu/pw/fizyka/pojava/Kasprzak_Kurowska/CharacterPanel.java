@@ -11,21 +11,21 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+//Marta Kurowska
 public class CharacterPanel implements ActionListener  {
 
 	private JButton character1, character2, character3, character4, character5, character6; 
 	JPanel panelSetup; 
 	Icon balloonImage;
     SettingsPanel settingsPanel;
-    GridBagConstraints c;
-    
+    GridBagConstraints constraints;
     
     public void setButton(JButton btn) {
 		btn.setBorderPainted(false);
 		btn.setFocusPainted(false);
 		btn.setContentAreaFilled(false);
 		btn.addActionListener(this);
-		panelSetup.add(btn, c);
+		panelSetup.add(btn, constraints);
 	}  
      
     public CharacterPanel(SettingsPanel settings) {
@@ -33,50 +33,50 @@ public class CharacterPanel implements ActionListener  {
     	panelSetup = new JPanel(); 
     	panelSetup.setOpaque(false);
     	panelSetup.setLayout(new GridBagLayout());   
-    	c = new GridBagConstraints();
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.ipadx = -35;
-        c.ipady = -8;
-        c.insets = new Insets(-90, 100, 50, 100);
+    	constraints = new GridBagConstraints();
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.ipadx = -35;
+        constraints.ipady = -8;
+        constraints.insets = new Insets(-90, 100, 50, 100);
 
-        c.gridx = 0;
-        c.gridy = 0;
+        constraints.gridx = 0;
+        constraints.gridy = 0;
         balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly1.png"));
         character1 = new JButton(balloonImage);
         setButton(character1);
         character1.setActionCommand("yellow");
         
-        c.gridx = 1;
-        c.gridy = 0;
+        constraints.gridx = 1;
+        constraints.gridy = 0;
         balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly2.png"));
         character2 = new JButton(balloonImage);
         setButton(character2);
         character2.setActionCommand("happy");
     	
-        c.gridx = 2;
-        c.gridy = 0;
+        constraints.gridx = 2;
+        constraints.gridy = 0;
         balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly3.png"));
         character3 = new JButton(balloonImage);
         setButton(character3);
         character3.setActionCommand("orange");
     	
-        c.gridx = 0;
-        c.gridy = 1;
-        c.insets = new Insets(0, 100, 0, 100);
+        constraints.gridx = 0;
+        constraints.gridy = 1;
+        constraints.insets = new Insets(0, 100, 0, 100);
         balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly4.png"));
         character4 = new JButton(balloonImage);
         setButton(character4);
         character4.setActionCommand("blue");
         
-        c.gridx = 1;
-        c.gridy = 1;
+        constraints.gridx = 1;
+        constraints.gridy = 1;
         balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly5.png"));
         character5 = new JButton(balloonImage);
         setButton(character5);
         character5.setActionCommand("moro");
         
-        c.gridx = 2;
-        c.gridy = 1;
+        constraints.gridx = 2;
+        constraints.gridy = 1;
         balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly6.png"));
         character6 = new JButton(balloonImage);
         setButton(character6);
@@ -89,22 +89,22 @@ public class CharacterPanel implements ActionListener  {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand() == "yellow") {
+		if(e.getActionCommand() == "yellow") {
 			settingsPanel.guiFrame.balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly1.png"));
 		} 
-		else if (e.getActionCommand() == "happy") {	
+		else if(e.getActionCommand() == "happy") {	
 			settingsPanel.guiFrame.balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly2.png"));
 		}
-		else if (e.getActionCommand() == "orange") {  
+		else if(e.getActionCommand() == "orange") {  
 			settingsPanel.guiFrame.balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly3.png"));
 		}
-		else if (e.getActionCommand() == "blue") {  
+		else if(e.getActionCommand() == "blue") {  
 			settingsPanel.guiFrame.balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly4.png"));
 		}
-		else if (e.getActionCommand() == "moro") {
+		else if(e.getActionCommand() == "moro") {
 			settingsPanel.guiFrame.balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly5.png"));
 		} 
-		else if (e.getActionCommand() == "crazy") {
+		else if(e.getActionCommand() == "crazy") {
 			settingsPanel.guiFrame.balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly6.png"));
 		}	
 	}

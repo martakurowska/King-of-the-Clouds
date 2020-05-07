@@ -13,18 +13,20 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton; 
 import javax.swing.JPanel;
 
+//Marta Kurowska: layout, konstruktor + metoda setButton(), Wiktoria Kasprzak: actionListener,
+//Wspólnie: metody zmieniaj¹ce jêzyk
 public class LanguagePanel implements ActionListener{
 	
 	public Locale enLocale = new Locale("en", "GB");
-	public Locale plLocale = new Locale("pl", "PL"); 				//Locale jest uï¿½ywane do identyfikacji obiektï¿½w 
-	public Locale frLocale = new Locale("fr", "FR"); 			//a nie jest samo w sobie kontenerem dla obiektï¿½w
+	public Locale plLocale = new Locale("pl", "PL"); 				//Locale jest uzywane do identyfikacji obiektow 
+	public Locale frLocale = new Locale("fr", "FR"); 			//a nie jest samo w sobie kontenerem dla obiektow
 	public Locale ruLocale = new Locale("ru", "RU"); 
 	public Locale svLocale = new Locale("sv", "SE"); 
 	 
 	private JButton polish, english, french, russian, swedish; 
 	JPanel panelSetup;
 	Icon imageFlag;
-	GridBagConstraints c;
+	GridBagConstraints constraints;
 	public ResourceBundle languageBundle;
 	public MenuPanel menuPanel;
 	public SettingsPanel settingsPanel;
@@ -34,7 +36,7 @@ public class LanguagePanel implements ActionListener{
 		btn.setFocusPainted(false);
 		btn.setContentAreaFilled(false);
 		btn.addActionListener(this);
-		panelSetup.add(btn, c);
+		panelSetup.add(btn, constraints);
 	}
 	
 	public LanguagePanel(MenuPanel menu, SettingsPanel settings, GuiFrame gui) {
@@ -48,80 +50,78 @@ public class LanguagePanel implements ActionListener{
 		guiFrame = gui;
 		settingsPanel = settings;
 		
-        c = new GridBagConstraints();
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.ipadx = -35;
-        c.ipady = -98;
-        c.insets = new Insets(40, 70, 40, 70);
+        constraints = new GridBagConstraints();
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.ipadx = -35;
+        constraints.ipady = -98;
+        constraints.insets = new Insets(40, 70, 40, 70);
 
-        c.gridx = 0;
-        c.gridy = 0;
-        
+        constraints.gridx = 0;
+        constraints.gridy = 0;  
         imageFlag = new ImageIcon(getClass().getResource("others/flags/uk.png"));
         english = new JButton(imageFlag);
         setButton(english);
         english.setActionCommand("english");
        
-        c.gridx = 1;
-        c.gridy = 0;
+        constraints.gridx = 1;
+        constraints.gridy = 0;
         imageFlag = new ImageIcon(getClass().getResource("others/flags/poland.png"));
         polish = new JButton(imageFlag);
         setButton(polish);
         polish.setActionCommand("polish");
         
-        c.gridx = 0;
-        c.gridy = 1;
+        constraints.gridx = 0;
+        constraints.gridy = 1;
         imageFlag = new ImageIcon(getClass().getResource("others/flags/france.png"));
         french = new JButton(imageFlag);
         setButton(french);
         french.setActionCommand("french");
         
-        c.gridx = 1;
-        c.gridy = 1;
+        constraints.gridx = 1;
+        constraints.gridy = 1;
         imageFlag = new ImageIcon(getClass().getResource("others/flags/russia.png"));
         russian = new JButton(imageFlag);
         setButton(russian);
         russian.setActionCommand("russian");
 
-        c.gridx = 0;
-        c.gridy = 2;
+        constraints.gridx = 0;
+        constraints.gridy = 2;
         imageFlag = new ImageIcon(getClass().getResource("others/flags/sweden.png"));
         swedish = new JButton(imageFlag);
         setButton(swedish);
         swedish.setActionCommand("swedish");
-        
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand() == "english") {
+		if(e.getActionCommand() == "english") {
 			changingLanguageOnGuiFrame(enLocale); 
 			changingLanguageOnDifficultyFrame(enLocale);
-			changeEscapeDialogPanel(enLocale);
+			changeElementsOfGamePanel(enLocale);
 			changingLanguageOnSettingsPanel(enLocale);
         } 
-        else if (e.getActionCommand() == "polish") {	
+        else if(e.getActionCommand() == "polish") {	
 			changingLanguageOnGuiFrame(plLocale); 
 			changingLanguageOnDifficultyFrame(plLocale);
-			changeEscapeDialogPanel(plLocale);
+			changeElementsOfGamePanel(plLocale);
 			changingLanguageOnSettingsPanel(plLocale);
         }
-        else if (e.getActionCommand() == "french") {  
+        else if(e.getActionCommand() == "french") {  
 			changingLanguageOnGuiFrame(frLocale); 
 			changingLanguageOnDifficultyFrame(frLocale);
-			changeEscapeDialogPanel(frLocale);
+			changeElementsOfGamePanel(frLocale);
 			changingLanguageOnSettingsPanel(frLocale);
         }
-        else if (e.getActionCommand() == "russian") {  
+        else if(e.getActionCommand() == "russian") {  
 			changingLanguageOnGuiFrame(ruLocale); 
 			changingLanguageOnDifficultyFrame(ruLocale);
-			changeEscapeDialogPanel(ruLocale);
+			changeElementsOfGamePanel(ruLocale);
 			changingLanguageOnSettingsPanel(ruLocale);
         }
-        else if (e.getActionCommand() == "swedish") {
+        else if(e.getActionCommand() == "swedish") {
 			changingLanguageOnGuiFrame(svLocale);
 			changingLanguageOnDifficultyFrame(svLocale);
-			changeEscapeDialogPanel(svLocale);
+			changeElementsOfGamePanel(svLocale);
 			changingLanguageOnSettingsPanel(svLocale);
         } 
 	}
@@ -155,7 +155,7 @@ public class LanguagePanel implements ActionListener{
  		settingsPanel.difficultyPanel.hardButton.setText(newBundle.getString("hard"));
  	}
  	
- 	public void changeEscapeDialogPanel(Locale newLocale) {
+ 	public void changeElementsOfGamePanel(Locale newLocale) {
  		ResourceBundle newBundle = ResourceBundle.getBundle("pl/edu/pw/fizyka/pojava/Kasprzak_Kurowska/properties/myProp", newLocale);
  		guiFrame.escapeDialog.label.setText(newBundle.getString("label"));
  		guiFrame.escapeDialog.noButton.setText(newBundle.getString("no"));

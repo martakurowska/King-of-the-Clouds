@@ -5,5 +5,4 @@ public class Main {
 		GuiFrame kingOfTheClouds = new GuiFrame();
 		kingOfTheClouds.setVisible(true);
 	}
-}
- 
+} 

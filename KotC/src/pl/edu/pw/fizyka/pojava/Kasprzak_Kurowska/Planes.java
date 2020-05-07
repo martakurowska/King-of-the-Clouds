@@ -3,10 +3,10 @@ package pl.edu.pw.fizyka.pojava.Kasprzak_Kurowska;
 import java.util.Random;
 import javax.swing.ImageIcon;
 
+//Wiktoria Kasprzak
 public class Planes extends Sprite {
 	
 	GamePanel gamePanel;
-	DifficultyPanel difficultyPanel; 
 	public ImageIcon imageIcon;
 	int number;
 	Random rand = new Random();
@@ -14,7 +14,6 @@ public class Planes extends Sprite {
 	
 	public Planes(GamePanel game) {
 		gamePanel = game; 
-		difficultyPanel = difficultyPanel; 
 		initialize();
 	}
 
@@ -22,13 +21,13 @@ public class Planes extends Sprite {
 	public void initialize() {
 		
 		number = rand.nextInt(4);
-		if (number==0) 
+		if(number==0) 
 				imageIcon = new ImageIcon(getClass().getResource("others/plane/plane1.png"));
-		else if (number==1) 
+		else if(number==1) 
 				imageIcon = new ImageIcon(getClass().getResource("others/plane/plane2.png")); 
-		else if (number==2) 
+		else if(number==2) 
 				imageIcon = new ImageIcon(getClass().getResource("others/plane/plane3.png")); 
-		else if (number==3) 
+		else if(number==3) 
 				imageIcon = new ImageIcon(getClass().getResource("others/plane/plane4.png")); 
 		
 		setImage(imageIcon.getImage()); 

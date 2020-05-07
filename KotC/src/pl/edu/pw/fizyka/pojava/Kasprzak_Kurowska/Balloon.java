@@ -2,6 +2,7 @@ package pl.edu.pw.fizyka.pojava.Kasprzak_Kurowska;
 
 import javax.swing.ImageIcon;
 
+//Wiktoria Kasprzak: konstruktor klasy, metoda initialize(), Marta Kurowska: metoda move()
 public class Balloon extends Sprite {
 
 	GuiFrame guiFrame; 
@@ -17,7 +18,7 @@ public class Balloon extends Sprite {
 		imageIcon = guiFrame.balloonImage; 
 		setImage(imageIcon.getImage()); 
 		
-		balloonStartX = (guiFrame.getWidth()/2 - imageIcon.getIconWidth()/2); 
+		balloonStartX = (guiFrame.getWidth() / 2 - imageIcon.getIconWidth() / 2); 
 		setX(balloonStartX); 
 		
 		lives = guiFrame.menuPanel.lives;
@@ -27,15 +28,16 @@ public class Balloon extends Sprite {
 	public void move() {
 		x += dx;
 		
+		//ograniczenia poruszania sie balonika, aby nie mogl wyjsc poza okienko
 		if(x < 0) {
 			x = 0;
 		}
-		if(x > guiFrame.getWidth() - imageIcon.getIconWidth() -15) {
-			x = guiFrame.getWidth() - imageIcon.getIconWidth() -15;
+		if(x > guiFrame.getWidth() - imageIcon.getIconWidth() - 15) {
+			x = guiFrame.getWidth() - imageIcon.getIconWidth() - 15;
 		}
 		
+		//niezaleznie od wielkosci okna, balonik zawsze bedzie drukowany na dole
 		balloonStartY = (guiFrame.getHeight() - imageIcon.getIconHeight() - 50);
 		setY(balloonStartY);
 	}
-	
 }

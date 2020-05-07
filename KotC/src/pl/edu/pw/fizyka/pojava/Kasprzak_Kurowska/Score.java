@@ -2,6 +2,7 @@ package pl.edu.pw.fizyka.pojava.Kasprzak_Kurowska;
 
 import javax.swing.ImageIcon;
 
+//Marta Kurowska, Wiktoria Kasprzak
 public class Score extends Sprite {
 
 	GamePanel gamePanel; 

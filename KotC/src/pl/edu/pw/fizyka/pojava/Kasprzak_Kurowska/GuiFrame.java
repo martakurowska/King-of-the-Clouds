@@ -14,6 +14,7 @@ import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
+//Marta Kurowska
 public class GuiFrame extends JFrame implements KeyListener {
 	
 	public ResourceBundle languageBundle;
@@ -26,7 +27,7 @@ public class GuiFrame extends JFrame implements KeyListener {
 	Container container; 
 	MenuPanel menuPanel;
 	GamePanel gamePanel;
-	EscapeDialogPanel escapeDialog;
+	EscapeDialogFrame escapeDialog;
 	SettingsPanel settingsPanel;
 	boolean isGameActive = false;
 	String youWon, gameOver;
@@ -53,11 +54,13 @@ public class GuiFrame extends JFrame implements KeyListener {
 		    audio = AudioSystem.getAudioInputStream(audioUrl);
 		    music = AudioSystem.getClip();
 		    music.open(audio);
+		    //(-1) oznacza automatyczne zapetlanie piosenki
 		    music.loop(-1);
 		} 
 		catch (Exception e) {
 		}
 		
+		//ustawienie domyslnego galonika jesli gracz nie wybierze go w ustawieniach
 		balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly1.png"));
 		
 		menuPanel = new MenuPanel(this);
@@ -66,22 +69,21 @@ public class GuiFrame extends JFrame implements KeyListener {
         
         settingsPanel = new SettingsPanel(this); 	
         
-        escapeDialog = new EscapeDialogPanel(this);
+        escapeDialog = new EscapeDialogFrame(this);
 	}
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if(e.getKeyChar()==KeyEvent.VK_ESCAPE) {
-			if (this.isGameActive==true) {
+		//jesli uzytkownik jest w grze to esc wyswielta okienko dialogowe z pytanie czy chce wrocic do mneu, przysiski prawo/D, lewo/A kontroluj¹ poruszanie balonika
+		if(isGameActive) {
+			if(e.getKeyChar()==KeyEvent.VK_ESCAPE) {
 				gamePanel.isGameRunning = false;
 				escapeDialog.setVisible(true);
 			}
-		}
-		if(isGameActive) {
 			if(e.getKeyCode()==KeyEvent.VK_LEFT || e.getKeyCode()==KeyEvent.VK_A) {
 				gamePanel.balloon.dx = -settingsPanel.difficultyPanel.speed;
 			}
-			if(e.getKeyCode()==KeyEvent.VK_RIGHT || e.getKeyCode()==KeyEvent.VK_D ) {		
+			if(e.getKeyCode()==KeyEvent.VK_RIGHT || e.getKeyCode()==KeyEvent.VK_D) {		
 				gamePanel.balloon.dx = settingsPanel.difficultyPanel.speed;
 			}		
 		}

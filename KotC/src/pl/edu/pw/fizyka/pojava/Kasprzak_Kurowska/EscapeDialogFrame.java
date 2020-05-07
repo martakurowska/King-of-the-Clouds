@@ -14,7 +14,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class EscapeDialogPanel extends JFrame implements ActionListener {
+//Marta Kurowska
+public class EscapeDialogFrame extends JFrame implements ActionListener {
 	
 	public JPanel panelSetup, panelTopSetup; 
 	public JLabel label;
@@ -24,7 +25,7 @@ public class EscapeDialogPanel extends JFrame implements ActionListener {
 	private GuiFrame guiFrame; 
 	int width, height;
 	
-	public EscapeDialogPanel(GuiFrame gui) {
+	public EscapeDialogFrame(GuiFrame gui) {
 		guiFrame = gui;
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setSize(300,120);
@@ -50,12 +51,12 @@ public class EscapeDialogPanel extends JFrame implements ActionListener {
         panelTopSetup.add(label);
         this.add(panelTopSetup, BorderLayout.PAGE_START);
         
-        GridBagConstraints c = new GridBagConstraints();
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.ipadx = 0;
-        c.ipady = 0;
-        c.gridx = 0;
-        c.gridy = 1;
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.ipadx = 0;
+        constraints.ipady = 0;
+        constraints.gridx = 0;
+        constraints.gridy = 1;
 
         noButton = new JButton(guiFrame.languageBundle.getString("no"));
         noButton.setSelected(true);
@@ -64,17 +65,17 @@ public class EscapeDialogPanel extends JFrame implements ActionListener {
         noButton.setBackground(colorOfButton);
         noButton.addActionListener(this);
         noButton.setActionCommand("no");
-        panelSetup.add(noButton, c);
+        panelSetup.add(noButton, constraints);
         
-        c.gridx = 1;
-        c.gridy = 1;
+        constraints.gridx = 1;
+        constraints.gridy = 1;
         yesButton = new JButton(guiFrame.languageBundle.getString("yes"));
         yesButton.setFont(defaultFont);
         yesButton.setSize(100, 100);
         yesButton.setBackground(colorOfButton);
         yesButton.addActionListener(this);
         yesButton.setActionCommand("yes");
-        panelSetup.add(yesButton, c);
+        panelSetup.add(yesButton, constraints);
         
         this.add(panelSetup, BorderLayout.CENTER);
      
@@ -82,6 +83,7 @@ public class EscapeDialogPanel extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		//jesli "no" to gra sie wznawia, okienko sie zamyka, jesli "yes" to timer.stop() czyli funkcja doOneLoop zatrzymuje sie, zapisywane sa zycia i uzyskane punkty, wracamy do menu
 		if (e.getActionCommand() == "no") {
 			guiFrame.gamePanel.isGameRunning = true;
 			guiFrame.gamePanel.timer.start();

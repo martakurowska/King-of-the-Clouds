@@ -4,6 +4,7 @@ import java.util.Random;
 
 import javax.swing.ImageIcon;
 
+//Wiktoria Kasprzak
 public class Points extends Sprite {
 
 	GamePanel gamePanel;
