@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -171,6 +172,7 @@ public class GamePanel extends JPanel implements ActionListener{
 		if(balloon.lives == 0) {
 			guiFrame.menuPanel.score = 0;
 			guiFrame.menuPanel.lives = 3;
+			guiFrame.balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly1.png"));
 		}
 		else if(background.end == true) {
 			guiFrame.menuPanel.score = score.score;

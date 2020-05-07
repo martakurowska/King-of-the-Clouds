@@ -60,7 +60,7 @@ public class GuiFrame extends JFrame implements KeyListener {
 		catch (Exception e) {
 		}
 		
-		//ustawienie domyslnego galonika jesli gracz nie wybierze go w ustawieniach
+		//ustawienie domyslnego balonika jesli gracz nie wybierze go w ustawieniach
 		balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly1.png"));
 		
 		menuPanel = new MenuPanel(this);

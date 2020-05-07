@@ -18,10 +18,10 @@ public class SettingsPanel extends JPanel{
 	JButton levelChangeBtn, soundButton, languageButton, characterButton, backToMenuButton, difficultyButton;
 	ImageIcon settingsImage;
 	SettingsScreenHandler sSHandler = new SettingsScreenHandler();
-	JPanel languagePanel,  characterPanel, soundPanel;
+	JPanel languagePanel, soundPanel;
 	GuiFrame guiFrame;
 	LanguagePanel lngPanel;
-	CharacterPanel charPanel; 
+	CharacterPanel characterPanel; 
 	SoundPanel sound;
 	DifficultyPanel difficultyPanel; 
 	
@@ -65,9 +65,8 @@ public class SettingsPanel extends JPanel{
 
         this.add(settingsPanelTop, BorderLayout.PAGE_START);
 
-        charPanel = new CharacterPanel(this);
-    	characterPanel = charPanel.setUpCharacter();
-		
+        characterPanel = new CharacterPanel(this);
+ 
     	lngPanel = new LanguagePanel(guiFrame.menuPanel, this, guiFrame);
     	languagePanel = lngPanel.setUpLanguages();
     	    	
