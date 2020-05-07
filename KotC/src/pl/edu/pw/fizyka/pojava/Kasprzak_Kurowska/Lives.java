@@ -18,7 +18,7 @@ public class Lives extends Sprite {
 		else if(gamePanel.guiFrame.menuPanel.lives == 2) {
 			imageIcon = new ImageIcon(getClass().getResource("others/hearts/2lives.png")); 
 		}
-		else if(gamePanel.guiFrame.menuPanel.lives == 3) {
+		else if(gamePanel.guiFrame.menuPanel.lives == 1) {
 			imageIcon = new ImageIcon(getClass().getResource("others/hearts/1lives.png")); 
 		}
 		
