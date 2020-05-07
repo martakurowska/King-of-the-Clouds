@@ -10,8 +10,18 @@ public class Lives extends Sprite {
 	ImageIcon imageIcon; 
 	
 	public Lives(GamePanel game) {
-		gamePanel = game; 	
-		imageIcon = new ImageIcon(getClass().getResource("others/hearts/3lives.png")); 
+		gamePanel = game;
+		
+		if(gamePanel.guiFrame.menuPanel.lives == 3) {
+			imageIcon = new ImageIcon(getClass().getResource("others/hearts/3lives.png")); 
+		}
+		else if(gamePanel.guiFrame.menuPanel.lives == 2) {
+			imageIcon = new ImageIcon(getClass().getResource("others/hearts/2lives.png")); 
+		}
+		else if(gamePanel.guiFrame.menuPanel.lives == 3) {
+			imageIcon = new ImageIcon(getClass().getResource("others/hearts/1lives.png")); 
+		}
+		
 		setImage(imageIcon.getImage());
 		x = gamePanel.guiFrame.getWidth() - 197;
 		setX(x);
