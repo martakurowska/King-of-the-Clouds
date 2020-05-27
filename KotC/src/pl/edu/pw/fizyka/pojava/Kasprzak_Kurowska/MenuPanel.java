@@ -2,7 +2,6 @@ package pl.edu.pw.fizyka.pojava.Kasprzak_Kurowska;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
@@ -10,19 +9,26 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 //Marta Kurowska
-public class MenuPanel extends JPanel{
+public class MenuPanel extends JPanel {
 	
 	MenuScreenHandler msHandler = new MenuScreenHandler();
 	GuiFrame guiFrame;
 	Font defaultFont = new Font("Impact", Font.PLAIN, 34);   								
-	Color colorOfButton = new Color(225,108,164);		
+	Color colorOfButton = new Color(225,108,164);
+	ArrayList<Integer> data;
 	public JButton newGameBtn, loadGameBtn, exitGameBtn, settingsBtn, saveBtn;
 	ImageIcon menuImage, points, livesIcon;
 	GridBagConstraints constraints;
@@ -116,10 +122,69 @@ public class MenuPanel extends JPanel{
 	        	guiFrame.isGameActive = true;   	
 	        } 
 	        else if (e.getActionCommand() == "loadgame") {
+	        	Connection conn = null;
 	        	
+	        	data = new ArrayList<Integer>();
+	        	
+	        	try {
+					conn = DriverManager.getConnection(	"jdbc:h2:./data/database", "sa", "");
+					
+					Statement statement = conn.createStatement();
+					
+		        	statement.execute("SELECT * FROM score");
+		        	
+		        	ResultSet rs = statement.getResultSet();
+					ResultSetMetaData md  = rs.getMetaData();
+					
+					while (rs.next()) {
+			            for (int ii = 1; ii <= md.getColumnCount(); ii++){
+			            	data.add((Integer) rs.getObject(ii));
+			            }
+			        }
+					
+					score = data.get(1);
+					lives = data.get(2);
+					
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				} if(conn != null) {
+    				try {
+						conn.close();
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+    			}
+				
 	        } 
 	        else if (e.getActionCommand() == "savegame") {
+	        	Connection conn = null;
+	        	try {
 	        		
+					conn = DriverManager.getConnection(	"jdbc:h2:./data/database", "sa", "");
+					Statement statement = conn.createStatement();
+					
+					statement.executeUpdate("DROP TABLE IF EXISTS `SCORE`;");
+					
+					statement.executeUpdate("CREATE TABLE `SCORE` ("+
+							  "`Id` int(6) unsigned NOT NULL auto_increment,"+
+							  "`points` int default NULL,"+
+							  "`lives` int default NULL,"+
+							  "PRIMARY KEY  (`Id`)"+
+							") ;");
+					
+					statement.executeUpdate("INSERT INTO `SCORE` (`Id`,`points`,`lives`) VALUES (1, " + score + ", " + lives + ");");
+					
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				} finally {
+        			if(conn != null) {
+        				try {
+							conn.close();
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
+        			}
+        		}
 	        } 
 	        else if (e.getActionCommand() == "settings") {
 	        	MenuPanel.this.setVisible(false);
