@@ -61,14 +61,14 @@ public class GuiFrame extends JFrame implements KeyListener {
 		}
 		
 		//ustawienie domyslnego balonika jesli gracz nie wybierze go w ustawieniach
-		balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly1.png"));
-		
+		balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly1.png"));	
 		menuPanel = new MenuPanel(this);
         container.add(menuPanel);
         menuPanel.setVisible(true);
         
         settingsPanel = new SettingsPanel(this); 	
-        
+		settingsPanel.characterPanel.characterButton(settingsPanel.characterPanel.character1);
+
         escapeDialog = new EscapeDialogFrame(this);
 	}
 	

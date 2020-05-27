@@ -1,5 +1,6 @@
 package pl.edu.pw.fizyka.pojava.Kasprzak_Kurowska;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
@@ -16,10 +17,11 @@ import javax.swing.JPanel;
 //Marta Kurowska
 public class CharacterPanel extends JPanel implements ActionListener  {
 
-	private JButton character1, character2, character3, character4, character5, character6, points400, points800, points1200;
+	JButton character1, character2, character3, character4, character5, character6, points400, points800, points1200;
 	Icon balloonImage;
 	String blueBalloon = "400p", moroBalloon = "800p", crazyBalloon = "1200p"; 
 	Font defaultLabelFont = new Font("Impact", Font.PLAIN, 30);
+	Color colorOfButton = new Color(225,108,164, 127);	
     SettingsPanel settingsPanel;
     GridBagConstraints constraints;
     
@@ -32,14 +34,24 @@ public class CharacterPanel extends JPanel implements ActionListener  {
 		this.add(btn, constraints);
 	}  
      
+    public void characterButton(JButton btn) {
+    	character1.setContentAreaFilled(false);
+    	character2.setContentAreaFilled(false);
+    	character3.setContentAreaFilled(false);
+    	character4.setContentAreaFilled(false);
+    	character5.setContentAreaFilled(false);
+    	character6.setContentAreaFilled(false);
+    	btn.setContentAreaFilled(true);
+		btn.setBackground(colorOfButton);
+    }
     public CharacterPanel(SettingsPanel settings) {
     	settingsPanel = settings;;
     	this.setOpaque(false);
     	this.setLayout(new GridBagLayout());   
 		constraints = new GridBagConstraints();
         constraints.fill = GridBagConstraints.HORIZONTAL;
-        constraints.ipadx = -35;
-        constraints.ipady = -8;
+        constraints.ipadx = -15;
+        constraints.ipady = 0;
         constraints.insets = new Insets(-90, 100, 50, 100);
 
         constraints.gridx = 0;
@@ -133,21 +145,27 @@ public class CharacterPanel extends JPanel implements ActionListener  {
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand() == "yellow") {
 			settingsPanel.guiFrame.balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly1.png"));
+			characterButton(character1); 
 		} 
 		else if(e.getActionCommand() == "happy") {	
 			settingsPanel.guiFrame.balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly2.png"));
+			characterButton(character2); 
 		}
 		else if(e.getActionCommand() == "orange") {  
 			settingsPanel.guiFrame.balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly3.png"));
+			characterButton(character3); 
 		}
 		else if(e.getActionCommand() == "blue") {  
 			settingsPanel.guiFrame.balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly4.png"));
+			characterButton(character4); 
 		}
 		else if(e.getActionCommand() == "moro") {
 			settingsPanel.guiFrame.balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly5.png"));
+			characterButton(character5); 
 		} 
 		else if(e.getActionCommand() == "crazy") {
 			settingsPanel.guiFrame.balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly6.png"));
+			characterButton(character6);  
 		}	
 	}
 }

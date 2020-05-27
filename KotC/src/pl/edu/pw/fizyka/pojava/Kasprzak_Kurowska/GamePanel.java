@@ -174,6 +174,7 @@ public class GamePanel extends JPanel implements ActionListener{
 			guiFrame.menuPanel.lives = 3;
 			//jeœli mia³ wybrany poziom lub/i balonik odblokowywany za punkty, to wracaj¹ one do ustawieñ domyœlnych
 			guiFrame.balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly1.png"));
+			guiFrame.settingsPanel.characterPanel.characterButton(guiFrame.settingsPanel.characterPanel.character1);
 			guiFrame.settingsPanel.difficultyPanel.speed = 12;
 		}
 		else if(background.end == true) {
