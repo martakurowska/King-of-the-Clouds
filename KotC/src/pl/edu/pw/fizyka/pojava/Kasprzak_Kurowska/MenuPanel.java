@@ -110,7 +110,6 @@ public class MenuPanel extends JPanel {
 		}
 		g.drawImage(livesIcon.getImage(), guiFrame.getWidth() - 197, 5, this);
 
-		repaint();
 	}
 	
 	public class MenuScreenHandler implements ActionListener {
@@ -134,6 +133,14 @@ public class MenuPanel extends JPanel {
 					
 					Statement statement = conn.createStatement();
 					
+					//zapobiega bledom "tablica nie istnieje" gdy uzytkownik nigdy nie zapisal swojego wyniku, a postanowil kliknac wczytaj gre
+					statement.executeUpdate("CREATE TABLE IF NOT EXISTS `score` ("+
+							  "`Id` int(6) unsigned NOT NULL auto_increment,"+
+							  "`points` int default NULL,"+
+							  "`lives` int default NULL,"+
+							  "PRIMARY KEY  (`Id`)"+
+							") ;");
+					
 		        	statement.execute("SELECT * FROM score");
 		        	
 		        	ResultSet rs = statement.getResultSet();
@@ -143,10 +150,12 @@ public class MenuPanel extends JPanel {
 			            for (int ii = 1; ii <= md.getColumnCount(); ii++){
 			            	data.add((Integer) rs.getObject(ii));
 			            }
+			            //wczytanie zapisanych w bazie danych wrtoœci punktów i zyc
+			            score = data.get(1);
+						lives = data.get(2);
 			        }
-					
-					score = data.get(1);
-					lives = data.get(2);
+					//wywoluje metode paintComponent zeby odswierzyc informacje o punktach i zyciach
+					repaint();
 					
 				} catch (SQLException e1) {
 					e1.printStackTrace();
@@ -169,16 +178,16 @@ public class MenuPanel extends JPanel {
 					conn = DriverManager.getConnection(	"jdbc:h2:./data/database", "sa", "");
 					Statement statement = conn.createStatement();
 					
-					statement.executeUpdate("DROP TABLE IF EXISTS `SCORE`;");
+					statement.executeUpdate("DROP TABLE IF EXISTS `score`;");
 					
-					statement.executeUpdate("CREATE TABLE `SCORE` ("+
+					statement.executeUpdate("CREATE TABLE `score` ("+
 							  "`Id` int(6) unsigned NOT NULL auto_increment,"+
 							  "`points` int default NULL,"+
 							  "`lives` int default NULL,"+
 							  "PRIMARY KEY  (`Id`)"+
 							") ;");
 					
-					statement.executeUpdate("INSERT INTO `SCORE` (`Id`,`points`,`lives`) VALUES (1, " + score + ", " + lives + ");");
+					statement.executeUpdate("INSERT INTO `score` (`Id`,`points`,`lives`) VALUES (1, " + score + ", " + lives + ");");
 					
 				} catch (SQLException e1) {
 					e1.printStackTrace();

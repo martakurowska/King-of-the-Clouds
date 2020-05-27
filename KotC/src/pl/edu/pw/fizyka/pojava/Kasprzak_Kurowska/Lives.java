@@ -13,19 +13,6 @@ public class Lives extends Sprite {
 	public Lives(GamePanel game) {
 		gamePanel = game;
 		
-		//ustawia odpowiedni obrazek w zaleznosci od liczby zyc
-		if(gamePanel.guiFrame.menuPanel.lives == 3) {
-			imageIcon = new ImageIcon(getClass().getResource("others/hearts/3lives.png")); 
-		}
-		else if(gamePanel.guiFrame.menuPanel.lives == 2) {
-			imageIcon = new ImageIcon(getClass().getResource("others/hearts/2lives.png")); 
-		}
-		else if(gamePanel.guiFrame.menuPanel.lives == 1) {
-			imageIcon = new ImageIcon(getClass().getResource("others/hearts/1lives.png")); 
-		}
-		
-		setImage(imageIcon.getImage());
-		
 		//ustawienie polozenia
 		x = gamePanel.guiFrame.getWidth() - 197;
 		setX(x);

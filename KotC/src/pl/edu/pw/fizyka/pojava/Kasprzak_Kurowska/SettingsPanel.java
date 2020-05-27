@@ -132,6 +132,6 @@ public class SettingsPanel extends JPanel{
         super.paintComponent(G);
         settingsImage = new ImageIcon(getClass().getResource("others/settings.png"));
         G.drawImage(settingsImage.getImage(), 0, 0, this.getWidth(), this.getHeight(), null);
-        repaint();
+
     }
 }
