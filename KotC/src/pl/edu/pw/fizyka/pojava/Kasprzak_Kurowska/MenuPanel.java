@@ -35,6 +35,7 @@ public class MenuPanel extends JPanel {
 	//domyslnie gracz ma 0 pkt i 3 zycia
 	int score = 0, lives = 3;
 	
+	//metoda ustawiajaca wyglad przyciskow
 	public void setButton(JButton btn) {
 		btn.setFont(defaultFont);
         btn.setBackground(colorOfButton); 
@@ -115,6 +116,7 @@ public class MenuPanel extends JPanel {
 	public class MenuScreenHandler implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			if (e.getActionCommand() == "newgame") {
+				//wyswietla panel gry
 	        	MenuPanel.this.setVisible(false);
 	        	guiFrame.gamePanel = new GamePanel(guiFrame);
 	        	guiFrame.container.add(guiFrame.gamePanel);
@@ -122,6 +124,7 @@ public class MenuPanel extends JPanel {
 	        	guiFrame.isGameActive = true;   	
 	        } 
 	        else if (e.getActionCommand() == "loadgame") {
+	        	//wczytuje zapisane w bazie danych informacje o ilosci zyc i punktow
 	        	Connection conn = null;
 	        	
 	        	data = new ArrayList<Integer>();
@@ -147,16 +150,19 @@ public class MenuPanel extends JPanel {
 					
 				} catch (SQLException e1) {
 					e1.printStackTrace();
-				} if(conn != null) {
-    				try {
-						conn.close();
-					} catch (SQLException e1) {
-						e1.printStackTrace();
-					}
-    			}
+				} finally {
+					if(conn != null) {
+	    				try {
+							conn.close();
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
+	    			}
+				}
 				
 	        } 
 	        else if (e.getActionCommand() == "savegame") {
+	        	//zapisuje w bazie danych informacje o ilosci zyc i punktow
 	        	Connection conn = null;
 	        	try {
 	        		
@@ -187,6 +193,7 @@ public class MenuPanel extends JPanel {
         		}
 	        } 
 	        else if (e.getActionCommand() == "settings") {
+	        	//wyswietla panel ustawien
 	        	MenuPanel.this.setVisible(false);
 	        	guiFrame.container.add(guiFrame.settingsPanel);
 	        	guiFrame.settingsPanel.setVisible(true);
@@ -194,6 +201,7 @@ public class MenuPanel extends JPanel {
 	        	guiFrame.settingsPanel.characterPanel.setVisible(true);
 	        }
 	        else if (e.getActionCommand() == "exitgame") {
+	        	//wyjscie z gry
 	            System.exit(0);
 	        } 
 		}

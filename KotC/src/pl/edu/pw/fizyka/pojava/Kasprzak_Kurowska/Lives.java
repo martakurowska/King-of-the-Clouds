@@ -4,7 +4,8 @@ import javax.swing.ImageIcon;
 
 //Wiktoria Kasprzak, Marta Kurowska
 public class Lives extends Sprite {
-
+	
+	//wyœwietla iloœæ ¿yc w prawym gornym rogu w trakcie gry
 	GamePanel gamePanel; 
 	GuiFrame guiFrame;
 	ImageIcon imageIcon; 
@@ -12,6 +13,7 @@ public class Lives extends Sprite {
 	public Lives(GamePanel game) {
 		gamePanel = game;
 		
+		//ustawia odpowiedni obrazek w zaleznosci od liczby zyc
 		if(gamePanel.guiFrame.menuPanel.lives == 3) {
 			imageIcon = new ImageIcon(getClass().getResource("others/hearts/3lives.png")); 
 		}
@@ -23,6 +25,8 @@ public class Lives extends Sprite {
 		}
 		
 		setImage(imageIcon.getImage());
+		
+		//ustawienie polozenia
 		x = gamePanel.guiFrame.getWidth() - 197;
 		setX(x);
 		y = 5; 

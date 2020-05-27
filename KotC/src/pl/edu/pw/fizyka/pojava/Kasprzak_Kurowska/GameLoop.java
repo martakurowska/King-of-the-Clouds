@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 //Wiktoria Kasprzak
 public class GameLoop implements ActionListener{
-	
+	//klasa podpiêta do timera w GamePanel, zatem cyklicznie bedzie wywolywana metoda doOneLoop, ktora odpowiada za poruszanie siê obiektów
 	private GamePanel gamePanel;
 	
 	public GameLoop(GamePanel gamePanel) {

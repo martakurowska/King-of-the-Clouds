@@ -38,7 +38,8 @@ public class SoundPanel extends JPanel implements ActionListener {
 	GridBagConstraints c;
 	private JSlider volumeSlider; 
 	FloatControl gain; 
-     
+	
+	//metoda ustawiajaca wyglad radio buttonow
     public void setJRadioButton (JRadioButton btn) {
     	btn.setOpaque(false);
     	defaultFont = new Font("Impact", Font.PLAIN, 40); 
@@ -51,7 +52,7 @@ public class SoundPanel extends JPanel implements ActionListener {
 		songButtonGroup.add(btn);
 		panelSetup.add(btn, c);
     }
-    
+    //metoda ustawiajaca wyglad przyciskow on/off
     public void setUpJButton(JButton btn) {
     	btn.setBackground(new Color(225,108,164)); 
     	btn.setFocusPainted(false);
@@ -105,19 +106,19 @@ public class SoundPanel extends JPanel implements ActionListener {
         song2 = new JRadioButton("King of the Clouds"); 
         setJRadioButton(song2);
         song2.setSelected(true);
-        song2.setActionCommand("kotc");
+        song2.setActionCommand("KOTC");
     	
         c.gridx = 0;
         c.gridy = 4;
         song3 = new JRadioButton("Bohema");
         setJRadioButton(song3);
-        song3.setActionCommand("Boh");
+        song3.setActionCommand("lece");
         
         c.gridx = 0;
         c.gridy = 5;
         song4 = new JRadioButton("Rumadai"); 
         setJRadioButton(song4);
-        song4.setActionCommand("r");
+        song4.setActionCommand("Rumadai");
         
         c.gridx = 0;
         c.gridy = 6;
@@ -144,13 +145,13 @@ public class SoundPanel extends JPanel implements ActionListener {
         c.gridy = 3;
         song7 = new JRadioButton("Górą ty");
         setJRadioButton(song7);
-        song7.setActionCommand("GT");
+        song7.setActionCommand("GTGJ");
         
         c.gridx = 1;
         c.gridy = 4;
         song8 = new JRadioButton("Dragonstea din tei");
         setJRadioButton(song8);
-        song8.setActionCommand("ddt");
+        song8.setActionCommand("DDT");
         
         c.gridx = 1;
         c.gridy = 5;
@@ -162,7 +163,7 @@ public class SoundPanel extends JPanel implements ActionListener {
         c.gridy = 6;
         song10 = new JRadioButton("Up In The Air");
         setJRadioButton(song10);
-        song10.setActionCommand("UITA");
+        song10.setActionCommand("UiTA");
 
     	this.add(panelSetup, BorderLayout.CENTER); 
     }
@@ -172,11 +173,14 @@ public class SoundPanel extends JPanel implements ActionListener {
     }
     
     public void setUpButtonsAction() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+    	//odtworzenie odpowiedniego pliku dzwiekowego
     	settingsPanel.guiFrame.audio = AudioSystem.getAudioInputStream(settingsPanel.guiFrame.audioUrl);
     	settingsPanel.guiFrame.music = AudioSystem.getClip();
     	settingsPanel.guiFrame.music.open(settingsPanel.guiFrame.audio);
+    	//ustawienia glosnosci
         gain = (FloatControl)settingsPanel.guiFrame.music.getControl(FloatControl.Type.MASTER_GAIN);
 		gain.setValue(volumeSlider.getValue());
+		//zapetlenie
 		settingsPanel.guiFrame.music.loop(-1);
 		settingsPanel.guiFrame.revalidate();
     }
@@ -197,78 +201,11 @@ public class SoundPanel extends JPanel implements ActionListener {
         } 
         else {
         	settingsPanel.guiFrame.music.stop();
-        	switch(e.getActionCommand()) {
-        		case "cgf":
-        			try {
-        				settingsPanel.guiFrame.audioUrl = getClass().getResource("others/music/cgf.wav");
-        				this.setUpButtonsAction();
-        			}
-        			catch(Exception f) {}	
-        			break;
-        		case "kotc":
-        			try {
-        				settingsPanel.guiFrame.audioUrl = getClass().getResource("others/music/KOTC.wav");
-        				this.setUpButtonsAction();
-        			}
-        			catch(Exception f) {}	
-        			break;
-        		case "ddt":
-        			try {
-        				settingsPanel.guiFrame.audioUrl = getClass().getResource("others/music/DDT.wav");
-        				this.setUpButtonsAction();
-        			}
-            		catch(Exception f) {}	
-            		break;
-        		case "r":
-        			try {
-        				settingsPanel.guiFrame.audioUrl = getClass().getResource("others/music/Rumadai.wav");
-        				this.setUpButtonsAction();
-        			}
-            		catch(Exception f) {}	
-            		break;
-        		case "ASFoS":
-        			try {
-        				settingsPanel.guiFrame.audioUrl = getClass().getResource("others/music/ASFoS.wav");
-        				this.setUpButtonsAction();
-        			}
-            		catch(Exception f) {}	
-            		break;
-        		case "CS":
-        			try {
-        				settingsPanel.guiFrame.audioUrl = getClass().getResource("others/music/CS.wav");
-        				this.setUpButtonsAction();
-        			}
-            		catch(Exception f) {}	
-            		break;
-        		case "GT":
-        			try {
-        				settingsPanel.guiFrame.audioUrl = getClass().getResource("others/music/GTGJ.wav");
-        				this.setUpButtonsAction();
-        			}
-            		catch(Exception f) {}	
-            		break;
-        		case "Boh":
-        			try {
-        				settingsPanel.guiFrame.audioUrl = getClass().getResource("others/music/lece.wav");
-        				this.setUpButtonsAction();
-        			}
-            		catch(Exception f) {}	
-            		break;
-        		case "PuK":
-        			try {
-        				settingsPanel.guiFrame.audioUrl = getClass().getResource("others/music/PuK.wav");
-        				this.setUpButtonsAction();
-        			}
-            		catch(Exception f) {}	
-            		break;
-        		case "UITA":
-        			try {
-        				settingsPanel.guiFrame.audioUrl = getClass().getResource("others/music/UiTA.wav");
-        				this.setUpButtonsAction();
-        			}
-            		catch(Exception f) {}	
-            		break;
-        	}
+        	try {
+				settingsPanel.guiFrame.audioUrl = getClass().getResource("others/music/" + e.getActionCommand() + ".wav");
+				this.setUpButtonsAction();
+			}
+			catch(Exception f) {}	
         }
 	} 
 } 

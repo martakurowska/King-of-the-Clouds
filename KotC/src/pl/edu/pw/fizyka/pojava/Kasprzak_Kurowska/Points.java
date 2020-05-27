@@ -7,8 +7,8 @@ import java.util.concurrent.Executors;
 
 import javax.swing.ImageIcon;
 
-//Wiktoria Kasprzak
-public class Points extends Sprite implements Runnable{
+//Wiktoria Kasprzak, Marta Kurowska - runnable
+public class Points extends Sprite implements Runnable {
 
 	GamePanel gamePanel;
 	public ImageIcon imageIcon; 
@@ -25,11 +25,13 @@ public class Points extends Sprite implements Runnable{
 	private void initialize() {
 		imageIcon = new ImageIcon(getClass().getResource("others/points/1.png")); 
 		
+		//wczytywanie obrazkow animacji
 		for(int ii = 0; ii < 9; ii++) {
 			ImageIcon img = new ImageIcon(getClass().getResource("others/points/" + (ii + 1) + ".png"));
 			images.add(img);
 		}
-	
+		
+		//randomowe ustalanie polozenia punktow
 		x = rand.nextInt((int) (gamePanel.guiFrame.getWidth() - imageIcon.getIconWidth()) * 2);
 		setX(x);
 		
@@ -43,6 +45,7 @@ public class Points extends Sprite implements Runnable{
 
 	@Override
 	public void move() { 
+		//animowanie monet poruszanie siê + obracanie
 		if(visible) {
 			y += dy;
 			exec.execute(this);
@@ -59,7 +62,7 @@ public class Points extends Sprite implements Runnable{
 
 	@Override
 	public void run() {
-		
+		//animacja (obracanie siê monet)
 		int ii = 0;
 		
 		while(gamePanel.isGameRunning) {

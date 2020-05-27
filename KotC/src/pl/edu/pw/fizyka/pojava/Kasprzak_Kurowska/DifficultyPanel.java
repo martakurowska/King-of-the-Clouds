@@ -25,6 +25,7 @@ public class DifficultyPanel extends JPanel implements ActionListener {
 	Font defaultButtonFont = new Font("Impact", Font.PLAIN, 60);  
 	Font defaultLabelFont = new Font("Impact", Font.PLAIN, 30);  
 	
+	//metoda ustawiaj¹ca wygl¹d przycisków
     public void setButton(JButton btn) {
 		btn.setFocusPainted(false);
 		btn.setForeground(Color.BLACK);

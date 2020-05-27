@@ -16,6 +16,7 @@ public class Background extends Sprite {
 	}
 
 	private void initialize() {
+		//ustawianie przewijajacego sie t³a gry 
 		imageIcon = new ImageIcon(getClass().getResource("others/tlo.png"));
 		setImage(imageIcon.getImage());
 		
@@ -26,6 +27,7 @@ public class Background extends Sprite {
 		startYBottom = imageIcon.getIconHeight();
 		setBcgrndYBottom(startYBottom);
 		
+		//predkosc przewijania sie tla
 		dy = 1.5;
 	}
 	
@@ -33,7 +35,8 @@ public class Background extends Sprite {
 	public void move() {
 		
 		//Jesli lewy gorny rog osiagnie wysokosc 10, to tlo przestaje sie poruszac i zostaje na wysokosci 10
-		//boolean end jest uzywany do konczenia gry, zatem jesli end == true to nastepuje koniec
+		//boolean end jest uzywany do konczenia gry, zatem jesli end == true to nastepuje koniec gry
+		//jesli koniec nie zostal osiagniety tlo przesuwa sie 
 		if(bcgrndYTop <= 10) {
 			bcgrndYTop = 10;
 			bcgrndYBottom = guiFrame.getHeight();

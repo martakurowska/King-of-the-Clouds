@@ -4,6 +4,7 @@ import java.awt.Image;
 
 //Wiktoria Kasprzak
 //Sprite to w programowaniu obiekt graficzny 2d, ktory jest wstawiany do panelu
+//klasa abstrakcyjna, dziedzicza po niej Background, Balloon, Lives, Points, Score, Planes
 public abstract class Sprite {
 
 	private Image image;

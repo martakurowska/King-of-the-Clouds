@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 //Marta Kurowska
 public class EscapeDialogFrame extends JFrame implements ActionListener {
 	
+	//klasa która okreœla okienko dialogowe pojawiaj¹ce siê po kliknêciu esc w trakcie gry
 	public JPanel panelSetup, panelTopSetup; 
 	public JLabel label;
 	public JButton noButton, yesButton;

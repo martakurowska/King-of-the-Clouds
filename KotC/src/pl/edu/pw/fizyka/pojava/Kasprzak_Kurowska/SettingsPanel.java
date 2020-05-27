@@ -25,6 +25,7 @@ public class SettingsPanel extends JPanel{
 	SoundPanel sound;
 	DifficultyPanel difficultyPanel; 
 	
+	//metoda ustawiajaca wyglad przyciskow
 	public void setButton(JButton btn) {
 		btn.setFont(guiFrame.menuPanel.defaultFont);
         btn.setBackground(guiFrame.menuPanel.colorOfButton); 
@@ -80,6 +81,7 @@ public class SettingsPanel extends JPanel{
 	public class SettingsScreenHandler implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 	        if(e.getActionCommand() == "backToMenu") {
+	        	//wraca z powrotem do menu
 	        	SettingsPanel.this.setVisible(false);
 	        	languagePanel.setVisible(false);
 	        	soundPanel.setVisible(false);
@@ -91,6 +93,7 @@ public class SettingsPanel extends JPanel{
 	        	guiFrame.menuPanel.setVisible(true);
 	        }
 	        else if(e.getActionCommand() == "language") {
+	        	//wyswietla panel ustawien jezykowych
 	        	characterPanel.setVisible(false);
 	        	soundPanel.setVisible(false);
 	        	difficultyPanel.setVisible(false);
@@ -98,6 +101,7 @@ public class SettingsPanel extends JPanel{
 	        	languagePanel.setVisible(true);
 	        } 
 	        else if(e.getActionCommand() == "sound") {
+	        	//wyswietla panel ustawien dzwiekowych
 	        	languagePanel.setVisible(false);
 	        	difficultyPanel.setVisible(false);
 	        	characterPanel.setVisible(false);
@@ -105,6 +109,7 @@ public class SettingsPanel extends JPanel{
 	        	soundPanel.setVisible(true);
 	        }
 	        else if(e.getActionCommand() == "character") {
+	        	//wyswietla panel wybory postaci
 	        	soundPanel.setVisible(false);
 	        	languagePanel.setVisible(false);
 	        	difficultyPanel.setVisible(false);

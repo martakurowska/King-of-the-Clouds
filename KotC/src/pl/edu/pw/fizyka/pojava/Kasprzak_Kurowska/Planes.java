@@ -19,7 +19,7 @@ public class Planes extends Sprite {
 
 
 	public void initialize() {
-		
+		//randomowe przydzielanie wygladu samolotu
 		number = rand.nextInt(4);
 		if(number==0) 
 				imageIcon = new ImageIcon(getClass().getResource("others/plane/plane1.png"));
@@ -32,12 +32,14 @@ public class Planes extends Sprite {
 		
 		setImage(imageIcon.getImage()); 
 		
+		//randomowe ustawianie pozycji samolotu
 		x = rand.nextInt((int) (gamePanel.guiFrame.getWidth() - imageIcon.getIconWidth()) * 2); 
 		setX(x); 
 	    
 		y = rand.nextInt((int) (2.15 * gamePanel.background.imageIcon.getIconHeight())) * (-1);
 		setY(y);
 		
+		//predkosc samolotu
 		dy = 5;
 	
 	}

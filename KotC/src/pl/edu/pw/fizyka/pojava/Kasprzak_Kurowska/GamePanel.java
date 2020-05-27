@@ -20,6 +20,7 @@ import javax.swing.Timer;
 //Wiktoria Kasprzak, Marta Kurowska
 public class GamePanel extends JPanel implements ActionListener{
 	
+	//klasa zarzadzajaca wygladem panelu gry
 	GridBagConstraints constraints;
 	GuiFrame guiFrame;
 	Balloon balloon;  
@@ -37,17 +38,19 @@ public class GamePanel extends JPanel implements ActionListener{
 	public GamePanel(GuiFrame gui) {
 		
 		guiFrame = gui;
+		//podpiecie metody doOneLoop ktora bedzie sie wykonywac co 10ms i powodowac poruszanie sie obiektow
 		timer = new Timer(10, new GameLoop(this));
 		timer.start();
+		//tworzenie balonika
 		balloon = new Balloon(guiFrame);
 		background = new Background(guiFrame);
-
+		//tworzenie samolotow
    		planes = new ArrayList<>();
 	    for (int ii = 0; ii < 90; ii++) {
 	    	Planes singlePlane = new Planes(this);
             planes.add(singlePlane); 	
 	    }
-	                 
+	    //tworzenie punktow          
 		points = new ArrayList<>();
 		for (int ii = 0; ii < 50; ii++) {
 			Points singlePoint = new Points(this); 
@@ -55,7 +58,8 @@ public class GamePanel extends JPanel implements ActionListener{
 		}
 		score = new Score(this);
 		lives = new Lives(this); 
-	
+		
+		//tworzenie przycisku ktory pojawia siê na koniec gry, ktory zabiera uzytkownika do menu
 		goOut = new JButton("OK");
 		goOut.setFont(guiFrame.menuPanel.defaultFont);
         goOut.setBackground(new Color(237,28,36)); 
@@ -181,7 +185,7 @@ public class GamePanel extends JPanel implements ActionListener{
 			guiFrame.menuPanel.score = score.score;
 			guiFrame.menuPanel.lives = balloon.lives;
 		}
-		guiFrame.setResizable(true);
+
 		guiFrame.container.remove(guiFrame.menuPanel);
 		guiFrame.container.add(guiFrame.menuPanel);
 		GamePanel.this.setVisible(false);

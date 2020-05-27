@@ -48,7 +48,7 @@ public class GuiFrame extends JFrame implements KeyListener {
 	    height = (this.screenHeight/2)-(this.getHeight()/2);
 	    this.setLocation(width, height);
 		container = this.getContentPane();
-		
+		//odtwarzanie muzyki w tle
 		try {
 		    audioUrl = getClass().getResource("others/music/KOTC.wav");
 		    audio = AudioSystem.getAudioInputStream(audioUrl);

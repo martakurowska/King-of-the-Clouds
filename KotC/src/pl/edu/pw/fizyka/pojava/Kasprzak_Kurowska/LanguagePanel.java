@@ -92,6 +92,7 @@ public class LanguagePanel implements ActionListener{
         swedish.setActionCommand("swedish");
 	}
 	
+	//wywo³ywanie metod zmieniajacych jezyk gry w poszczegolnych panelach
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand() == "english") {

@@ -15,12 +15,15 @@ public class Balloon extends Sprite {
 	}
 	
 	private void initialize() {
+		//ustawianie wygladu balonika
 		imageIcon = guiFrame.balloonImage; 
 		setImage(imageIcon.getImage()); 
 		
+		//ustawianie pozycji poczatkowej balonika
 		balloonStartX = (guiFrame.getWidth() / 2 - imageIcon.getIconWidth() / 2); 
 		setX(balloonStartX); 
 		
+		//ustawianie zyc balonika
 		lives = guiFrame.menuPanel.lives;
 	}
 	

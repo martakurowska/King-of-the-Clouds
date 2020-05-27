@@ -25,6 +25,7 @@ public class CharacterPanel extends JPanel implements ActionListener  {
     SettingsPanel settingsPanel;
     GridBagConstraints constraints;
     
+    //metoda do ustawiania wygladu przyciskow 
     public void setButton(JButton btn) {
 		btn.setBorderPainted(false);
 		btn.setFocusPainted(false);
@@ -33,7 +34,8 @@ public class CharacterPanel extends JPanel implements ActionListener  {
 		btn.setFont(defaultLabelFont);
 		this.add(btn, constraints);
 	}  
-     
+    
+    //metoda uzywana do pokazywania ktory balonik jest wybrany
     public void characterButton(JButton btn) {
     	character1.setContentAreaFilled(false);
     	character2.setContentAreaFilled(false);
@@ -44,6 +46,7 @@ public class CharacterPanel extends JPanel implements ActionListener  {
     	btn.setContentAreaFilled(true);
 		btn.setBackground(colorOfButton);
     }
+    
     public CharacterPanel(SettingsPanel settings) {
     	settingsPanel = settings;;
     	this.setOpaque(false);
@@ -110,6 +113,7 @@ public class CharacterPanel extends JPanel implements ActionListener  {
     
     @Override
 	public void paintComponent(Graphics g) {
+    	//jesli gracz nie posiada okreslonej ilosci punktow pewne baloniki zmieniaj¹ kolor na szary, a przyciski trac¹ funkcje
     	if(settingsPanel.guiFrame.menuPanel.score >= 400) {
     		balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly4.png"));
     		character4.setIcon(balloonImage);
@@ -145,6 +149,7 @@ public class CharacterPanel extends JPanel implements ActionListener  {
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand() == "yellow") {
 			settingsPanel.guiFrame.balloonImage = new ImageIcon(getClass().getResource("others/balloons/balonMaly1.png"));
+			//zaznacza wybrany balonik
 			characterButton(character1); 
 		} 
 		else if(e.getActionCommand() == "happy") {	
