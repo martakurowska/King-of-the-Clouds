@@ -86,7 +86,7 @@ public class MenuPanel extends JPanel{
 		menuImage = new ImageIcon(getClass().getResource("others/menu2.png"));
 		g.drawImage(menuImage.getImage(), 0, 0, this.getWidth(), this.getHeight(), null);
 		
-		points = new ImageIcon(getClass().getResource("others/point.png"));
+		points = new ImageIcon(getClass().getResource("others/points/1.png"));
 		g.drawImage(points.getImage(), 5, 5, this);	
 		g.setColor(new Color(253,191,0));
 		g.setFont(guiFrame.menuPanel.defaultFont);

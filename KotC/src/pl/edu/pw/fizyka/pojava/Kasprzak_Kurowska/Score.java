@@ -11,7 +11,7 @@ public class Score extends Sprite {
 	
 	public Score(GamePanel game) {
 		gamePanel = game; 
-		imageIcon = new ImageIcon(getClass().getResource("others/point.png")); 
+		imageIcon = new ImageIcon(getClass().getResource("others/points/1.png")); 
 		setImage(imageIcon.getImage());
 		score = gamePanel.guiFrame.menuPanel.score; 
 		x = 5;
