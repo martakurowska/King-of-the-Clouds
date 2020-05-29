@@ -38,6 +38,7 @@ public class GuiFrame extends JFrame implements KeyListener {
 		this.setSize((int) (screenWidth*0.7),(int) (screenHeight*0.85));
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setTitle("King of the Clouds Game");
+		this.setIconImage(new ImageIcon(getClass().getResource("others/points/1.png")).getImage());
 		this.setFocusable(true);
 	    this.requestFocusInWindow();
 	    this.addKeyListener(this);
